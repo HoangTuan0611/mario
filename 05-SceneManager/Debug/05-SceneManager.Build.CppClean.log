@@ -1,39 +1,34 @@
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\d3dcompiler_43.dll
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\d3dx9d_43.dll
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\d3dx10d_43.dll
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\d3dx11d_43.dll
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\vc142.pdb
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\vc142.idb
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\utils.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\textures.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\sprites.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\sprite.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\samplekeyeventhandler.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\portal.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\platform.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\mario.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\main.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\goomba.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\gameobject.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\game.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\debug.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\collision.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\coin.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\brick.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\animations.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\animation.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\vc143.pdb
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\vc143.idb
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\playscene.obj
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\05-scenemanager.exe
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\05-scenemanager.ilk
-d:\dh uit\semester 10\game\test\super-mario-dx10\debug\05-scenemanager.pdb
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.ilk
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\copylocal.read.1u.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\copylocal.write.1u.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\cl.read.1.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\cl.write.1.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\cl.command.1.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\link.read.1.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\link.write.1.tlog
-d:\dh uit\semester 10\game\test\super-mario-dx10\05-scenemanager\debug\05-scenemanager.tlog\link.command.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\debug\d3dcompiler_43.dll
+d:\dh uit\semester 10\game\git mario\mario\debug\d3dx9d_43.dll
+d:\dh uit\semester 10\game\git mario\mario\debug\d3dx10d_43.dll
+d:\dh uit\semester 10\game\git mario\mario\debug\d3dx11d_43.dll
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\vc143.pdb
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\vc143.idb
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\utils.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\textures.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\sprites.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\samplekeyeventhandler.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\portal.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\playscene.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\mario.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\map.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\main.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\goomba.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\gameobject.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\game.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\debug.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\collision.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\coin.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\brick.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\animations.obj
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.ilk
+d:\dh uit\semester 10\game\git mario\mario\debug\05-scenemanager.exe
+d:\dh uit\semester 10\game\git mario\mario\debug\05-scenemanager.pdb
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\copylocal.read.1u.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\copylocal.write.1u.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\cl.read.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\cl.write.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\cl.command.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\link.read.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\link.write.1.tlog
+d:\dh uit\semester 10\game\git mario\mario\05-scenemanager\debug\05-scenemanager.tlog\link.command.1.tlog

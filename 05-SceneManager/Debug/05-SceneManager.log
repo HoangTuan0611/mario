@@ -1,2 +1,22 @@
-﻿  LINK : D:\DH UIT\Semester 10\Game\Git mario\mario\Debug\05-SceneManager.exe not found or not built by the last incremental link; performing full link
+﻿  Animations.cpp
+  Brick.cpp
+  Coin.cpp
+  Collision.cpp
+  debug.cpp
+  Game.cpp
+  GameObject.cpp
+  Goomba.cpp
+  main.cpp
+  Map.cpp
+  Mario.cpp
+  PlayScene.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(250,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(275,20): warning C4018: '<': signed/unsigned mismatch
+  Portal.cpp
+  SampleKeyEventHandler.cpp
+  Sprites.cpp
+  Textures.cpp
+  Utils.cpp
+  Generating Code...
   05-SceneManager.vcxproj -> D:\DH UIT\Semester 10\Game\Git mario\mario\Debug\05-SceneManager.exe

@@ -4,6 +4,7 @@ width	320
 height	240
 #id		path		type		isCameraMove
 [SCENES]
+0	Resources\Scene\worldscene.txt
 1	Resources\Scene\World1-1\scene1.txt
 [TEXTURES]
 # id	file_path	
