@@ -209,6 +209,18 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 
 			break;
+		case OBJECT_TYPE_BREAKABLEBRICK:
+			obj = new CBrick();
+
+			break;
+		case OBJECT_TYPE_MUSICALBRICK:
+			obj = new CBrick();
+
+			break;
+		case OBJECT_TYPE_BLOCK:
+			obj = new CBrick();
+
+			break;
 		case OBJECT_TYPE_COIN:
 			obj = new CCoin(x, y);
 			break;
@@ -223,7 +235,6 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 		case GRID:
 		{
 			obj = new CBrick();
-
 			break;
 		}
 		default:
@@ -236,7 +247,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj->SetPosition(x, y);
 			objects.push_back(obj);
 			LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
-			// obj->SetAnimationSet(ani_set);
+			obj->SetAnimationSet(ani_set);
 		}
 	}
 
@@ -331,6 +342,37 @@ void CPlayScene::Render()
 	current_map->DrawMap();
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
+}
+
+void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
+	float sw, sh, mw, mh, mx, my;
+	CGame* game = CGame::GetInstance();
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	sw = game->GetBackBufferWidth();
+	sh = game->GetBackBufferHeight() - 32;
+	mw = current_map->GetMapWidth();
+	mh = current_map->GetMapHeight();
+	cx -= sw / 2;
+	// CamX
+	if (cx <= 0)//Left Edge
+		cx = 0;
+	if (cx >= mw - sw)//Right Edge
+		cx = mw - sw;
+
+	//CamY
+	if (isTurnOnCamY)
+		cy -= sh / 2;
+	else
+		//cy -= sh / 2;
+		cy = mh - sh;
+
+	if (cy <= 0)//Top Edge
+		cy = 0;
+	if (cy + sh >= mh)//Bottom Edge
+		cy = mh - sh;
+
+	game->SetCamPos(ceil(cx), ceil(cy));
+	current_map->SetCamPos(cx, cy);
 }
 
 /*
