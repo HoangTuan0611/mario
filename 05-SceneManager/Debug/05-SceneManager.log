@@ -10,9 +10,15 @@
   Map.cpp
   Mario.cpp
   PlayScene.cpp
-D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
-D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(250,20): warning C4018: '<': signed/unsigned mismatch
-D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(275,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(101,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(332,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(333,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(334,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(335,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(329,28): warning C4101: 'my': unreferenced local variable
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(329,24): warning C4101: 'mx': unreferenced local variable
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(363,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(388,20): warning C4018: '<': signed/unsigned mismatch
   Portal.cpp
   SampleKeyEventHandler.cpp
   Sprites.cpp

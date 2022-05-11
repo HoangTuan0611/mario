@@ -604,10 +604,13 @@ Resources\Tilemap\world1-1.txt
 71110	6	195	22	219	40
 71111	6	166	22	190	40
 # ani_id	sprite1_id	time1	sprite2_id	time2	...
+#JUMP WALK RIGHT
+11417	394	275	412	302	0
+11413	35	275	52	302	0
 [ANIMATIONS]
-# jump walk
-700	10002	100
-701	10003	100
+#JUMP WALK
+700	11417	100
+701	11413	100
 # ==== transparent ====
 0	10999	100
 # ==== IconP ====
