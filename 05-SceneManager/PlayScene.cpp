@@ -52,7 +52,7 @@ void CPlayScene::_ParseSection_TILEMAP_DATA(string line)
 		int j;
 		for (j = 0; j < columnMap; j++) {
 			f >> TileMapData[i][j];
-			//DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
+			DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
 		}
 	}
 	f.close();
@@ -60,7 +60,6 @@ void CPlayScene::_ParseSection_TILEMAP_DATA(string line)
 	current_map = new CMap(ID, rowMap, columnMap, rowTile, columnTile, totalTiles);
 	current_map->ExtractTileFromTileSet();
 	current_map->SetTileMapData(TileMapData);
-	//mapWidth = current_map->GetMapWidth();
 	DebugOut(L"[INFO] _ParseSection_TILEMAP_DATA done:: \n");
 
 }
@@ -192,15 +191,16 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 		case OBJECT_TYPE_MARIO:
 			if (player != NULL)
 			{
-				DebugOut(L"[ERROR] MARIO object was created before!\n");
+				DebugOut(L"[ERROR] MARIO was created before!\n");
 				return;
 			}
 			obj = new CMario(x, y);
 			player = (CMario*)obj;
-			DebugOut(L"[INFO] Player object created!\n", obj);
+			DebugOut(L"[INFO] Mario created!\n", obj);
 			break;
 		case OBJECT_TYPE_GOOMBA:
-			obj = new CGoomba(x, y);
+			//obj = new CGoomba(x, y);
+			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();
@@ -209,17 +209,8 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 
 			break;
-		case OBJECT_TYPE_BREAKABLEBRICK:
-			obj = new CBrick();
-
-			break;
-		case OBJECT_TYPE_MUSICALBRICK:
-			obj = new CBrick();
-
-			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBrick();
-
 			break;
 		case OBJECT_TYPE_COIN:
 			obj = new CCoin(x, y);
@@ -228,11 +219,6 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_PORTAL:
-		{
-			obj = new CBrick();
-			break;
-		}
-		case GRID:
 		{
 			obj = new CBrick();
 			break;
