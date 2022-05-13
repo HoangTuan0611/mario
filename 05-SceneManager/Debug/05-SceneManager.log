@@ -1,4 +1,26 @@
-﻿  Mario.cpp
+﻿  Game.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(62,1): warning C4005: 'MARIO_JUMP_DEFLECT_SPEED': macro redefinition
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(20): message : see previous definition of 'MARIO_JUMP_DEFLECT_SPEED'
+  Mario.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(62,1): warning C4005: 'MARIO_JUMP_DEFLECT_SPEED': macro redefinition
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(20): message : see previous definition of 'MARIO_JUMP_DEFLECT_SPEED'
+  PlayScene.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(62,1): warning C4005: 'MARIO_JUMP_DEFLECT_SPEED': macro redefinition
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(20): message : see previous definition of 'MARIO_JUMP_DEFLECT_SPEED'
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(100,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(333,20): warning C4018: '<': signed/unsigned mismatch
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(341,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(342,35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(343,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(344,32): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(338,28): warning C4101: 'my': unreferenced local variable
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(338,24): warning C4101: 'mx': unreferenced local variable
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\PlayScene.cpp(393,20): warning C4018: '<': signed/unsigned mismatch
   SampleKeyEventHandler.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(62,1): warning C4005: 'MARIO_JUMP_DEFLECT_SPEED': macro redefinition
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(20): message : see previous definition of 'MARIO_JUMP_DEFLECT_SPEED'
+  main.cpp
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(62,1): warning C4005: 'MARIO_JUMP_DEFLECT_SPEED': macro redefinition
+D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Mario.h(20): message : see previous definition of 'MARIO_JUMP_DEFLECT_SPEED'
   Generating Code...
   05-SceneManager.vcxproj -> D:\DH UIT\Semester 10\Game\Git mario\mario\Debug\05-SceneManager.exe

@@ -199,8 +199,9 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			DebugOut(L"[INFO] Mario created!\n", obj);
 			break;
 		case OBJECT_TYPE_GOOMBA:
-			//obj = new CGoomba(x, y);
-			obj = new CBrick();
+			obj = new CGoomba(x, y);
+			DebugOut(L"[INFO] Gooomba created!\n", obj);
+			//obj = new CBrick();
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();
@@ -344,7 +345,11 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 	cx -= sw / 2;
 	// CamX
 	if (cx <= 0)//Left Edge
+	{
 		cx = 0;
+		//mario->SetPosition(cx, cy);	
+	}
+		
 	if (cx >= mw - sw)//Right Edge
 		cx = mw - sw;
 
