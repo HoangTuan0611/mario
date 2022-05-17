@@ -1,3 +1,0 @@
-D:\DH UIT\Semester 10\Game\Test\super-mario-dx10\05-SceneManager\Debug\05-SceneManager.vcxproj.CopyComplete
-D:\DH UIT\Semester 10\Game\Git mario\mario\05-SceneManager\Debug\05-SceneManager.vcxproj.CopyComplete
-D:\DH UIT\Semester 10\Game\New mario\mario\05-SceneManager\Debug\05-SceneManager.vcxproj.CopyComplete
