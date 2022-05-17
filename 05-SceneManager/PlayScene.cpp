@@ -8,6 +8,7 @@
 #include "Sprites.h"
 #include "Portal.h"
 #include "Coin.h"
+#include "Block.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -214,7 +215,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 
 			break;
 		case OBJECT_TYPE_BLOCK:
-			obj = new CBrick();
+			obj = new CBlock(x,y);
 			break;
 		case OBJECT_TYPE_COIN:
 			obj = new CCoin(x, y);

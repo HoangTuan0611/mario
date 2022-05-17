@@ -8,12 +8,28 @@
 #include "Coin.h"
 #include "Portal.h"
 
+#include "Block.h"
 #include "Collision.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
+
+
+	// FOR HANDLE COLLISION WITH BLOCK
+	for (int i = 0; i < coObjects->size(); i++) { // va cham nao cung su dung ( update )
+		LPGAMEOBJECT obj = coObjects->at(i);
+		if (dynamic_cast<CBlock*>(obj))
+		{
+			if (obj->getY() - 16 < this->y) {
+				obj->SetIsBlocking(0); // xuyen qua
+			}
+			else {
+				obj->SetIsBlocking(1); // va cham
+			}
+		}
+	}
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
