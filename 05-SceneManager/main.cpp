@@ -197,7 +197,7 @@ int WINAPI WinMain(
 	game->Init(hWnd, hInstance);
 	game->InitKeyboard();
 
-
+	//Test git push
 	//IMPORTANT: this is the only place where a hardcoded file name is allowed ! 
 	game->Load(L"Resources\\Scene\\mario-sample.txt");
 
