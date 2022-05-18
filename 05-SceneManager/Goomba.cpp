@@ -85,6 +85,18 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		return;
 	}
 
+	//// limit y
+	if (vy < -GOOMBA_JUMP_SPEED && state == GOOMBA_STATE_RED_JUMPING)
+	{
+		vy = -GOOMBA_JUMP_SPEED;
+		ay = GOOMBA_GRAVITY;
+	}
+	if (vy < -GOOMBA_HIGHJUMP_SPEED && state == GOOMBA_STATE_RED_HIGHJUMPING)
+	{
+		vy = -GOOMBA_HIGHJUMP_SPEED;
+		ay = GOOMBA_GRAVITY;
+	}
+
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
