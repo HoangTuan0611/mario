@@ -101,7 +101,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 				else
 				{
 					DebugOut(L">>> Mario DIE >>> \n");
-					SetState(MARIO_STATE_DIE);
+					//SetState(MARIO_STATE_DIE);
 				}
 			}
 		}

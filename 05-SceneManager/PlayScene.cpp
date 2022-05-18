@@ -200,7 +200,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			DebugOut(L"[INFO] Mario created!\n", obj);
 			break;
 		case OBJECT_TYPE_GOOMBA:
-			obj = new CGoomba(x, y);
+			obj = new CGoomba(tag);
 			DebugOut(L"[INFO] Gooomba created!\n", obj);
 			//obj = new CBrick();
 			break;
