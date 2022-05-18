@@ -21,6 +21,13 @@
 #define ID_ANI_GOOMBA_WALKING 5000
 #define ID_ANI_GOOMBA_DIE 5001
 
+#define GOOMBA_RED_JUMPING_STACKS	2
+
+// Red goomba
+#define GOOMBA_STATE_RED_JUMPING		300
+#define GOOMBA_STATE_RED_HIGHJUMPING	350
+#define GOOMBA_STATE_RED_WINGSWALKING	400
+
 #define GOOMBA_NORMAL			0
 #define GOOMBA_RED				1
 #define GOOMBA_RED_NORMAL		2
@@ -47,6 +54,6 @@ protected:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 public: 	
-	CGoomba(float x, float y);
+	CGoomba(int tag);
 	virtual void SetState(int state);
 };

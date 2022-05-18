@@ -1,4 +1,5 @@
 #include "Goomba.h"
+#include "Brick.h"
 
 CGoomba::CGoomba(float x, float y):CGameObject(x, y)
 {
@@ -36,6 +37,31 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 {
 	if (!e->obj->IsBlocking()) return; 
 	if (dynamic_cast<CGoomba*>(e->obj)) return; 
+	if (dynamic_cast<CBrick*>(e->obj)) {
+		if (e->ny != 0)
+		{
+			vy = 0;
+			if (e->ny < 0 && tag == GOOMBA_RED && state != GOOMBA_STATE_DIE) // check with goomba red fall, not die
+			{
+				if (!walkingTimer) // jumping
+				{
+					if (jumpingStacks == GOOMBA_RED_JUMPING_STACKS)
+					{
+						SetState(GOOMBA_STATE_RED_HIGHJUMPING); // jump
+						jumpingStacks = -1; // reset
+					}
+					else
+					{
+						if (jumpingStacks == -1)
+							SetState(GOOMBA_STATE_RED_WINGSWALKING);
+						else
+							SetState(GOOMBA_STATE_RED_JUMPING);
+						jumpingStacks++;
+					}
+				}
+			}
+		}
+	}
 
 	if (e->ny != 0 )
 	{
