@@ -61,6 +61,7 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 					}
 				}
 			}
+			
 		}
 	}
 
@@ -137,7 +138,7 @@ void CGoomba::Render()
 			ani = GOOMBA_RED_ANI_DIE;
 		break;
 	}
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x, y - GOOMBA_ADD_Y);
 	RenderBoundingBox();
 }
 
