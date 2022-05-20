@@ -60,7 +60,11 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 						jumpingStacks++;
 					}
 				}
+				else
+					ay = GOOMBA_GRAVITY; // a falling
 			}
+			else if (e->ny > 0)
+				ay = GOOMBA_GRAVITY; // a jumping
 			
 		}
 	}
