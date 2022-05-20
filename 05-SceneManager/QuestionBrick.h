@@ -5,6 +5,9 @@
 
 #define QUESTION_BRICK_ANI_NORMAL	0
 
+#define QUESTIONBRICK_SPEED		0.05f
+#define QUESTIONBRICK_PUSH_MAX_HEIGHT 8
+
 class QuestionBrick :public CGameObject
 {
 	int tag;
