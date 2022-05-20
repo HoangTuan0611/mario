@@ -83,8 +83,11 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	{
 		if (goomba->GetState() != GOOMBA_STATE_DIE)
 		{
-			goomba->SetState(GOOMBA_STATE_DIE);
-			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			if (goomba->tag == GOOMBA_RED)
+				goomba->SetTag(GOOMBA_RED_NORMAL);
+			else
+				goomba->SetState(GOOMBA_STATE_DIE);
+			vy = -MARIO_JUMP_DEFLECT_SPEED; // mario jump a little bit when collision with goomba red
 		}
 	}
 	else // hit by Goomba
