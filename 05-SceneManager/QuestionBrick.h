@@ -26,6 +26,10 @@ public:
 
 	void SetState(int state);
 
+	// animation push and fall
+	void startPushedUp();
+	void stopPushedUp();
+
 	~QuestionBrick();
 
 };

@@ -55,6 +55,19 @@ void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
 	b = y + 16;
 }
 
+void QuestionBrick::startPushedUp() {
+	isBeingPushedUp = true;
+	vy = -QUESTIONBRICK_SPEED;
+	DebugOut(L"Question brick push up");
+}
+
+void QuestionBrick::stopPushedUp() {
+	isBeingPushedUp = false;
+	isFallingDown = true;
+	vy = QUESTIONBRICK_SPEED;
+	DebugOut(L"Question brick falling");
+}
+
 void QuestionBrick::SetState(int state) {
 	CGameObject::SetState(state);
 	switch (state)
