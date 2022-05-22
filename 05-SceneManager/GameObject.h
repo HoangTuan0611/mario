@@ -28,6 +28,8 @@ protected:
 	float vx;
 	float vy;
 
+	float start_y;
+
 	int nx;	 
 
 	int state;

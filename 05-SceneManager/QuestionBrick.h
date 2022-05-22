@@ -14,12 +14,15 @@ class QuestionBrick :public CGameObject
 {
 	int tag;
 
+	bool isBeingPushedUp = false;
+	bool isFallingDown = false;
+
 public:
 	CGameObject* obj = NULL;
 	QuestionBrick(int tag);
 
 	virtual int IsCollidable() { return 1; };
-	virtual int IsBlocking() { return 0; }
+	virtual int IsBlocking() { return 1; }
 
 	virtual void Render();
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
