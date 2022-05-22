@@ -10,6 +10,8 @@
 #include "Coin.h"
 #include "Block.h"
 
+#include "QuestionBrick.h"
+
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -212,7 +214,9 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
-			obj = new CBrick();
+			//obj = new CBrick();
+			obj = new QuestionBrick(option_tag_1); 
+			DebugOut(L"[INFO] Question brick is not null!\n", obj);
 			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBlock(x,y);
