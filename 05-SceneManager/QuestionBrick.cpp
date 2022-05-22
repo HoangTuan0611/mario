@@ -16,6 +16,9 @@ void QuestionBrick::Render() {
 	if (state == QUESTION_BRICK_NORMAL) {
 		ani = QUESTION_BRICK_ANI_NORMAL;
 	}
+	if (state == QUESTION_BRICK_HIT) {
+		ani = QUESTION_BRICK_ANI_HIT;
+	}
 	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();
 }
@@ -58,14 +61,14 @@ void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
 void QuestionBrick::startPushedUp() {
 	isBeingPushedUp = true;
 	vy = -QUESTIONBRICK_SPEED;
-	DebugOut(L"Question brick push up");
+	DebugOut(L"Question brick push up \n");
 }
 
 void QuestionBrick::stopPushedUp() {
 	isBeingPushedUp = false;
 	isFallingDown = true;
 	vy = QUESTIONBRICK_SPEED;
-	DebugOut(L"Question brick falling");
+	DebugOut(L"Question brick falling \n");
 }
 
 void QuestionBrick::SetState(int state) {
