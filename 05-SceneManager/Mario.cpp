@@ -11,6 +11,8 @@
 #include "Block.h"
 #include "Collision.h"
 
+#include "QuestionBrick.h"
+
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	vy += ay * dt;
@@ -72,6 +74,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithCoin(e);
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
+	else if (dynamic_cast<QuestionBrick*>(e->obj)) {
+		DebugOut(L"mario collionsion with question brick!\n");
+		OnCollisionWithQuestionBrick(e);
+	}
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -121,6 +127,18 @@ void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* p = (CPortal*)e->obj;
 	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
+}
+
+void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
+{
+	QuestionBrick* qBrick = dynamic_cast<QuestionBrick*>(e->obj);
+
+	// Hit from bottom
+	if (e->ny > 0) {
+		DebugOut(L"setState for question brick!\n");
+		vy = 0;
+		qBrick->SetState(QUESTION_BRICK_HIT);
+	}
 }
 
 //

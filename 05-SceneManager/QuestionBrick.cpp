@@ -75,5 +75,10 @@ void QuestionBrick::SetState(int state) {
 	case QUESTION_BRICK_NORMAL:
 		vy = 0;
 		break;
+	
+	case QUESTION_BRICK_HIT:
+		DebugOut(L"startPushedUp Render");
+		startPushedUp();
+		break;
 	}
 }

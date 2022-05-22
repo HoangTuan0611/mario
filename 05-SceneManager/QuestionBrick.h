@@ -2,6 +2,7 @@
 #include "GameObject.h"
 
 #define QUESTION_BRICK_NORMAL	0
+#define QUESTION_BRICK_HIT	1
 
 #define QUESTION_BRICK_ANI_NORMAL	0
 
@@ -15,6 +16,9 @@ class QuestionBrick :public CGameObject
 public:
 	CGameObject* obj = NULL;
 	QuestionBrick(int tag);
+
+	virtual int IsCollidable() { return 1; };
+	virtual int IsBlocking() { return 0; }
 
 	virtual void Render();
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);

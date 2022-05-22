@@ -213,7 +213,6 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
 			obj = new CBrick();
-
 			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBlock(x,y);
