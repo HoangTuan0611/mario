@@ -64,7 +64,16 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			isFallingDown = false;
 			vy = 0;
 		}
+		//SetState(QUESTION_BRICK_HITTED);
 	}
+	//if (state == QUESTION_BRICK_HITTED) {
+	//	DebugOut(L"hitted");
+	//	isFallingDown = false;
+	//	start_y = 352;
+	//	y = start_y;
+	//	DebugOut(L"start y hitted %d \n", start_y);
+	//	isBeingPushedUp = false;
+	//}
 }
 
 void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
@@ -94,10 +103,14 @@ void QuestionBrick::SetState(int state) {
 	case QUESTION_BRICK_NORMAL:
 		vy = 0;
 		break;
-	
+
 	case QUESTION_BRICK_HIT:
 		//DebugOut(L"startPushedUp Render \n");
 		startPushedUp();
 		break;
 	}
+	//case QUESTION_BRICK_HITTED:
+	//	startPushedUp();
+	//	break;
+	//}
 }
