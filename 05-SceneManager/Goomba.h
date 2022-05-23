@@ -56,7 +56,7 @@ protected:
 
 	ULONGLONG die_start;
 	ULONGLONG chasingTimer;
-	ULONGLONG walkingTimer;
+	ULONGLONG walkingTimer = 0;
 
 	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects);
