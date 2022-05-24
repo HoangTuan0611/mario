@@ -11,6 +11,9 @@
 #define QUESTIONBRICK_SPEED		0.05f
 #define QUESTIONBRICK_PUSH_MAX_HEIGHT 8
 
+#define ITEM_COIN_QUESTION_BRICK_COIN	0
+#define COIN_ANI_SET_ID 6
+
 class QuestionBrick :public CGameObject
 {
 	int tag;
@@ -34,6 +37,9 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	void SetState(int state);
+
+	// setup item
+	CGameObject* SetUpItem(int itemType);
 
 	// animation push and fall
 	void startPushedUp();

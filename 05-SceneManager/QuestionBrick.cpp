@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "Mario.h"
 
+#include "Utils.h"
+
 
 QuestionBrick::QuestionBrick(int tag) : CGameObject() {
 	state = QUESTION_BRICK_NORMAL;
@@ -94,6 +96,20 @@ void QuestionBrick::stopPushedUp() {
 	isFallingDown = true;
 	vy = QUESTIONBRICK_SPEED;
 	DebugOut(L"[QBRICK vy]::%f\n", vy);
+}
+
+CGameObject* QuestionBrick::SetUpItem(int itemType) {
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	CMario* mario = currentScene->GetPlayer();
+	int ani_set_id = -1;
+	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
+	if (itemType == ITEM_COIN_QUESTION_BRICK_COIN) {
+		obj = new CCoin(COIN_TYPE_INBRICK);
+		ani_set_id = COIN_ANI_SET_ID;
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	return obj;
 }
 
 void QuestionBrick::SetState(int state) {
