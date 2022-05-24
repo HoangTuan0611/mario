@@ -54,17 +54,21 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	if (state == QUESTION_BRICK_HIT) {
 		if (isBeingPushedUp && ((start_y - y) >= QUESTIONBRICK_PUSH_MAX_HEIGHT)) {
-			DebugOut(L"Start falling\n");
-			DebugOut(L"[max height]::%d\n", QUESTIONBRICK_PUSH_MAX_HEIGHT);
-			DebugOut(L"[y ]::%d\n", y);
-			DebugOut(L"[start_y ]::%d\n", start_y);
+			//DebugOut(L"Start falling\n");
+			//DebugOut(L"[max height]::%d\n", QUESTIONBRICK_PUSH_MAX_HEIGHT);
+			//DebugOut(L"[y ]::%d\n", y);
+			//DebugOut(L"[start_y ]::%d\n", start_y);
 			stopPushedUp();
 		}
 		if (isFallingDown && y >= start_y) {
-			DebugOut(L"Start falling end\n");
+			//DebugOut(L"Start falling end\n");
 			y = start_y;
 			isFallingDown = false;
 			vy = 0;
+		}
+		if (tag == ITEM_COIN_QUESTION_BRICK_COIN) {
+			DebugOut(L"Start coin \n");
+			ShowItem(tag);
 		}
 		//SetState(QUESTION_BRICK_HITTED);
 	}
@@ -88,14 +92,30 @@ void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
 void QuestionBrick::startPushedUp() {
 	isBeingPushedUp = true;
 	vy = -QUESTIONBRICK_SPEED;
-	DebugOut(L"Question brick push up \n");
+	//DebugOut(L"Question brick push up \n");
 }
 
 void QuestionBrick::stopPushedUp() {
 	isBeingPushedUp = false;
 	isFallingDown = true;
 	vy = QUESTIONBRICK_SPEED;
-	DebugOut(L"[QBRICK vy]::%f\n", vy);
+	//DebugOut(L"[QBRICK vy]::%f\n", vy);
+}
+
+void QuestionBrick::ShowItem(int itemType) {
+	this->obj = SetUpItem(itemType);
+	if (this->obj == NULL) {
+		DebugOut(L"Coin null \n");
+		return;
+	}
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	if (dynamic_cast<CCoin*>(this->obj)) {
+		CCoin* obj = dynamic_cast<CCoin*>(this->obj);
+		obj->SetAppear(true);
+		obj->SetPosition(x, y - COIN_BBOX_HEIGHT - 1);
+		currentScene->AddObject(obj);
+		DebugOut(L"Coin create \n");
+	}
 }
 
 CGameObject* QuestionBrick::SetUpItem(int itemType) {
@@ -111,6 +131,7 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	}
 	return obj;
 }
+
 
 void QuestionBrick::SetState(int state) {
 	CGameObject::SetState(state);

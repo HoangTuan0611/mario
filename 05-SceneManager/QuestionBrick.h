@@ -40,6 +40,7 @@ public:
 
 	// setup item
 	CGameObject* SetUpItem(int itemType);
+	void ShowItem(int itemType = ITEM_COIN_QUESTION_BRICK_COIN);
 
 	// animation push and fall
 	void startPushedUp();
