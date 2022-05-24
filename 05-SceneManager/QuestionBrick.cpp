@@ -126,6 +126,7 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
 	if (totalItems >= 1) {
 		totalItems--;
+		// limit item = 1 when hit 1 qBrick
 	}
 	else {
 		return NULL;
