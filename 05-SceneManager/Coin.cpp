@@ -1,4 +1,5 @@
 #include "Coin.h"
+#include "PlayScene.h"
 
 void CCoin::Render()
 {
@@ -19,6 +20,33 @@ CCoin::CCoin(int tag) : CGameObject() {
 	state = COIN_STATE_IDLE;
 }
 
+void CCoin::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
+	if (isDeleted)
+		return;
+
+	y += vy * dt;
+
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	CMario* mario = currentScene->GetPlayer();
+
+	if (state == COIN_STATE_UP)
+	{
+		if (GetTickCount64() - timing_start >= COIN_FALLING_TIME)
+		{
+			SetState(COIN_STATE_DOWN);
+		}
+	}
+	if (state == COIN_STATE_DOWN)
+	{
+		if (GetTickCount64() - timing_start >= COIN_FALLING_TIME)
+		{
+			isAppear = false;
+			SetState(COIN_STATE_IDLE);
+			Delete();
+		}
+	}
+}
+
 void CCoin::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
 	l = x - COIN_BBOX_WIDTH / 2;
@@ -34,5 +62,14 @@ void CCoin::SetState(int state) {
 	case COIN_STATE_IDLE:
 		vx = vy = 0;
 		break;
+	case COIN_STATE_UP:
+		vy = -COIN_SPEED;
+		StartTiming();
+		break;
+	case COIN_STATE_DOWN:
+		vy = COIN_SPEED;
+		break;
 	}
+
 }
+

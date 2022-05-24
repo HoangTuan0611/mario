@@ -113,6 +113,7 @@ void QuestionBrick::ShowItem(int itemType) {
 		CCoin* obj = dynamic_cast<CCoin*>(this->obj);
 		obj->SetAppear(true);
 		obj->SetPosition(x, y - COIN_BBOX_HEIGHT - 1);
+		obj->SetState(COIN_STATE_UP);
 		currentScene->AddObject(obj);
 		DebugOut(L"Coin create \n");
 	}
@@ -123,6 +124,12 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	CMario* mario = currentScene->GetPlayer();
 	int ani_set_id = -1;
 	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
+	if (totalItems >= 1) {
+		totalItems--;
+	}
+	else {
+		return NULL;
+	}
 	if (itemType == ITEM_COIN_QUESTION_BRICK_COIN) {
 		obj = new CCoin(COIN_TYPE_INBRICK);
 		ani_set_id = COIN_ANI_SET_ID;

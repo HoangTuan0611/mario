@@ -24,6 +24,7 @@ protected:
 
 	float x; 
 	float y;
+	float z;
 
 	float vx;
 	float vy;
@@ -56,6 +57,7 @@ public:
 	int GetState() { return this->state; }
 	virtual void Delete() { isDeleted = true;  }
 	bool IsDeleted() { return isDeleted; }
+
 
 	void RenderBoundingBox();
 

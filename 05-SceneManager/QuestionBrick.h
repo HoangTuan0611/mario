@@ -21,6 +21,8 @@ class QuestionBrick :public CGameObject
 	bool isBeingPushedUp = false;
 	bool isFallingDown = false;
 
+	int totalItems = 1;
+
 public:
 	CGameObject* obj = NULL;
 	QuestionBrick(int tag);
