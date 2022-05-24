@@ -14,6 +14,9 @@
 #define ITEM_COIN_QUESTION_BRICK_COIN	0
 #define COIN_ANI_SET_ID 6
 
+#define ITEM_MUSHROOM	1
+#define ITEM_MUSHROOM_ANI_SET_ID 37
+
 class QuestionBrick :public CGameObject
 {
 	int tag;

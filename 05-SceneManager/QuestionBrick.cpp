@@ -5,6 +5,7 @@
 #include "Mario.h"
 
 #include "Utils.h"
+#include "MushRoom.h"
 
 
 QuestionBrick::QuestionBrick(int tag) : CGameObject() {
@@ -134,6 +135,12 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	if (itemType == ITEM_COIN_QUESTION_BRICK_COIN) {
 		obj = new CCoin(COIN_TYPE_INBRICK);
 		ani_set_id = COIN_ANI_SET_ID;
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	if (itemType == ITEM_MUSHROOM) {
+		obj = new CMushRoom();
+		ani_set_id = ITEM_MUSHROOM_ANI_SET_ID;
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);
 	}
