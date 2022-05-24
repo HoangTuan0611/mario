@@ -66,6 +66,10 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			y = start_y;
 			isFallingDown = false;
 			vy = 0;
+			if (tag != ITEM_COIN_QUESTION_BRICK_COIN) {
+				ShowItem(tag);
+				// for mushroom
+			}
 		}
 		if (tag == ITEM_COIN_QUESTION_BRICK_COIN) {
 			DebugOut(L"Start coin \n");
@@ -106,7 +110,7 @@ void QuestionBrick::stopPushedUp() {
 void QuestionBrick::ShowItem(int itemType) {
 	this->obj = SetUpItem(itemType);
 	if (this->obj == NULL) {
-		DebugOut(L"Coin null \n");
+		//DebugOut(L"Coin, mushroom null \n");
 		return;
 	}
 	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
@@ -117,6 +121,14 @@ void QuestionBrick::ShowItem(int itemType) {
 		obj->SetState(COIN_STATE_UP);
 		currentScene->AddObject(obj);
 		DebugOut(L"Coin create \n");
+	}
+	if (dynamic_cast<CMushRoom*>(this->obj)) {
+		CMushRoom* obj = dynamic_cast<CMushRoom*>(this->obj);
+		obj->SetAppear(true);
+		obj->SetPosition(x, y);
+		obj->SetState(MUSHROOM_STATE_IDLE);
+		currentScene->AddObject(obj);
+		DebugOut(L"Mushroom create \n");
 	}
 }
 
