@@ -72,7 +72,7 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			}
 		}
 		if (tag == ITEM_COIN_QUESTION_BRICK_COIN) {
-			DebugOut(L"Start coin \n");
+			//DebugOut(L"Start coin \n");
 			ShowItem(tag);
 		}
 		//SetState(QUESTION_BRICK_HITTED);
@@ -126,7 +126,7 @@ void QuestionBrick::ShowItem(int itemType) {
 		CMushRoom* obj = dynamic_cast<CMushRoom*>(this->obj);
 		obj->SetAppear(true);
 		obj->SetPosition(x, y);
-		obj->SetState(MUSHROOM_STATE_IDLE);
+		obj->SetState(MUSHROOM_STATE_UP);
 		currentScene->AddObject(obj);
 		DebugOut(L"Mushroom create \n");
 	}

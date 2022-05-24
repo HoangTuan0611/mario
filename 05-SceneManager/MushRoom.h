@@ -5,6 +5,7 @@
 #define MUSHROOM_BBOX_HEIGHT 16
 
 #define MUSHROOM_STATE_IDLE	0
+#define MUSHROOM_STATE_UP 6
 
 class CMushRoom :public CGameObject
 {

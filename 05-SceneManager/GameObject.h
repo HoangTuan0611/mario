@@ -47,7 +47,7 @@ public:
 	bool isBeingPushedUp = false;
 	bool isFallingDown = false;
 
-	void SetPosition(float x, float y) { this->x = x, this->y = y; start_x = x; start_y = y; }
+	void SetPosition(float x, float y) { this->x = x, this->y = y; this->start_x = x, this->start_y = y; }
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; }
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; }
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; }

@@ -51,6 +51,7 @@ public:
 	void startPushedUp();
 	void stopPushedUp();
 
+
 	~QuestionBrick();
 
 };
