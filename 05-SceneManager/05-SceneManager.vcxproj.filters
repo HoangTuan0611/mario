@@ -49,6 +49,9 @@
     <Filter Include="Map Objects\WorldMap">
       <UniqueIdentifier>{755e4e7a-1df1-4dfe-9b73-ccaf15cb09ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map Objects\Enemies\ParanhaPlant">
+      <UniqueIdentifier>{be5be6b2-d643-4673-b7e4-5fdfceba39bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="MushRoom.cpp">
       <Filter>Map Objects\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="ParanhaPlant.cpp">
+      <Filter>Map Objects\Enemies\ParanhaPlant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="MushRoom.h">
       <Filter>Map Objects\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="ParanhaPlant.h">
+      <Filter>Map Objects\Enemies\ParanhaPlant</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
