@@ -59,3 +59,20 @@ void CMushRoom::OnNoCollision(DWORD dt) {
 		vy = MUSHROOM_GRAVITY;
 	}
 }
+
+void CMushRoom::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+	if (state == MUSHROOM_STATE_RIGHT) {
+		// blocking y
+		if (e->ny != 0 && e->obj->IsBlocking())
+		{
+			vy = 0;
+		}
+		else
+			// blocking x
+			if (e->nx != 0 && e->obj->IsBlocking())
+			{
+				vx = -vx;
+			}
+	}
+}

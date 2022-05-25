@@ -37,6 +37,7 @@ public:
 	virtual int IsBlocking() { return 0; }
 
 	virtual void OnNoCollision(DWORD dt);
+	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	CMushRoom(int type = 0);
 	~CMushRoom();
