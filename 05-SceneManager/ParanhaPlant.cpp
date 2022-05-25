@@ -28,7 +28,7 @@ void PiranhaPlant::Render()
 {
 	int ani = PIRANHAPLANT_ANI_IDLE;
 
-	animation_set->at(ani)->Render(x, (y - PIRANHAPLANT_ON_BRICK));
+	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();
 }
 

@@ -27,5 +27,8 @@ public:
 
 	void StartBitting() { biting_start = GetTickCount64(); }
 
+	virtual int IsCollidable() { return 1; };
+	virtual int IsBlocking() { return 0; }
+
 	PiranhaPlant();
 };
