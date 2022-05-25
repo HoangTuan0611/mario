@@ -11,6 +11,7 @@
 #include "Block.h"
 
 #include "QuestionBrick.h"
+#include "ParanhaPlant.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -223,6 +224,10 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_COIN:
 			obj = new CCoin(x, y);
+			break;
+		case OBJECT_TYPE_PIRANHAPLANT:
+			obj = new PiranhaPlant();
+			DebugOut(L"[INFO] PiranhaPlant was create \n", obj);
 			break;
 		case OBJECT_TYPE_CARD:
 			obj = new CBrick();
