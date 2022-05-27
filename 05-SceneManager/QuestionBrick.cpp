@@ -127,6 +127,7 @@ void QuestionBrick::ShowItem(int itemType) {
 		obj->SetAppear(true);
 		obj->SetPosition(x, y);
 		obj->SetState(MUSHROOM_STATE_UP);
+		obj->SetZIndex(-1);
 		currentScene->AddObject(obj);
 		DebugOut(L"Mushroom create \n");
 	}

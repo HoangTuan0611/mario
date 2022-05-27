@@ -65,6 +65,7 @@ void CKoopas::SetState(int state)
 	{
 	case KOOPAS_STATE_WALKING:
 		vx = this->nx * KOOPAS_WALKING_SPEED;
+		vy = KOOPAS_WALKING_SPEED;
 		break;
 	}
 }

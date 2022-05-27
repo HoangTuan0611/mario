@@ -24,7 +24,7 @@ protected:
 
 	float x; 
 	float y;
-	float z;
+	//float z;
 
 	float vx;
 	float vy;
@@ -46,6 +46,8 @@ public:
 	// set up for question brick animation - push and fall
 	bool isBeingPushedUp = false;
 	bool isFallingDown = false;
+
+	int z = 0; // For render mushroom in brick
 
 	void SetPosition(float x, float y) { this->x = x, this->y = y; this->start_x = x, this->start_y = y; }
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; }
@@ -85,6 +87,10 @@ public:
 	virtual int IsBlocking() { return 1; }
 	virtual void SetIsBlocking(int blocking) {
 		this->isBlocking = blocking;
+	}
+
+	void SetZIndex(int z) {
+		this->z = z;
 	}
 
 	//GET
