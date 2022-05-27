@@ -12,6 +12,7 @@
 
 #include "QuestionBrick.h"
 #include "ParanhaPlant.h"
+#include "Koopas.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -212,7 +213,10 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_KOOPAS:
-			obj = new CBrick();
+			obj = new CKoopas(tag);
+			obj->SetTag(tag);
+			DebugOut(L"Koopas created! \n");
+			//obj = new CBrick();
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
 			//obj = new CBrick();

@@ -25,8 +25,16 @@ void CKoopas::OnNoCollision(DWORD dt) {
 void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 	if (e->ny != 0 && e->obj->IsBlocking())
 	{
-		vy = 0;
+		vy = 0.002f;
+		ay = vy;
 	}
+	else
+		// blocking x
+		if (e->nx != 0 && e->obj->IsBlocking())
+		{
+			vx = -vx;
+			nx = -nx;
+		}
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -40,6 +48,11 @@ void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& botto
 void CKoopas::Render()
 {
 	int ani = -1;
+
+	if (this->nx < 0)
+		ani = KOOPAS_ANI_WALKING_LEFT;
+	else
+		ani = KOOPAS_ANI_WALKING_RIGHT;
 
 	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();

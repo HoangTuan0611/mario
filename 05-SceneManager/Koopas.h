@@ -9,6 +9,7 @@
 #define KOOPAS_WALKING_SPEED			0.03f
 
 #define KOOPAS_ANI_WALKING_RIGHT	0
+#define KOOPAS_ANI_WALKING_LEFT		2
 
 class CKoopas : public CGameObject
 {
