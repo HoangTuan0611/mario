@@ -227,7 +227,8 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBlock(x,y);
 			break;
 		case OBJECT_TYPE_COIN:
-			obj = new CCoin(x, y);
+			obj = new CCoin(tag);
+			DebugOut(L"Coin created! \n");
 			break;
 		case OBJECT_TYPE_PIRANHAPLANT:
 			obj = new PiranhaPlant();
