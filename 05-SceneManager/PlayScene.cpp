@@ -13,6 +13,7 @@
 #include "QuestionBrick.h"
 #include "ParanhaPlant.h"
 #include "Koopas.h"
+#include "PiranhaPlantFire.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -221,7 +222,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 		case OBJECT_TYPE_QUESTIONBRICK:
 			//obj = new CBrick();
 			obj = new QuestionBrick(option_tag_1); 
-			DebugOut(L"[INFO] Question brick is not null!\n", obj);
+			DebugOut(L"[INFO] Question brick is not null!\n");
 			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBlock(x,y);
@@ -232,7 +233,11 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_PIRANHAPLANT:
 			obj = new PiranhaPlant();
-			DebugOut(L"[INFO] PiranhaPlant was create \n", obj);
+			DebugOut(L"[INFO] PiranhaPlant was create \n");
+			break;
+		case OBJECT_TYPE_FIREPIRANHAPLANT:
+			obj = new PiranhaPlantFire(tag);
+			DebugOut(L"[INFO] PiranhaPlantFire was create \n");
 			break;
 		case OBJECT_TYPE_CARD:
 			obj = new CBrick();
