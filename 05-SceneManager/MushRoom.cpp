@@ -47,7 +47,6 @@ void CMushRoom::SetState(int state) {
 	case MUSHROOM_STATE_RIGHT:
 		vy = MUSHROOM_GRAVITY;
 		vx = MUSHROOM_SPEED;
-		//DebugOut(L"vx: %d \n", vx);
 		break;
 	}
 }
