@@ -237,6 +237,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_FIREPIRANHAPLANT:
 			obj = new PiranhaPlantFire(tag);
+			((PiranhaPlantFire*)obj)->SetLimitY(y);
 			DebugOut(L"[INFO] PiranhaPlantFire was create \n");
 			break;
 		case OBJECT_TYPE_CARD:

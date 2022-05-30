@@ -8,13 +8,14 @@ PiranhaPlantFire::PiranhaPlantFire(int tag) {
 void PiranhaPlantFire::Render()
 {
 	int ani = PIRANHAPLANT_STATE_DARTING;
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x, y - 30);
 }
 
 void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	CGameObject::Update(dt);
 	y += vy * dt;
+	y = limitY;
 
 }
 

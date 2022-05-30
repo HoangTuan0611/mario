@@ -7,10 +7,13 @@
 #define PIRANHAPLANT_DARTING_SPEED				0.03f
 #define PIRANHAPLANT_STATE_DARTING				0
 
+#define BB_Height	0
+
 
 class PiranhaPlantFire :
 	public PiranhaPlant
 {
+	float limitY = 0;
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
@@ -22,4 +25,10 @@ public:
 
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
+
+	void SetLimitY(float ly)
+	{
+		limitY = ly - BB_Height;
+	}
+
 };
