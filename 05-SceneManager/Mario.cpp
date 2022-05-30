@@ -14,6 +14,7 @@
 #include "QuestionBrick.h"
 #include "MushRoom.h"
 #include "ParanhaPlant.h"
+#include "PiranhaPlantFire.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -87,6 +88,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		//DebugOut(L"mario collision with piranhaPlant \n");
 		OnCollisionWithPiranhaPlant();
 	}
+	else if (dynamic_cast<PiranhaPlantFire*>(e->obj))
+	{
+		DebugOut(L"mario collision with piranhaPlantFire \n");
+		OnCollisionWithPiranhaPlantFire();
+	}
 		
 }
 
@@ -159,6 +165,22 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 }
 
 void CMario::OnCollisionWithPiranhaPlant()
+{
+	//DebugOut(L"mario collision with piranhaPlant \n");
+	if (level != MARIO_LEVEL_SMALL)
+	{
+		level -= 1;
+		SetLevel(level);
+		//DebugOut(L">>> Mario tranfer small >>> \n");
+	}
+	else
+	{
+		DebugOut(L">>> Mario die >>> \n");
+		//SetState(MARIO_STATE_DIE);
+	}
+}
+
+void CMario::OnCollisionWithPiranhaPlantFire()
 {
 	//DebugOut(L"mario collision with piranhaPlant \n");
 	if (level != MARIO_LEVEL_SMALL)
