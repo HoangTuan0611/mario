@@ -28,7 +28,7 @@ public:
 
 	void SetLimitY(float ly)
 	{
-		limitY = ly - BB_Height;
+		limitY = ly - PIRANHAPLANT_BOX_HEIGHT;
 	}
 
 };

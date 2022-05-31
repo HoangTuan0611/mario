@@ -222,6 +222,11 @@ public:
 
 	int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }
 
+	// get level mario
+	int GetLevel() {
+		return this->level;
+	}
+
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 

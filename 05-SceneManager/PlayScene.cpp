@@ -58,7 +58,7 @@ void CPlayScene::_ParseSection_TILEMAP_DATA(string line)
 		int j;
 		for (j = 0; j < columnMap; j++) {
 			f >> TileMapData[i][j];
-			DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
+			//DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
 		}
 	}
 	f.close();
