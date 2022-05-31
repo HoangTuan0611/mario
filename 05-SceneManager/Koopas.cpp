@@ -48,11 +48,23 @@ void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& botto
 void CKoopas::Render()
 {
 	int ani = -1;
-
-	if (this->nx < 0)
-		ani = KOOPAS_ANI_WALKING_LEFT;
-	else
-		ani = KOOPAS_ANI_WALKING_RIGHT;
+	if (state == KOOPAS_STATE_SHELL_UP)
+		ani = KOOPAS_ANI_SHELL_UP;
+	else if (state == KOOPAS_STATE_IN_SHELL)
+		ani = KOOPAS_ANI_SHELL;
+	else if (state == KOOPAS_STATE_TURNING)
+	{
+		if (vx < 0)
+			ani = KOOPAS_ANI_SPIN_LEFT;
+		else
+			ani = KOOPAS_ANI_SPIN_RIGHT;
+	}
+	else {
+		if (this->nx < 0)
+			ani = KOOPAS_ANI_WALKING_LEFT;
+		else
+			ani = KOOPAS_ANI_WALKING_RIGHT;
+	}
 
 	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();
@@ -66,6 +78,20 @@ void CKoopas::SetState(int state)
 	case KOOPAS_STATE_WALKING:
 		vx = this->nx * KOOPAS_WALKING_SPEED;
 		vy = KOOPAS_WALKING_SPEED;
+		break;
+	case KOOPAS_STATE_TURNING:
+		// turn
+		vx = KOOPAS_WALKING_SPEED;
+		break;
+	case KOOPAS_STATE_IN_SHELL:
+		// idle
+		vx = 0;
+		vy = 0;
+		break;
+	case KOOPAS_STATE_SHELL_UP:
+		// shell up and then walking
+		vy = -KOOPAS_SHELL_DEFLECT_SPEED;
+		vx = KOOPAS_WALKING_SPEED;
 		break;
 	}
 }
