@@ -22,8 +22,7 @@ protected:
 
 	int isBlocking = 1;
 
-	float x; 
-	float y;
+	
 	//float z;
 
 	float vx;
@@ -41,6 +40,8 @@ protected:
 	LPANIMATION_SET animation_set;
 
 public: 
+	float x;
+	float y;
 	int tag = 0; // define for goomba tag
 
 	// set up for question brick animation - push and fall

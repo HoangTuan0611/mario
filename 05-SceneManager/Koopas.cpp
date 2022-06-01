@@ -1,4 +1,6 @@
 #include "Koopas.h"
+#include "PlayScene.h"
+#include "Block.h"
 
 CKoopas::CKoopas(int tag)
 {
@@ -94,4 +96,23 @@ void CKoopas::SetState(int state)
 		vx = KOOPAS_WALKING_SPEED;
 		break;
 	}
+}
+
+bool CKoopas::KoopasCollision(LPGAMEOBJECT object)
+{
+	// check block koopas standing == rest
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	vector<LPGAMEOBJECT> coObjects = currentScene->GetObjects();
+	for (UINT i = 0; i < coObjects.size(); i++)
+		if (dynamic_cast<CBlock*>(coObjects[i]))
+			if (abs(coObjects[i]->y == object->y))
+			{
+				if (nx > 0)
+					if (coObjects[i]->x > object->x)
+						return false;
+				if (nx < 0) 
+					if (coObjects[i]->x < object->x)
+						return false;
+			}
+	return true;
 }
