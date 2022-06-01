@@ -44,7 +44,13 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 	{
 		//DebugOut(L"koopas on collision with block \n");
 		OnCollisionWithBlock(e);
-	}	
+	}
+	if (dynamic_cast<CGoomba*>(e->obj))
+	{
+		DebugOut(L"koopas on collision with goomba \n");
+		OnCollisionWithGoomba(e);
+	}
+		
 }
 
 void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
@@ -72,6 +78,15 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 				}
 		}
 	}
+}
+
+void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) {
+	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
+
+	goomba->vx = -goomba->vx;
+	goomba->nx = -goomba->nx;
+	this->vx = -this->vx;
+	this->nx = -this->nx;
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)

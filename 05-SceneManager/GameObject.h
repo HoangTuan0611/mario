@@ -25,13 +25,13 @@ protected:
 	
 	//float z;
 
-	float vx;
+	//float vx;
 	float vy;
 
 	float start_x;
 	float start_y;
 
-	int nx;	 
+	//int nx;	 
 
 	int state;
 
@@ -42,6 +42,10 @@ protected:
 public: 
 	float x;
 	float y;
+
+	int nx;
+	float vx;
+
 	int tag = 0; // define for goomba tag
 
 	// set up for question brick animation - push and fall
