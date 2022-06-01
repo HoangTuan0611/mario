@@ -50,6 +50,10 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 		DebugOut(L"koopas on collision with goomba \n");
 		OnCollisionWithGoomba(e);
 	}
+	if (dynamic_cast<CKoopas*>(e->obj)) {
+		DebugOut(L"koopas on collision with koopas \n");
+		OnCollisionWithKoopas(e);
+	}
 		
 }
 
@@ -87,6 +91,19 @@ void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) {
 	goomba->nx = -goomba->nx;
 	this->vx = -this->vx;
 	this->nx = -this->nx;
+}
+
+void CKoopas::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
+
+	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
+
+	if (koopas->state == KOOPAS_STATE_WALKING)
+	{
+		this->vx = -this->vx;
+		this->nx = -this->nx;
+		koopas->vx = -koopas->vx;
+		koopas->nx = -koopas->nx;
+	}
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)

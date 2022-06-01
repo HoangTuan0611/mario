@@ -43,6 +43,7 @@ public:
 
 	void OnCollisionWithBlock(LPCOLLISIONEVENT e);
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
+	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 
 	// check collision with block
 	bool KoopasCollision(LPGAMEOBJECT object);
