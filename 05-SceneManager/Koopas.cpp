@@ -31,12 +31,41 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 		ay = vy;
 	}
 	else
+	{ 
 		// blocking x
 		if (e->nx != 0 && e->obj->IsBlocking())
 		{
 			vx = -vx;
 			nx = -nx;
 		}
+	}
+
+	if (dynamic_cast<CBlock*>(e->obj))
+		OnCollisionWithBlock(e);
+}
+
+void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
+	if (e->ny < 0)
+	{
+		vy = 0;
+		if (state == KOOPAS_STATE_IN_SHELL)
+			vx = 0;
+		if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
+		{
+			if (this->nx > 0)
+				if (KoopasCollision(e->obj))
+				{
+					this->nx = -1;
+					vx = this->nx * KOOPAS_WALKING_SPEED;
+				}
+			if (this->nx < 0)
+				if (KoopasCollision(e->obj))
+				{
+					this->nx = 1;
+					vx = this->nx * KOOPAS_WALKING_SPEED;
+				}
+		}
+	}
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)

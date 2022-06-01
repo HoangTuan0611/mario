@@ -41,6 +41,8 @@ public:
 	virtual void OnNoCollision(DWORD dt);
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
+	void OnCollisionWithBlock(LPCOLLISIONEVENT e);
+
 	// check collision with block
 	bool KoopasCollision(LPGAMEOBJECT object);
 
