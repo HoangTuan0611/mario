@@ -15,6 +15,7 @@
 #include "MushRoom.h"
 #include "ParanhaPlant.h"
 #include "PiranhaPlantFire.h"
+#include "Koopas.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -92,6 +93,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		DebugOut(L"mario collision with piranhaPlantFire \n");
 		OnCollisionWithPiranhaPlantFire();
+	}
+	else if (dynamic_cast<CKoopas*>(e->obj)) {
+		DebugOut(L"mario collision with koopas \n");
+		OnCollisionWithKoopas(e);
 	}
 		
 }
@@ -194,6 +199,24 @@ void CMario::OnCollisionWithPiranhaPlantFire()
 		DebugOut(L">>> Mario die >>> \n");
 		//SetState(MARIO_STATE_DIE);
 	}
+}
+
+void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
+
+	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
+
+	DebugOut(L"in mario collision with koopas \n");
+
+	if (koopas->GetState() == KOOPAS_STATE_WALKING) {
+		koopas->SetState(KOOPAS_STATE_IN_SHELL);
+	}
+	else if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
+		koopas->SetState(KOOPAS_STATE_TURNING);
+	}
+	else if (koopas->GetState() == KOOPAS_STATE_TURNING) {
+		koopas->SetState(KOOPAS_STATE_IN_SHELL);
+	}
+
 }
 
 //
