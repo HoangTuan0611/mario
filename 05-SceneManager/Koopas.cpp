@@ -104,6 +104,12 @@ void CKoopas::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		koopas->vx = -koopas->vx;
 		koopas->nx = -koopas->nx;
 	}
+
+	if (koopas->state == KOOPAS_STATE_TURNING)
+	{
+		DebugOut(L"Koopas die by koopas turning \n");
+		//SetState();
+	}
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)
