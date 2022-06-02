@@ -150,7 +150,7 @@ void CKoopas::SetState(int state)
 		break;
 	case KOOPAS_STATE_TURNING:
 		// turn
-		vx = KOOPAS_WALKING_SPEED;
+		vx = KOOPAS_WALKING_SPEED * 4;
 		break;
 	case KOOPAS_STATE_IN_SHELL:
 		// idle
