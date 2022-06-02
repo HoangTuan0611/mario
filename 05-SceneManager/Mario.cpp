@@ -91,11 +91,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 	else if (dynamic_cast<PiranhaPlantFire*>(e->obj))
 	{
-		DebugOut(L"mario collision with piranhaPlantFire \n");
+		//DebugOut(L"mario collision with piranhaPlantFire \n");
 		OnCollisionWithPiranhaPlantFire();
 	}
 	else if (dynamic_cast<CKoopas*>(e->obj)) {
-		DebugOut(L"mario collision with koopas \n");
+		//DebugOut(L"mario collision with koopas \n");
 		OnCollisionWithKoopas(e);
 	}
 		
@@ -205,18 +205,30 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 
 	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
 
-	DebugOut(L"in mario collision with koopas \n");
+	//DebugOut(L"in mario collision with koopas \n");
 
-	if (koopas->GetState() == KOOPAS_STATE_WALKING) {
-		koopas->SetState(KOOPAS_STATE_IN_SHELL);
+	if (e->nx != 0) {
+		DebugOut(L"mario collision with koopas if 1");
+		if (MARIO_LEVEL_BIG) {
+			SetLevel(MARIO_LEVEL_SMALL);
+		}
+		else{
+			DebugOut(L"Mario die by koopas \n");
+			//SetState(MARIO_STATE_DIE);
+		}
 	}
-	else if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
-		koopas->SetState(KOOPAS_STATE_TURNING);
+	else if (e->ny != 0) {
+		DebugOut(L"mario collision with koopas if 2");
+		if (koopas->GetState() == KOOPAS_STATE_WALKING) {
+			koopas->SetState(KOOPAS_STATE_IN_SHELL);
+		}
+		else if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
+			koopas->SetState(KOOPAS_STATE_TURNING);
+		}
+		else if (koopas->GetState() == KOOPAS_STATE_TURNING) {
+			koopas->SetState(KOOPAS_STATE_IN_SHELL);
+		}
 	}
-	else if (koopas->GetState() == KOOPAS_STATE_TURNING) {
-		koopas->SetState(KOOPAS_STATE_IN_SHELL);
-	}
-
 }
 
 //
