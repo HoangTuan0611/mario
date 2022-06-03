@@ -58,29 +58,27 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 }
 
 void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
-	if (e->ny < 0)
+
+	vy = 0;
+	if (state == KOOPAS_STATE_IN_SHELL)
+		vx = 0;
+	if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
 	{
-		vy = 0;
-		if (state == KOOPAS_STATE_IN_SHELL)
-			vx = 0;
-		if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
-		{
-			DebugOut(L"koopas on collision with block tag red and walking \n");
-			if (this->nx > 0)
-				if (KoopasCollision(e->obj))
-				{
-					DebugOut(L"collision right \n");
-					this->nx = -1;
-					vx = this->nx * KOOPAS_WALKING_SPEED;
-				}
-			if (this->nx < 0)
-				if (KoopasCollision(e->obj))
-				{
-					DebugOut(L"collision left \n");
-					this->nx = 1;
-					vx = this->nx * KOOPAS_WALKING_SPEED;
-				}
-		}
+		DebugOut(L"koopas on collision with block tag red and walking \n");
+		if (this->nx > 0)
+			if (KoopasCollision(e->obj))
+			{
+				DebugOut(L"collision right \n");
+				this->nx = -1;
+				vx = this->nx * KOOPAS_WALKING_SPEED;
+			}
+		if (this->nx < 0)
+			if (KoopasCollision(e->obj))
+			{
+				DebugOut(L"collision left \n");
+				this->nx = 1;
+				vx = this->nx * KOOPAS_WALKING_SPEED;
+			}
 	}
 }
 
