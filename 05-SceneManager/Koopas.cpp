@@ -85,10 +85,18 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) {
 	CGoomba* goomba = dynamic_cast<CGoomba*>(e->obj);
 
-	goomba->vx = -goomba->vx;
-	goomba->nx = -goomba->nx;
-	this->vx = -this->vx;
-	this->nx = -this->nx;
+	if (this->GetState() == KOOPAS_STATE_TURNING)
+	{
+		goomba->SetState(GOOMBA_STATE_DIE);
+		DebugOut(L"goomba die by koopas \n");
+		vy = -MARIO_JUMP_DEFLECT_SPEED;
+	}
+	else {
+		goomba->vx = -goomba->vx;
+		goomba->nx = -goomba->nx;
+		this->vx = -this->vx;
+		this->nx = -this->nx;
+	}
 }
 
 void CKoopas::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
