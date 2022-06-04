@@ -179,13 +179,13 @@ bool CKoopas::KoopasCollision(LPGAMEOBJECT object)
 			if (abs(coObjects[i]->y == object->y))
 			{
 				if (nx > 0)
-					if (coObjects[i]->x > object->x)
+					if (coObjects[i]->x > object->x && coObjects[i]->x - 16 < object->x + 16)
 					{
 						DebugOut(L"next is block, right \n");
 						return false;
 					}
 				if (nx < 0) 
-					if (coObjects[i]->x < object->x)
+					if (coObjects[i]->x + 16 > object->x - 16 && coObjects[i]->x < object->x)
 					{
 						DebugOut(L"next is block, left \n");
 						return false;
