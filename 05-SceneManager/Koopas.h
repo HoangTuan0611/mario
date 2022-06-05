@@ -34,6 +34,9 @@ class CKoopas : public CGameObject
 	float ay;
 public:
 
+	bool isBeingHeld = false;
+	void SetCanBeHeld(bool m) { isBeingHeld = m; };
+
 	CKoopas(int tag);
 
 	virtual void SetState(int state);

@@ -58,9 +58,16 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
 		if (game->IsKeyDown(DIK_A))
+		{
+			mario->isReadyToHold = true;
 			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
+		}
 		else
+		{
+			mario->isReadyToHold = false;
 			mario->SetState(MARIO_STATE_WALKING_RIGHT);
+		}
+			
 	}
 	else if (game->IsKeyDown(DIK_LEFT))
 	{

@@ -187,10 +187,6 @@ class CMario : public CGameObject
 	ULONGLONG untouchable_start;
 	BOOLEAN isOnPlatform;
 
-	// for mario hold and kick koopas
-	BOOLEAN isReadyToHold = false;
-	BOOLEAN isHolding = false;
-
 	int coin; 
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
@@ -206,6 +202,13 @@ class CMario : public CGameObject
 	int GetAniIdSmall();
 
 public:
+
+	// for mario hold and kick koopas
+	BOOLEAN isReadyToHold = false;
+	BOOLEAN isHolding = false;
+
+
+
 	CMario(float x, float y) : CGameObject(x, y)
 	{
 		isSitting = false;

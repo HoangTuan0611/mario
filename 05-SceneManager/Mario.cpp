@@ -208,12 +208,14 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 	//DebugOut(L"in mario collision with koopas \n");
 
 	if (e->nx != 0) {
-		DebugOut(L"mario collision with koopas if 1");
+		//DebugOut(L"mario collision with koopas if 1");
 		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
 			if (isReadyToHold) {
-				//koopas->SetCanBeHeld(true);
+				DebugOut(L"mario can hold koopas \n");
+				koopas->SetCanBeHeld(true);
 			}
 			else {
+				DebugOut(L"mario kick koopas \n");
 				SetState(MARIO_STATE_KICK);
 				koopas->SetState(KOOPAS_STATE_TURNING);
 			}
@@ -229,7 +231,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		}
 	}
 	else if (e->ny != 0) {
-		DebugOut(L"mario collision with koopas if 2");
+		//DebugOut(L"mario collision with koopas if 2");
 		if (koopas->GetState() == KOOPAS_STATE_WALKING) {
 			koopas->SetState(KOOPAS_STATE_IN_SHELL);
 		}
