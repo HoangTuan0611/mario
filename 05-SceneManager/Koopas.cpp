@@ -65,20 +65,26 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 	if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
 	{
 		DebugOut(L"koopas on collision with block tag red and walking \n");
-		if (this->nx > 0)
+		if (this->nx > 0 && x >= e->obj->x + KOOPAS_SPIN_DIFF)
+		{
+			DebugOut(L"collision right \n");
 			if (KoopasCollision(e->obj))
 			{
-				DebugOut(L"collision right \n");
+				//DebugOut(L"collision right \n");
 				this->nx = -1;
 				vx = this->nx * KOOPAS_WALKING_SPEED;
 			}
-		if (this->nx < 0)
+		}
+		if (this->nx < 0 && x <= e->obj->x - KOOPAS_SPIN_DIFF)
+		{
+			DebugOut(L"collision left \n");
 			if (KoopasCollision(e->obj))
 			{
-				DebugOut(L"collision left \n");
+				//DebugOut(L"collision left \n");
 				this->nx = 1;
 				vx = this->nx * KOOPAS_WALKING_SPEED;
 			}
+		}
 	}
 }
 
@@ -123,7 +129,12 @@ void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& botto
 	left = x;
 	top = y;
 	right = x + KOOPAS_BBOX_WIDTH;
-	bottom = y + KOOPAS_BBOX_HEIGHT;
+	if (state == KOOPAS_STATE_IN_SHELL || state == KOOPAS_STATE_TURNING) {
+		bottom = y + KOOPAS_BBOX_SHELL_HEIGHT;
+	}
+	else {
+		bottom = y + KOOPAS_BBOX_HEIGHT;
+	}
 }
 
 void CKoopas::Render()
@@ -163,6 +174,8 @@ void CKoopas::SetState(int state)
 	case KOOPAS_STATE_TURNING:
 		// turn
 		vx = KOOPAS_WALKING_SPEED * 4;
+		vy = KOOPAS_FALL_SPEED;
+		ay = vy;
 		break;
 	case KOOPAS_STATE_IN_SHELL:
 		// idle
