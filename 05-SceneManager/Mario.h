@@ -76,6 +76,8 @@
 #define MARIO_STATE_SIT				600
 #define MARIO_STATE_SIT_RELEASE		601
 
+#define MARIO_STATE_KICK			411
+
 // SMALL
 #define MARIO_ANI_SMALL_IDLE_RIGHT			0
 #define MARIO_ANI_SMALL_WALKING_RIGHT		1
@@ -184,6 +186,11 @@ class CMario : public CGameObject
 	int untouchable; 
 	ULONGLONG untouchable_start;
 	BOOLEAN isOnPlatform;
+
+	// for mario hold and kick koopas
+	BOOLEAN isReadyToHold = false;
+	BOOLEAN isHolding = false;
+
 	int coin; 
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);

@@ -209,12 +209,23 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 
 	if (e->nx != 0) {
 		DebugOut(L"mario collision with koopas if 1");
-		if (MARIO_LEVEL_BIG) {
-			SetLevel(MARIO_LEVEL_SMALL);
+		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
+			if (isReadyToHold) {
+				//koopas->SetCanBeHeld(true);
+			}
+			else {
+				SetState(MARIO_STATE_KICK);
+				koopas->SetState(KOOPAS_STATE_TURNING);
+			}
 		}
-		else{
-			DebugOut(L"Mario die by koopas \n");
-			//SetState(MARIO_STATE_DIE);
+		else {
+			if (MARIO_LEVEL_BIG) {
+				SetLevel(MARIO_LEVEL_SMALL);
+			}
+			else{
+				DebugOut(L"Mario die by koopas \n");
+				//SetState(MARIO_STATE_DIE);
+			}
 		}
 	}
 	else if (e->ny != 0) {
