@@ -11,12 +11,44 @@ CKoopas::CKoopas(int tag)
 }
 
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
-	
+	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+
 	vy += ay * dt;
 	vx += ax * dt;
 
+	HandleCanBeHeld(mario);
+
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
+}
+
+void CKoopas::HandleCanBeHeld(LPGAMEOBJECT player) {
+
+	CMario* mario = dynamic_cast<CMario*>(player);
+
+	if (mario->isHolding) {
+		DebugOut(L"mario holding koopas \n");
+		if (state == KOOPAS_STATE_IN_SHELL || state == KOOPAS_STATE_SHELL_UP) {
+			if (mario->nx > 0) {
+				// vi tri x sau khi mario cam len
+				x = mario->x + MARIO_BIG_BBOX_WIDTH * mario->nx - 3.0f;
+			}
+			else x = mario->x + MARIO_BIG_BBOX_WIDTH * mario->nx;
+			// mario hold in hand
+			y = mario->y - 2.0f;
+
+			// for koopas dung yen
+			vy = 0;
+		}
+	}
+	else if (isBeingHeld && !mario->isHolding) {
+		// mario nem' rua` di
+		if (state == KOOPAS_STATE_SHELL_UP || state == KOOPAS_STATE_IN_SHELL) {
+			this->nx = mario->nx;
+			isBeingHeld = false;
+			SetState(KOOPAS_STATE_TURNING);
+		}
+	}
 }
 
 void CKoopas::OnNoCollision(DWORD dt) {

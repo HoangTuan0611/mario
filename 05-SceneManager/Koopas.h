@@ -35,7 +35,9 @@ class CKoopas : public CGameObject
 public:
 
 	bool isBeingHeld = false;
+
 	void SetCanBeHeld(bool m) { isBeingHeld = m; };
+	void HandleCanBeHeld(LPGAMEOBJECT player);
 
 	CKoopas(int tag);
 
