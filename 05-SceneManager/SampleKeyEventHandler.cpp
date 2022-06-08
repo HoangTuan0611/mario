@@ -32,7 +32,7 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		//Reload();
 		break;
 	case DIK_A:
-		mario->isHolding = true;
+		//mario->isHolding = true;
 		break;
 	}
 }

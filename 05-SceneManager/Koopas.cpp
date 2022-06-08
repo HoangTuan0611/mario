@@ -46,6 +46,7 @@ void CKoopas::HandleCanBeHeld(LPGAMEOBJECT player) {
 		if (state == KOOPAS_STATE_SHELL_UP || state == KOOPAS_STATE_IN_SHELL) {
 			this->nx = mario->nx;
 			isBeingHeld = false;
+			DebugOut(L"koopas turning when mario drop \n");
 			SetState(KOOPAS_STATE_TURNING);
 		}
 	}

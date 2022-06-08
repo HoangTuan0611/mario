@@ -212,6 +212,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
 			if (isReadyToHold) {
 				DebugOut(L"mario can hold koopas \n");
+				isHolding = true;
 				koopas->SetCanBeHeld(true);
 			}
 			else {
