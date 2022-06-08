@@ -234,7 +234,10 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 	else if (e->ny != 0) {
 		//DebugOut(L"mario collision with koopas if 2");
 		if (koopas->GetState() == KOOPAS_STATE_WALKING) {
-			koopas->SetState(KOOPAS_STATE_IN_SHELL);
+			if (koopas->tag == KOOPAS_GREEN_PARA) {
+				koopas->SetTag(KOOPAS_GREEN);
+			}
+			else koopas->SetState(KOOPAS_STATE_IN_SHELL);
 		}
 		else if (koopas->GetState() == KOOPAS_STATE_IN_SHELL) {
 			koopas->SetState(KOOPAS_STATE_TURNING);
