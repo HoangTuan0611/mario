@@ -17,8 +17,40 @@ CKoopas::CKoopas(int tag)
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
-	vy += ay * dt;
-	vx += ax * dt;
+	// koopas shell up
+	if (GetTickCount64() - shell_start >= KOOPAS_SHELL_TIME && shell_start != 0 && state != KOOPAS_STATE_TURNING) {
+		shell_start = 0;
+		DebugOut(L"koopas start shell \n");
+		StartReviving();
+	}
+
+	if (GetTickCount64() - reviving_start >= KOOPAS_REVIVE_TIME && reviving_start != 0 && state != KOOPAS_STATE_TURNING && shell_start == 0)
+	{
+		reviving_start = 0;
+		y -= (KOOPAS_BBOX_HEIGHT - KOOPAS_BBOX_SHELL_HEIGHT) + 1.0f;
+		if (isBeingHeld)
+		{
+			isBeingHeld = false;
+			mario->isHolding = false;
+		}
+		DebugOut(L"koopas return to walking \n");
+		SetState(KOOPAS_STATE_WALKING);
+	}
+
+	//vy += ay * dt;
+	//vx += ax * dt;
+
+	this->dt = dt;
+	vy += KOOPAS_GRAVITY * dt;
+
+	// set y when mario drop koopas
+	if (!isBeingHeld)
+	{
+		if (tag == KOOPAS_GREEN_PARA)
+			vy += KOOPAS_PARA_GRAVITY * dt;
+		if (tag == KOOPAS_RED || tag == KOOPAS_GREEN)
+			vy += KOOPAS_GRAVITY * dt;
+	}
 
 	HandleCanBeHeld(mario);
 
@@ -225,11 +257,14 @@ void CKoopas::SetState(int state)
 		// idle
 		vx = 0;
 		vy = 0;
+		StartShell();
 		break;
 	case KOOPAS_STATE_SHELL_UP:
 		// shell up and then walking
 		vy = -KOOPAS_SHELL_DEFLECT_SPEED;
 		vx = KOOPAS_WALKING_SPEED;
+		nx = 1;
+		StartShell();
 		break;
 	}
 }

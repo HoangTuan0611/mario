@@ -27,6 +27,12 @@
 #define KOOPAS_ANI_PARA_RIGHT		7
 #define KOOPAS_ANI_PARA_LEFT		8
 
+#define KOOPAS_REVIVE_TIME		1500
+#define KOOPAS_SHELL_TIME		4000
+
+#define KOOPAS_GRAVITY					0.002f
+#define KOOPAS_PARA_GRAVITY				0.001f
+
 #define KOOPAS_SPIN_DIFF	4
 
 class CKoopas : public CGameObject
@@ -35,6 +41,11 @@ class CKoopas : public CGameObject
 	virtual void Render();
 	float ax;
 	float ay;
+	
+	// koopas return walking
+	ULONGLONG reviving_start = 0;
+	ULONGLONG shell_start = 0;
+	ULONGLONG dt = 0;
 public:
 
 	bool isBeingHeld = false;
@@ -43,6 +54,8 @@ public:
 
 	void SetCanBeHeld(bool m) { isBeingHeld = m; };
 	void HandleCanBeHeld(LPGAMEOBJECT player);
+	void StartShell() { shell_start = GetTickCount64(); reviving_start = 0; }
+	void StartReviving() { reviving_start = GetTickCount64(); }
 
 	CKoopas(int tag);
 
