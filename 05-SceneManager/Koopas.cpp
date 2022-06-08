@@ -155,6 +155,13 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 			}
 		}
 	}
+	if (tag == KOOPAS_GREEN_PARA)
+	{
+		y = e->obj->y - KOOPAS_BBOX_HEIGHT;
+		vy = -0.35f;
+		vx = vx = this->nx * KOOPAS_WALKING_SPEED;
+		this->nx = -1;
+	}
 }
 
 void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) {
@@ -178,18 +185,21 @@ void CKoopas::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 
 	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
 
-	if (koopas->state == KOOPAS_STATE_WALKING)
-	{
-		this->vx = -this->vx;
-		this->nx = -this->nx;
-		koopas->vx = -koopas->vx;
-		koopas->nx = -koopas->nx;
-	}
-
 	if (koopas->state == KOOPAS_STATE_TURNING)
 	{
+		if (koopas->tag == KOOPAS_GREEN_PARA)
+			koopas->tag = KOOPAS_GREEN;
 		DebugOut(L"Koopas die by koopas turning \n");
 		//SetState();
+	}
+	else {
+		if (koopas->state == KOOPAS_STATE_WALKING)
+		{
+			this->vx = -this->vx;
+			this->nx = -this->nx;
+			koopas->vx = -koopas->vx;
+			koopas->nx = -koopas->nx;
+		}
 	}
 }
 
