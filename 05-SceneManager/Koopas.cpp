@@ -6,6 +6,10 @@ CKoopas::CKoopas(int tag)
 {
 	this->start_x = x;
 	this->start_y = y;
+	this->start_tag = tag;
+	if (tag == KOOPAS_GREEN || tag == KOOPAS_GREEN_PARA) {
+		this->nx = -1;
+	}
 	this->nx = -1;
 	this->SetState(KOOPAS_STATE_WALKING);
 }
@@ -190,6 +194,13 @@ void CKoopas::Render()
 		else
 			ani = KOOPAS_ANI_WALKING_RIGHT;
 	}
+
+	// koopas green
+	if (tag == KOOPAS_GREEN_PARA)
+		if (this->nx < 0)
+			ani = KOOPAS_ANI_PARA_LEFT;
+		else
+			ani = KOOPAS_ANI_PARA_RIGHT;
 
 	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();

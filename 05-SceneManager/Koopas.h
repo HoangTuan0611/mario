@@ -16,13 +16,16 @@
 
 #define KOOPAS_GREEN		0
 #define KOOPAS_RED			1
+#define KOOPAS_GREEN_PARA	2
 
 #define KOOPAS_ANI_WALKING_RIGHT	0
 #define KOOPAS_ANI_SPIN_RIGHT		1
 #define KOOPAS_ANI_WALKING_LEFT		2
 #define KOOPAS_ANI_SPIN_LEFT		3
 #define KOOPAS_ANI_SHELL			4
-#define KOOPAS_ANI_SHELL_UP			5
+#define KOOPAS_ANI_SHELL_UP			6
+#define KOOPAS_ANI_PARA_RIGHT		7
+#define KOOPAS_ANI_PARA_LEFT		8
 
 #define KOOPAS_SPIN_DIFF	4
 
@@ -35,6 +38,8 @@ class CKoopas : public CGameObject
 public:
 
 	bool isBeingHeld = false;
+
+	int start_tag = 0;
 
 	void SetCanBeHeld(bool m) { isBeingHeld = m; };
 	void HandleCanBeHeld(LPGAMEOBJECT player);
