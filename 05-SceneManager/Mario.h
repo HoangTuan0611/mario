@@ -153,6 +153,10 @@
 #define MARIO_ANI_BIG_HOLD_BRAKING_LEFT			76
 #define MARIO_ANI_BIG_KICKING_LEFT				78
 
+//JUMP
+#define MARIO_JUMP_MAX	0.28f
+#define MARIO_SUPER_JUMP_MAX 0.30f
+
 #define	MARIO_LEVEL_SMALL	1
 #define	MARIO_LEVEL_BIG		2
 #define	MARIO_LEVEL_TAIL	3
@@ -185,7 +189,8 @@ class CMario : public CGameObject
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	BOOLEAN isOnPlatform;
+	ULONGLONG start_kicking = 0;
+	BOOLEAN isJumping = false;
 
 	int coin; 
 
@@ -206,6 +211,9 @@ public:
 	// for mario hold and kick koopas
 	BOOLEAN isReadyToHold = false;
 	BOOLEAN isHolding = false;
+	BOOLEAN isOnPlatform;
+	BOOLEAN isFlapping = false;
+	BOOLEAN isKick = false;
 
 
 
@@ -243,6 +251,16 @@ public:
 
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
+	void StartKicking() { start_kicking = GetTickCount64(); isKick = true; }
 
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+
+	//Handle mario behavior
+	void HandleMarioJump();
+
+	// Not jumping
+	void pullDown() {
+		if (!isFlapping) ay = MARIO_GRAVITY; isJumping = false;
+	}
+
 };

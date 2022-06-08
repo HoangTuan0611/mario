@@ -48,6 +48,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	isOnPlatform = false;
 
+	HandleMarioJump();
+
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
@@ -248,6 +250,50 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 	}
 }
 
+
+void CMario::HandleMarioJump() {
+	if (isJumping) {
+		// Dung yen nhay
+		if (vx == 0)
+		{
+			if (vy < -MARIO_JUMP_MAX) {
+				pullDown();
+			}
+		}
+		// Di chuyen nhay phai
+		if (vx > 0) {
+			// vx lon nhat
+			if (vx >= MARIO_SPEED_MAX) {
+				// super jump
+				if (vy < -MARIO_SUPER_JUMP_MAX) {
+					pullDown();
+				}
+			}
+			else if (vx < MARIO_SPEED_MAX && vx > 0) {
+				if (vy < -MARIO_JUMP_MAX) {
+					pullDown();
+				}
+			}
+		}
+		//Di chuyen nhay trai
+		if (vx < 0) {
+			// vx lon nhat
+			if (abs(vx) >= MARIO_SPEED_MAX) {
+				// super jump
+				if (vy < -MARIO_SUPER_JUMP_MAX) {
+					pullDown();
+				}
+			}
+			else if (abs(vx) < MARIO_SPEED_MAX && vx < 0) {
+				if (vy < -MARIO_JUMP_MAX) {
+					pullDown();
+				}
+			}
+		}
+
+	}
+}
+
 //
 // Get animation ID for small Mario
 //
@@ -432,15 +478,21 @@ void CMario::SetState(int state)
 		if (isSitting) break;
 		if (isOnPlatform)
 		{
-			if (abs(this->vx) == MARIO_RUNNING_SPEED)
+	/*		if (abs(this->vx) == MARIO_RUNNING_SPEED)
 				vy = -MARIO_JUMP_RUN_SPEED_Y;
 			else
-				vy = -MARIO_JUMP_SPEED_Y;
+				vy = -MARIO_JUMP_SPEED_Y;*/
+			if (vy > -MARIO_JUMP_SPEED_MIN)
+				vy = -MARIO_JUMP_SPEED_MIN;
+			ay = -MARIO_ACCELERATION_JUMP;
+			isJumping = true;
 		}
+		isOnPlatform = false;
 		break;
 
 	case MARIO_STATE_RELEASE_JUMP:
-		if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
+		//if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
+		pullDown();
 		break;
 
 	case MARIO_STATE_SIT:
@@ -458,7 +510,7 @@ void CMario::SetState(int state)
 		{
 			isSitting = false;
 			state = MARIO_STATE_IDLE;
-			//y -= MARIO_SIT_HEIGHT_ADJUST;
+			y -= MARIO_SIT_HEIGHT_ADJUST;
 		}
 		break;
 
@@ -472,7 +524,11 @@ void CMario::SetState(int state)
 		vx = 0;
 		ax = 0;
 		break;
+	case MARIO_STATE_KICK:
+		StartKicking();
+		break;
 	}
+		
 
 	CGameObject::SetState(state);
 }
