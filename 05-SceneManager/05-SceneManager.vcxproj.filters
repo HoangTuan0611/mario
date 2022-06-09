@@ -55,6 +55,9 @@
     <Filter Include="Map Objects\Enemies\PiranhaPlantFire">
       <UniqueIdentifier>{293dc888-acc5-466f-a37f-71ab723d8f1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map Objects\Others\Tail">
+      <UniqueIdentifier>{c8d92c75-88b1-4fc3-94ea-ef6923f99fc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -126,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="PiranhaPlantFire.cpp">
       <Filter>Map Objects\Enemies\PiranhaPlantFire</Filter>
+    </ClCompile>
+    <ClCompile Include="Tail.cpp">
+      <Filter>Map Objects\Others\Tail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="PiranhaPlantFire.h">
       <Filter>Map Objects\Enemies\PiranhaPlantFire</Filter>
+    </ClInclude>
+    <ClInclude Include="Tail.h">
+      <Filter>Map Objects\Others\Tail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
