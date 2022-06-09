@@ -294,6 +294,22 @@ void CMario::HandleMarioJump() {
 	}
 }
 
+void CMario::HandleMarioDie() {
+
+	if (level != MARIO_LEVEL_SMALL)
+	{
+		level -= 1;
+		SetLevel(level);
+		StartUntouchable();
+		DebugOut(L">>> Mario tranfer to >>>%d \n", level);
+	}
+	else
+	{
+		DebugOut(L">>> Mario basic die >>> \n");
+		//SetState(MARIO_STATE_DIE);
+	}
+}
+
 //
 // Get animation ID for small Mario
 //

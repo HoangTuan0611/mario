@@ -257,6 +257,7 @@ public:
 
 	//Handle mario behavior
 	void HandleMarioJump();
+	void HandleMarioDie();
 
 	// Not jumping
 	void pullDown() {
