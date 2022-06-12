@@ -5,6 +5,8 @@
 
 #include "debug.h"
 
+#include "Tail.h"
+
 #define MARIO_WALKING_SPEED_START	0.0001f 
 #define MARIO_WALKING_SPEED_MAX		0.15f
 #define MARIO_RUNNING_SPEED_MAX		0.2f
@@ -224,6 +226,8 @@ class CMario : public CGameObject
 	int GetAniIdSmall();
 	int GetAniIdTail();
 
+	CTail* tail = NULL;
+
 public:
 
 	// for mario hold and kick koopas
@@ -247,6 +251,7 @@ public:
 		untouchable_start = -1;
 		isOnPlatform = false;
 		coin = 0;
+		tail = new CTail(180, y);
 	}
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void Render();
