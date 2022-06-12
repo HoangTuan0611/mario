@@ -281,6 +281,10 @@ public:
 	//Handle mario behavior
 	void HandleMarioJump();
 	void HandleMarioDie();
+	void HandleMarioKick();
+
+	//Stop behavior
+	void StopKick() { start_kicking = 0; isKick = false; }
 
 	// Not jumping
 	void pullDown() {
