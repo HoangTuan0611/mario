@@ -22,6 +22,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	vy += ay * dt;
 	vx += ax * dt;
 
+	HandleMarioJump();
+	HandleTurning();
+	HandleMarioKick();
+	
 
 	// FOR HANDLE COLLISION WITH BLOCK
 	for (int i = 0; i < coObjects->size(); i++) { // va cham nao cung su dung ( update )
@@ -47,9 +51,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	}
 
 	isOnPlatform = false;
-
-	HandleMarioJump();
-	HandleMarioKick();
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
@@ -672,7 +673,7 @@ void CMario::Render()
 		{
 			DebugOut(L"[Turning stack]:: %d\n", turningStack);
 			if (isTuring && nx > 0) {
-				if (turningStack == 1 || turningStack == 5) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_RIGHT_1_ID)->Draw(x, y);
+				if (turningStack == 1 || turningStack == 5) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_RIGHT_1_ID)->Draw(x - 8, y);
 				if (turningStack == 2) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_RIGHT_2_ID)->Draw(x, y);
 				if (turningStack == 3) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_RIGHT_3_ID)->Draw(x, y);
 				if (turningStack == 4) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_RIGHT_4_ID)->Draw(x, y);
@@ -680,7 +681,7 @@ void CMario::Render()
 			if (isTuring && nx < 0) {
 				if (turningStack == 1 || turningStack == 5) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_LEFT_1_ID)->Draw(x, y);
 				if (turningStack == 2) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_LEFT_2_ID)->Draw(x, y);
-				if (turningStack == 3) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_LEFT_3_ID)->Draw(x, y);
+				if (turningStack == 3) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_LEFT_3_ID)->Draw(x - 8, y);
 				if (turningStack == 4) CSprites::GetInstance()->Get(MARIO_SPRITE_WHACK_LEFT_4_ID)->Draw(x, y);
 			}
 		}
@@ -818,5 +819,21 @@ void CMario::SetLevel(int l)
 		y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT);
 	}
 	level = l;
+}
+
+void CMario::HandleTurning() {
+
+	if (GetTickCount64() - start_turning >= MARIO_TURNING_STATE_TIME && isTuring) {
+		start_turning = GetTickCount64();
+		turningStack++;
+		DebugOut(L"Handle turning:: %d \n", turningStack);
+	}
+	if (GetTickCount64() - start_turning_state > MARIO_TURNING_TAIL_TIME && isTuring) {
+		isTuring = false;
+		start_turning_state = 0;
+		start_turning = 0;
+		turningStack = 0;
+	}
+
 }
 

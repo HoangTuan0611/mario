@@ -241,8 +241,6 @@ class CMario : public CGameObject
 	int GetAniIdSmall();
 	int GetAniIdTail();
 
-	CTail* tail = NULL;
-
 public:
 
 	// for mario hold and kick koopas
@@ -251,11 +249,12 @@ public:
 	BOOLEAN isOnPlatform;
 	BOOLEAN isFlapping = false;
 	BOOLEAN isKick = false;
+
 	// tail attack
 	BOOLEAN isTuring = false;
 	int turningStack = 0;
 
-
+	CTail* tail = NULL;
 
 	CMario(float x, float y) : CGameObject(x, y)
 	{
@@ -302,6 +301,7 @@ public:
 	void HandleMarioJump();
 	void HandleMarioDie();
 	void HandleMarioKick();
+	void HandleTurning();
 
 	//Stop behavior
 	void StopKick() { start_kicking = 0; isKick = false; }
