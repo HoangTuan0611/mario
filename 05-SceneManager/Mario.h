@@ -172,6 +172,19 @@
 #define MARIO_ANI_TAIL_BRAKING_LEFT			44
 #define MARIO_ANI_TAIL_SITTING_LEFT			45
 
+#define MARIO_STATE_TAIL_ATTACK		14
+#define MARIO_DIFF	3
+
+#define MARIO_SPRITE_WHACK_LEFT_1_ID	12813
+#define MARIO_SPRITE_WHACK_LEFT_2_ID	12814
+#define MARIO_SPRITE_WHACK_LEFT_3_ID	12815
+#define MARIO_SPRITE_WHACK_LEFT_4_ID	12816
+
+#define MARIO_SPRITE_WHACK_RIGHT_1_ID	12803
+#define MARIO_SPRITE_WHACK_RIGHT_2_ID	12804
+#define MARIO_SPRITE_WHACK_RIGHT_3_ID	12805
+#define MARIO_SPRITE_WHACK_RIGHT_4_ID	12806
+
 //JUMP
 #define MARIO_JUMP_MAX	0.28f
 #define MARIO_SUPER_JUMP_MAX 0.30f
@@ -209,6 +222,8 @@ class CMario : public CGameObject
 	int untouchable; 
 	ULONGLONG untouchable_start;
 	ULONGLONG start_kicking = 0;
+	ULONGLONG start_turning_state = 0;
+	ULONGLONG start_turning = 0;
 	BOOLEAN isJumping = false;
 
 	int coin; 
@@ -236,6 +251,9 @@ public:
 	BOOLEAN isOnPlatform;
 	BOOLEAN isFlapping = false;
 	BOOLEAN isKick = false;
+	// tail attack
+	BOOLEAN isTuring = false;
+	int turningStack = 0;
 
 
 
@@ -272,9 +290,11 @@ public:
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
+	// Start behavior
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 	void StartKicking() { start_kicking = GetTickCount64(); isKick = true; }
+	void StartTurning() { start_turning_state = GetTickCount64(); isTuring = true; }
 
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 

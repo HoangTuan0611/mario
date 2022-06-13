@@ -148,10 +148,10 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 			vx = 0;
 		if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
 		{
-			DebugOut(L"koopas on collision with block tag red and walking \n");
+			//DebugOut(L"koopas on collision with block tag red and walking \n");
 			if (this->nx > 0 && x >= e->obj->x + KOOPAS_SPIN_DIFF)
 			{
-				DebugOut(L"collision right \n");
+				//DebugOut(L"collision right \n");
 				if (KoopasCollision(e->obj))
 				{
 					//DebugOut(L"collision right \n");
@@ -161,7 +161,7 @@ void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
 			}
 			if (this->nx < 0 && x <= e->obj->x - KOOPAS_SPIN_DIFF)
 			{
-				DebugOut(L"collision left \n");
+				//DebugOut(L"collision left \n");
 				if (KoopasCollision(e->obj))
 				{
 					//DebugOut(L"collision left \n");
@@ -307,13 +307,13 @@ bool CKoopas::KoopasCollision(LPGAMEOBJECT object)
 				if (nx > 0)
 					if (coObjects[i]->x > object->x && coObjects[i]->x - 16 < object->x + 16)
 					{
-						DebugOut(L"next is block, right \n");
+						//DebugOut(L"next is block, right \n");
 						return false;
 					}
 				if (nx < 0) 
 					if (coObjects[i]->x + 16 > object->x - 16 && coObjects[i]->x < object->x)
 					{
-						DebugOut(L"next is block, left \n");
+						//DebugOut(L"next is block, left \n");
 						return false;
 					}	
 			}
