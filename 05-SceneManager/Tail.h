@@ -4,6 +4,8 @@
 #define TAIL_BBOX_WIDTH		8
 #define TAIL_BBOX_HEIGHT	6
 
+#define TAIL_BBOX_EXTRA		4
+
 class CTail :public CGameObject
 {
 	float ax;
