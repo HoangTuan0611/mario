@@ -18,23 +18,33 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	y += vy * dt;
 	y = limitY;
 
+	//CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	//if (mario != NULL) {
+	//	float mLeft, mTop, mRight, mBottom;
+	//	float mWidth = mario->GetWidth();
+	//	mario->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+	//	//DebugOut(L"Mario not null \n");
+	//	if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom)) {
+	//		//DebugOut(L"Get collision with piranhaPlant \n");
+	//		if (mario->GetLevel() != MARIO_LEVEL_SMALL)
+	//		{
+	//			mario->SetLevel(mario->GetLevel() - 1);
+	//		}
+	//		else
+	//		{
+	//			DebugOut(L">>> Mario die by piranhaPlantFire >>> \n");
+	//			//mario->SetState(MARIO_STATE_DIE);
+	//		}
+	//	}
+	//}
+	float mLeft, mTop, mRight, mBottom;
 	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
-	if (mario != NULL) {
-		float mLeft, mTop, mRight, mBottom;
-		float mWidth = mario->GetWidth();
-		mario->GetBoundingBox(mLeft, mTop, mRight, mBottom);
-		//DebugOut(L"Mario not null \n");
-		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom)) {
-			//DebugOut(L"Get collision with piranhaPlant \n");
-			if (mario->GetLevel() != MARIO_LEVEL_SMALL)
-			{
-				mario->SetLevel(mario->GetLevel() - 1);
-			}
-			else
-			{
-				DebugOut(L">>> Mario die by piranhaPlantFire >>> \n");
-				//mario->SetState(MARIO_STATE_DIE);
-			}
+	if (mario->GetLevel() == MARIO_LEVEL_TAIL) {
+		mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+
+		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
+			DebugOut(L"PiranhaPlant die by mario tail \n");
+			//SetState();
 		}
 	}
 }

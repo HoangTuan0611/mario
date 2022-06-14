@@ -90,15 +90,15 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 	else if (dynamic_cast<CMushRoom*>(e->obj))
 		OnCollisionWithMushRoom(e);
+	else if (dynamic_cast<PiranhaPlantFire*>(e->obj))
+	{
+		DebugOut(L"mario collision with piranhaPlantFire \n");
+		OnCollisionWithPiranhaPlantFire();
+	}
 	else if (dynamic_cast<PiranhaPlant*>(e->obj))
 	{
 		//DebugOut(L"mario collision with piranhaPlant \n");
 		OnCollisionWithPiranhaPlant();
-	}
-	else if (dynamic_cast<PiranhaPlantFire*>(e->obj))
-	{
-		//DebugOut(L"mario collision with piranhaPlantFire \n");
-		OnCollisionWithPiranhaPlantFire();
 	}
 	else if (dynamic_cast<CKoopas*>(e->obj)) {
 		//DebugOut(L"mario collision with koopas \n");
