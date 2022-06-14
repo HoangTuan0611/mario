@@ -22,6 +22,18 @@ void PiranhaPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	//x += vx * dt;
 	y += vy * dt;
+
+	// die by mario tail
+	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	float mLeft, mTop, mRight, mBottom;
+	if (mario->GetLevel() == MARIO_LEVEL_TAIL) {
+		mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+
+		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
+			DebugOut(L"PiranhaPlant die by mario tail \n");
+			//SetState();
+		}
+	}
 }
 
 void PiranhaPlant::Render()

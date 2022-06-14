@@ -43,7 +43,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
 
 		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
-			DebugOut(L"PiranhaPlant die by mario tail \n");
+			DebugOut(L"PiranhaPlantFire die by mario tail \n");
 			//SetState();
 		}
 	}
