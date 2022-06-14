@@ -130,10 +130,11 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				nx = mario->nx;
 				DebugOut(L"goomba red turn level by mario tail \n");
 				SetState(GOOMBA_STATE_DIE_BY_MARIO);
+				SetTag(GOOMBA_RED_NORMAL);
 				return;
 			}
 		}
-		else if (tag != GOOMBA_RED && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
+		else if (tag != GOOMBA_RED || tag == GOOMBA_RED_NORMAL && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
 		{
 			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
 			GetBoundingBox(oLeft, oTop, oRight, oBottom);
@@ -150,7 +151,6 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
-
 
 void CGoomba::Render()
 {

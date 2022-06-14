@@ -99,6 +99,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		//DebugOut(L"mario collision with piranhaPlant \n");
 		OnCollisionWithPiranhaPlant();
+		//HandleMarioDie();
 	}
 	else if (dynamic_cast<CKoopas*>(e->obj)) {
 		//DebugOut(L"mario collision with koopas \n");
