@@ -52,6 +52,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	isOnPlatform = false;
 
+	tail->Update(dt, coObjects); // va cham tail
+
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
@@ -125,18 +127,22 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	{
 		if (untouchable == 0)
 		{
+			//if (goomba->GetState() != GOOMBA_STATE_DIE)
+			//{
+			//	if (level > MARIO_LEVEL_SMALL)
+			//	{
+			//		level = MARIO_LEVEL_SMALL;
+			//		StartUntouchable();
+			//	}
+			//	else
+			//	{
+			//		DebugOut(L">>> Mario DIE >>> \n");
+			//		//SetState(MARIO_STATE_DIE);
+			//	}
+			//}
 			if (goomba->GetState() != GOOMBA_STATE_DIE)
 			{
-				if (level > MARIO_LEVEL_SMALL)
-				{
-					level = MARIO_LEVEL_SMALL;
-					StartUntouchable();
-				}
-				else
-				{
-					DebugOut(L">>> Mario DIE >>> \n");
-					//SetState(MARIO_STATE_DIE);
-				}
+				HandleMarioDie();
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 #include "Goomba.h"
 #include "Brick.h"
 #include "QuestionBrick.h"
+#include "PlayScene.h"
 
 CGoomba::CGoomba(int tag)
 {
@@ -115,6 +116,37 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		ay = GOOMBA_GRAVITY;
 	}
 
+	// for tail collision
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	CMario* mario = currentScene->GetPlayer();
+	float mLeft, mTop, mRight, mBottom;
+	float oLeft, oTop, oRight, oBottom;
+	if (mario != NULL && state != GOOMBA_STATE_DIE) {
+		if (tag == GOOMBA_RED && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL) {
+			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+			GetBoundingBox(oLeft, oTop, oRight, oBottom);
+			if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom))
+			{
+				nx = mario->nx;
+				DebugOut(L"goomba red turn level by mario tail \n");
+				SetState(GOOMBA_STATE_DIE_BY_MARIO);
+				return;
+			}
+		}
+		else if (tag != GOOMBA_RED && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
+		{
+			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+			GetBoundingBox(oLeft, oTop, oRight, oBottom);
+			if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom))
+			{
+				nx = mario->nx;
+				DebugOut(L"goomba die by mario tail \n");
+				SetState(GOOMBA_STATE_DIE);
+				return;
+			}
+		}
+	}
+
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
@@ -157,6 +189,12 @@ void CGoomba::SetState(int state)
 		y += GOOMBA_NORMAL_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE;
 		vx = 0;
 		vy = 0;
+		break;
+	case GOOMBA_STATE_DIE_BY_MARIO:
+		vy = -GOOMBA_DIE_DEFLECT_SPEED;
+		vx = -vx;
+		ay = GOOMBA_GRAVITY;
+		die_start = GetTickCount64();
 		break;
 	case GOOMBA_STATE_WALKING:
 		vx = -GOOMBA_WALKING_SPEED;
