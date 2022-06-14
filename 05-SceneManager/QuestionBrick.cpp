@@ -53,6 +53,16 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	x += vx * dt;
 	y += vy * dt;
 
+	float mLeft, mTop, mRight, mBottom;
+	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	if (mario != NULL && totalItems > 0 && state != QUESTION_BRICK_HIT && mario->isTuring) {
+		mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+		if (isColliding(mLeft, mTop, mRight, mBottom)) {
+			DebugOut(L"Mario tail hit qBrick \n");
+			SetState(QUESTION_BRICK_HIT);
+		}
+	}
+
 	if (state == QUESTION_BRICK_HIT) {
 		if (isBeingPushedUp && ((start_y - y) >= QUESTIONBRICK_PUSH_MAX_HEIGHT)) {
 			//DebugOut(L"Start falling\n");
