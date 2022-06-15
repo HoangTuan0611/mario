@@ -26,7 +26,6 @@ protected:
 	//float z;
 
 	//float vx;
-	float vy;
 
 	float start_x;
 	float start_y;
@@ -45,6 +44,7 @@ public:
 
 	int nx;
 	float vx;
+	float vy;
 
 	int tag = 0; // define for goomba tag
 

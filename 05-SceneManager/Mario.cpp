@@ -717,24 +717,44 @@ void CMario::SetState(int state)
 		maxVx = MARIO_RUNNING_SPEED;
 		ax = MARIO_ACCEL_RUN_X;
 		nx = 1;
+		// handle fly
+		isReadyToRun = true;
+		if (vx > MARIO_SPEED_STACK && isReadyToRun) {
+			isRunning = true;
+		}
+		else {
+			isRunning = false;
+		}
 		break;
 	case MARIO_STATE_RUNNING_LEFT:
 		if (isSitting) break;
 		maxVx = -MARIO_RUNNING_SPEED;
 		ax = -MARIO_ACCEL_RUN_X;
 		nx = -1;
+		// handle fly
+		isReadyToRun = true;
+		if (vx < MARIO_SPEED_STACK && isReadyToRun) {
+			isRunning = true;
+		}
+		else {
+			isRunning = false;
+		}
 		break;
 	case MARIO_STATE_WALKING_RIGHT:
 		if (isSitting) break;
 		maxVx = MARIO_WALKING_SPEED;
 		ax = MARIO_ACCEL_WALK_X;
 		nx = 1;
+		// handle fly
+		isRunning = false;
 		break;
 	case MARIO_STATE_WALKING_LEFT:
 		if (isSitting) break;
 		maxVx = -MARIO_WALKING_SPEED;
 		ax = -MARIO_ACCEL_WALK_X;
 		nx = -1;
+		// handle fly
+		isRunning = false;
 		break;
 	case MARIO_STATE_JUMP:
 		if (isSitting) break;
@@ -748,6 +768,15 @@ void CMario::SetState(int state)
 				vy = -MARIO_JUMP_SPEED_MIN;
 			ay = -MARIO_ACCELERATION_JUMP;
 			isJumping = true;
+		}
+		if (isRunning) {
+			if (level == MARIO_LEVEL_TAIL) {
+				DebugOut(L"mario can fly \n");
+				isFlying = true;
+			}
+			else {
+				DebugOut(L"mario not tail \n");
+			}
 		}
 		isOnPlatform = false;
 		break;

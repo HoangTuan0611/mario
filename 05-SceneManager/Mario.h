@@ -185,6 +185,9 @@
 #define MARIO_SPRITE_WHACK_RIGHT_3_ID	12805
 #define MARIO_SPRITE_WHACK_RIGHT_4_ID	12806
 
+// Fly
+#define MARIO_SPEED_STACK			0.05f
+
 //JUMP
 #define MARIO_JUMP_MAX	0.28f
 #define MARIO_SUPER_JUMP_MAX 0.30f
@@ -215,8 +218,10 @@ class CMario : public CGameObject
 {
 	BOOLEAN isSitting;
 	float maxVx;
-	float ax;				// acceleration on x 
-	float ay;				// acceleration on y 
+
+	// handle mario fly
+	bool isRunning = false;
+	bool isReadyToRun = false;
 
 	int level; 
 	int untouchable; 
@@ -249,6 +254,12 @@ public:
 	BOOLEAN isOnPlatform;
 	BOOLEAN isFlapping = false;
 	BOOLEAN isKick = false;
+
+	// handle mario fly
+	BOOLEAN isFlying = false;
+	BOOLEAN isFlappingFlying = false;
+	float ax;				// acceleration on x 
+	float ay;				// acceleration on y
 
 	// tail attack
 	BOOLEAN isTuring = false;
