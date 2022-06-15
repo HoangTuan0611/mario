@@ -189,6 +189,13 @@
 #define MARIO_SPEED_STACK			0.05f
 #define MARIO_NORMAL_FLY_MAX		0.3f
 
+#define MARIO_ANI_FLAPPING_RIGHT			97
+#define MARIO_ANI_FLAPPING_LEFT			98
+#define MARIO_ANI_FLY_UP_RIGHT				107
+#define MARIO_ANI_FLY_FLAPPING_RIGHT		109
+#define MARIO_ANI_FLY_UP_LEFT				110
+#define MARIO_ANI_FLY_FLAPPING_LEFT		112
+
 //JUMP
 #define MARIO_JUMP_MAX	0.28f
 #define MARIO_SUPER_JUMP_MAX 0.30f
@@ -318,6 +325,7 @@ public:
 	void HandleMarioKick();
 	void HandleTurning();
 	void HandleFlying();
+	void HandleFlapping();
 
 	//Stop behavior
 	void StopKick() { start_kicking = 0; isKick = false; }
