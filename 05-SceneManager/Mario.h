@@ -187,6 +187,7 @@
 
 // Fly
 #define MARIO_SPEED_STACK			0.05f
+#define MARIO_NORMAL_FLY_MAX 0.3f
 
 //JUMP
 #define MARIO_JUMP_MAX	0.28f
@@ -259,6 +260,7 @@ public:
 	// handle mario fly
 	BOOLEAN isFlying = false;
 	BOOLEAN isFlappingFlying = false;
+	BOOLEAN normalFallDown = false;
 	float ax;				// acceleration on x 
 	float ay;				// acceleration on y
 

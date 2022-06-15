@@ -22,10 +22,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	vy += ay * dt;
 	vx += ax * dt;
 
+	if (!isFlying)
+		HandleMarioJump();
+	HandleFlying();
 	HandleMarioJump();
 	HandleTurning();
 	HandleMarioKick();
-	HandleFlying();
 	
 
 	// FOR HANDLE COLLISION WITH BLOCK
@@ -339,6 +341,20 @@ void CMario::HandleFlying() {
 		fly_start = 0;
 		isRunning = false;
 		isFlying = false;
+	}
+
+	// mario fly normal, not out logic
+	if (level == MARIO_LEVEL_TAIL) {
+		if (isFlying)
+		{
+			if (vy <= -MARIO_NORMAL_FLY_MAX) {
+				normalFallDown = true;
+				DebugOut(L"Start fall down \n");
+			}
+		}
+	}
+	if (normalFallDown && isFlying) {
+		ay = 0.001f;
 	}
 }
 
