@@ -6,6 +6,7 @@
 
 #include "Utils.h"
 #include "MushRoom.h"
+#include "Leaf.h"
 
 
 QuestionBrick::QuestionBrick(int tag) : CGameObject() {
@@ -141,6 +142,13 @@ void QuestionBrick::ShowItem(int itemType) {
 		currentScene->AddObject(obj);
 		DebugOut(L"Mushroom create \n");
 	}
+	if (dynamic_cast<CLeaf*>(this->obj)) {
+		CLeaf* obj = dynamic_cast<CLeaf*>(this->obj);
+		obj->SetPosition(x, y);
+		obj->SetZIndex(-1);
+		currentScene->AddObject(obj);
+		DebugOut(L"Leaf create \n");
+	}
 }
 
 CGameObject* QuestionBrick::SetUpItem(int itemType) {
@@ -164,6 +172,12 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	if (itemType == ITEM_MUSHROOM) {
 		obj = new CMushRoom();
 		ani_set_id = ITEM_MUSHROOM_ANI_SET_ID;
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	if (itemType == ITEM_LEAF) {
+		obj = new CLeaf();
+		ani_set_id = LEAF_ANI_SET_ID;
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);
 	}

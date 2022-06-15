@@ -58,6 +58,9 @@
     <Filter Include="Map Objects\Others\Tail">
       <UniqueIdentifier>{c8d92c75-88b1-4fc3-94ea-ef6923f99fc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map Objects\Items\Leaf">
+      <UniqueIdentifier>{2c07aebc-78d7-4480-9417-aa545e1005e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -132,6 +135,9 @@
     </ClCompile>
     <ClCompile Include="Tail.cpp">
       <Filter>Map Objects\Others\Tail</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Map Objects\Items\Leaf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="Tail.h">
       <Filter>Map Objects\Others\Tail</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Map Objects\Items\Leaf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
