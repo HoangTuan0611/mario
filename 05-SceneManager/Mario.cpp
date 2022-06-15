@@ -25,6 +25,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	HandleMarioJump();
 	HandleTurning();
 	HandleMarioKick();
+	HandleFlying();
 	
 
 	// FOR HANDLE COLLISION WITH BLOCK
@@ -328,6 +329,19 @@ void CMario::HandleMarioKick() {
 		}
 	}
 }
+
+void CMario::HandleFlying() {
+
+	// handle fly
+	if (GetTickCount64() - fly_start > MARIO_FLYING_TIME && fly_start != 0 && isFlying)
+	{
+		DebugOut(L"Start fly \n");
+		fly_start = 0;
+		isRunning = false;
+		isFlying = false;
+	}
+}
+
 
 //
 // Get animation ID for small Mario
@@ -773,6 +787,7 @@ void CMario::SetState(int state)
 			if (level == MARIO_LEVEL_TAIL) {
 				DebugOut(L"mario can fly \n");
 				isFlying = true;
+				StartFlying();
 			}
 			else {
 				DebugOut(L"mario not tail \n");

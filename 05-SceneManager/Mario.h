@@ -222,6 +222,7 @@ class CMario : public CGameObject
 	// handle mario fly
 	bool isRunning = false;
 	bool isReadyToRun = false;
+	ULONGLONG fly_start = 0;
 
 	int level; 
 	int untouchable; 
@@ -305,6 +306,7 @@ public:
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 	void StartKicking() { start_kicking = GetTickCount64(); isKick = true; }
 	void StartTurning() { start_turning_state = GetTickCount64(); isTuring = true; }
+	void StartFlying() { fly_start = GetTickCount64(); } // handle fly
 
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 
@@ -313,6 +315,7 @@ public:
 	void HandleMarioDie();
 	void HandleMarioKick();
 	void HandleTurning();
+	void HandleFlying();
 
 	//Stop behavior
 	void StopKick() { start_kicking = 0; isKick = false; }
