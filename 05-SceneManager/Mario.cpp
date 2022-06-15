@@ -263,6 +263,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 	}
 }
 
+// handle mario behavior
 
 void CMario::HandleMarioJump() {
 	if (isJumping) {
@@ -334,15 +335,6 @@ void CMario::HandleMarioKick() {
 
 void CMario::HandleFlying() {
 
-	// handle fly
-	if (GetTickCount64() - fly_start > MARIO_FLYING_TIME && fly_start != 0 && isFlying)
-	{
-		DebugOut(L"Start fly \n");
-		fly_start = 0;
-		isRunning = false;
-		isFlying = false;
-	}
-
 	// mario fly normal, not out logic
 	if (level == MARIO_LEVEL_TAIL) {
 		if (isFlying)
@@ -356,8 +348,32 @@ void CMario::HandleFlying() {
 	if (normalFallDown && isFlying) {
 		ay = 0.001f;
 	}
+
+	// handle fly
+	if (GetTickCount64() - fly_start > MARIO_FLYING_TIME && fly_start != 0 && isFlying)
+	{
+		DebugOut(L"Start fly \n");
+		fly_start = 0;
+		isRunning = false;
+		isFlying = false;
+	}
 }
 
+void CMario::HandleTurning() {
+
+	if (GetTickCount64() - start_turning >= MARIO_TURNING_STATE_TIME && isTuring) {
+		start_turning = GetTickCount64();
+		turningStack++;
+		DebugOut(L"Handle turning:: %d \n", turningStack);
+	}
+	if (GetTickCount64() - start_turning_state > MARIO_TURNING_TAIL_TIME && isTuring) {
+		isTuring = false;
+		start_turning_state = 0;
+		start_turning = 0;
+		turningStack = 0;
+	}
+
+}
 
 //
 // Get animation ID for small Mario
@@ -809,6 +825,7 @@ void CMario::SetState(int state)
 				DebugOut(L"mario not tail \n");
 			}
 		}
+		normalFallDown = false;
 		isOnPlatform = false;
 		break;
 
@@ -889,19 +906,4 @@ void CMario::SetLevel(int l)
 	level = l;
 }
 
-void CMario::HandleTurning() {
-
-	if (GetTickCount64() - start_turning >= MARIO_TURNING_STATE_TIME && isTuring) {
-		start_turning = GetTickCount64();
-		turningStack++;
-		DebugOut(L"Handle turning:: %d \n", turningStack);
-	}
-	if (GetTickCount64() - start_turning_state > MARIO_TURNING_TAIL_TIME && isTuring) {
-		isTuring = false;
-		start_turning_state = 0;
-		start_turning = 0;
-		turningStack = 0;
-	}
-
-}
 

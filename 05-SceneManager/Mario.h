@@ -187,7 +187,7 @@
 
 // Fly
 #define MARIO_SPEED_STACK			0.05f
-#define MARIO_NORMAL_FLY_MAX 0.3f
+#define MARIO_NORMAL_FLY_MAX		0.3f
 
 //JUMP
 #define MARIO_JUMP_MAX	0.28f
