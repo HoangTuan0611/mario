@@ -16,6 +16,7 @@
 #include "ParanhaPlant.h"
 #include "PiranhaPlantFire.h"
 #include "Koopas.h"
+#include "Leaf.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -108,6 +109,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<CKoopas*>(e->obj)) {
 		//DebugOut(L"mario collision with koopas \n");
 		OnCollisionWithKoopas(e);
+	}
+	else if (dynamic_cast<CLeaf*>(e->obj)) {
+		//DebugOut(L"mario collision with leaf \n");
+		OnCollisionWithLeaf(e);
 	}
 		
 }
@@ -261,6 +266,17 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		else if (koopas->GetState() == KOOPAS_STATE_TURNING) {
 			koopas->SetState(KOOPAS_STATE_IN_SHELL);
 		}
+	}
+}
+
+void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
+{
+	CLeaf* leaf = dynamic_cast<CLeaf*>(e->obj);
+	if (e->ny != 0 || e->nx != 0) {
+		DebugOut(L"Mario tranform to tail \n");
+		SetLevel(MARIO_LEVEL_TAIL);
+		leaf->SetAppear(false);
+		e->obj->Delete();
 	}
 }
 
