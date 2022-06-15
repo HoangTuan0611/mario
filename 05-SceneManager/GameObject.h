@@ -32,8 +32,6 @@ protected:
 
 	//int nx;	 
 
-	int state;
-
 	bool isDeleted; 
 
 	LPANIMATION_SET animation_set;
@@ -45,6 +43,8 @@ public:
 	int nx;
 	float vx;
 	float vy;
+
+	int state; // for qBrick state
 
 	int tag = 0; // define for goomba tag
 
