@@ -25,6 +25,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	if (!isFlying)
 		HandleMarioJump();
 	HandleFlying();
+	HandleFlapping();
 	HandleMarioJump();
 	HandleTurning();
 	HandleMarioKick();
@@ -662,6 +663,13 @@ int CMario::GetAniIdTail() {
 				aniId = MARIO_ANI_FLAPPING_RIGHT;
 			else if (isFlappingFlying)
 				aniId = MARIO_ANI_FLY_FLAPPING_RIGHT;
+			else if (isHolding) {
+				aniId = MARIO_ANI_TAIL_HOLD_RUNNING_RIGHT;
+			}
+			else if (isKick)
+			{
+				aniId = MARIO_ANI_TAIL_KICKING_RIGHT;
+			}
 		}
 		if (nx < 0) {
 			aniId = MARIO_ANI_TAIL_JUMPINGUP_LEFT;
@@ -672,6 +680,13 @@ int CMario::GetAniIdTail() {
 				aniId = MARIO_ANI_FLAPPING_LEFT;
 			else if (isFlappingFlying)
 				aniId = MARIO_ANI_FLY_FLAPPING_LEFT;
+			else if (isHolding) {
+				aniId = MARIO_ANI_TAIL_HOLD_RUNNING_LEFT;
+			}
+			else if (isKick)
+			{
+				aniId = MARIO_ANI_TAIL_KICKING_LEFT;
+			}
 		}
 	}
 	else
@@ -736,6 +751,10 @@ int CMario::GetAniIdTail() {
 
 	return aniId;
 }
+
+/// <summary>
+/// 
+/// </summary>
 
 void CMario::Render()
 {
