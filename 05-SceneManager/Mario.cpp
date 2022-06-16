@@ -55,7 +55,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		untouchable = 0;
 	}
 
-	isOnPlatform = false;
+	//isOnPlatform = false;
 
 	tail->Update(dt, coObjects); // va cham tail
 
@@ -883,6 +883,7 @@ void CMario::SetState(int state)
 				vy = -MARIO_JUMP_SPEED_MIN;
 			ay = -MARIO_ACCELERATION_JUMP;
 			isJumping = true;
+			DebugOut(L"Jumping \n");
 		}
 		if (isRunning) {
 			if (level == MARIO_LEVEL_TAIL) {

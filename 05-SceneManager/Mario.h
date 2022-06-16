@@ -10,12 +10,12 @@
 // basic
 #define MARIO_SPEED_MAX				0.25f
 #define MARIO_ACCELERATION			0.0007f
-#define MARIO_ACCELERATION_JUMP		0.0005f
+//#define MARIO_ACCELERATION_JUMP		0.0005f
+#define MARIO_ACCELERATION_JUMP		0.005f
 #define MARIO_JUMP_SPEED_MAX		0.43f
 #define MARIO_JUMP_SPEED_MIN		0.18f
 #define MARIO_SLOW_FALLING_SPEED	0.05f
 #define MARIO_JUMP_DEFLECT_SPEED	0.3f
-#define MARIO_GRAVITY				0.002f
 #define MARIO_UNTOUCHABLE_TIME		1000
 #define MARIO_TURNING_TAIL_TIME		350
 #define MARIO_TURNING_STATE_TIME	70
@@ -27,7 +27,8 @@
 #define MARIO_ACCEL_RUN_X	0.0007f
 #define MARIO_JUMP_SPEED_Y		0.5f
 #define MARIO_JUMP_RUN_SPEED_Y	0.6f
-#define MARIO_GRAVITY			0.002f
+//#define MARIO_GRAVITY			0.002f
+#define MARIO_GRAVITY			0.0005f
 
 //state
 #define MARIO_STATE_DIE				-10
@@ -149,7 +150,7 @@
 
 // Fly
 #define MARIO_SPEED_STACK			0.05f
-#define MARIO_NORMAL_FLY_MAX		0.3f
+#define MARIO_NORMAL_FLY_MAX		0.35f
 
 #define MARIO_ANI_FLAPPING_RIGHT			97
 #define MARIO_ANI_FLAPPING_LEFT				98
@@ -159,7 +160,8 @@
 #define MARIO_ANI_FLY_FLAPPING_LEFT			112
 
 //JUMP
-#define MARIO_JUMP_MAX	0.28f
+//#define MARIO_JUMP_MAX	0.28f
+#define MARIO_JUMP_MAX	0.16f
 #define MARIO_SUPER_JUMP_MAX 0.30f
 
 #define	MARIO_LEVEL_SMALL	1
@@ -265,6 +267,11 @@ public:
 	// get level mario
 	int GetLevel() {
 		return this->level;
+	}
+
+	// get level mario
+	int GetY() {
+		return this->y;
 	}
 
 	void OnNoCollision(DWORD dt);
