@@ -14,6 +14,7 @@
 #include "ParanhaPlant.h"
 #include "Koopas.h"
 #include "PiranhaPlantFire.h"
+#include "Card.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -241,7 +242,8 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			DebugOut(L"[INFO] PiranhaPlantFire was create \n");
 			break;
 		case OBJECT_TYPE_CARD:
-			obj = new CBrick();
+			obj = new CardItem();
+			DebugOut(L"[INFO] Card was create \n");
 			break;
 		case OBJECT_TYPE_PORTAL:
 		{
