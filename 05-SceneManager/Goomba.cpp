@@ -134,7 +134,7 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 				return;
 			}
 		}
-		else if (tag != GOOMBA_RED || tag == GOOMBA_RED_NORMAL && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
+		else if ((tag != GOOMBA_RED || tag == GOOMBA_RED_NORMAL) && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
 		{
 			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
 			GetBoundingBox(oLeft, oTop, oRight, oBottom);

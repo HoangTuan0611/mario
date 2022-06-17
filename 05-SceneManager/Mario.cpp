@@ -129,7 +129,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 				goomba->SetTag(GOOMBA_RED_NORMAL);
 			else
 				goomba->SetState(GOOMBA_STATE_DIE);
-			vy = -MARIO_JUMP_DEFLECT_SPEED; // mario jump a little bit when collision with goomba red
+			vy = -MARIO_JUMP_DEFLECT_SPEED_GB; // mario jump a little bit when collision with goomba red
 		}
 	}
 	else // hit by Goomba
@@ -840,7 +840,7 @@ void CMario::SetState(int state)
 		isReadyToRun = true;
 		if (vx >= MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
-			DebugOut(L"isRunning true \n");
+			//DebugOut(L"isRunning true \n");
 		}
 		else {
 			isRunning = false;
@@ -855,7 +855,7 @@ void CMario::SetState(int state)
 		isReadyToRun = true;
 		if (vx < MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
-			DebugOut(L"isRunning true \n");
+			//DebugOut(L"isRunning true \n");
 		}
 		else {
 			isRunning = false;
@@ -885,9 +885,12 @@ void CMario::SetState(int state)
 				vy = -MARIO_JUMP_RUN_SPEED_Y;
 			else
 				vy = -MARIO_JUMP_SPEED_Y;*/
-			if (vy > -MARIO_JUMP_SPEED_MIN)
+			if (vy > -MARIO_JUMP_SPEED_MIN) {
+				DebugOut(L" vy > -MARIO_JUMP_SPEED_MIN \n");
 				vy = -MARIO_JUMP_SPEED_MIN;
+			}
 			ay = -MARIO_ACCELERATION_JUMP;
+			DebugOut(L" ay: %d \n", ay);
 			isJumping = true;
 			DebugOut(L"Jumping \n");
 		}
@@ -946,6 +949,7 @@ void CMario::SetState(int state)
 		if (!isTuring) {
 			turningStack = 0;
 			StartTurning();
+			DebugOut(L"Start Attack by Tail \n");
 		}
 		break;
 	}	
