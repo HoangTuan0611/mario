@@ -385,7 +385,7 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 		isTurnOnCamY = true;
 		//DebugOut(L"GetY: %d", mario->GetY());
 	}
-	else if (mario->isOnPlatform && mario->GetY() < 300) {
+	else if (mario->GetLevel() == MARIO_LEVEL_TAIL && mario->isOnPlatform && mario->GetY() < 300) {
 		isTurnOnCamY = true;
 		//DebugOut(L"GetY: %d", mario->GetY());
 	}
@@ -399,11 +399,11 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 	//CamY
 	if (isTurnOnCamY) {
 		cy -= sh / 2;
-		DebugOut(L"cy: %d \n", cy);
+		//DebugOut(L"cy: %d \n", cy);
 	}
 	else {
 		cy = mh - sh;
-		DebugOut(L"cy: %d \n", cy);
+		//DebugOut(L"cy: %d \n", cy);
 	}
 	if (cy <= 0)//Top Edge
 		cy = 0;

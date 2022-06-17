@@ -27,7 +27,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		HandleMarioJump();
 	HandleFlying();
 	HandleFlapping();
-	HandleMarioJump();
 	HandleTurning();
 	HandleMarioKick();
 	
@@ -288,6 +287,7 @@ void CMario::HandleMarioJump() {
 		if (vx == 0)
 		{
 			if (vy < -MARIO_JUMP_MAX) {
+				DebugOut(L"dung yen jump \n");
 				pullDown();
 			}
 		}
@@ -297,11 +297,13 @@ void CMario::HandleMarioJump() {
 			if (vx >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
+					DebugOut(L"super jump \n");
 					pullDown();
 				}
 			}
 			else if (vx < MARIO_SPEED_MAX && vx > 0) {
 				if (vy < -MARIO_JUMP_MAX) {
+					DebugOut(L"vua chay vua jump \n");
 					pullDown();
 				}
 			}
@@ -312,11 +314,13 @@ void CMario::HandleMarioJump() {
 			if (abs(vx) >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
+					DebugOut(L"super jump \n");
 					pullDown();
 				}
 			}
 			else if (abs(vx) < MARIO_SPEED_MAX && vx < 0) {
 				if (vy < -MARIO_JUMP_MAX) {
+					DebugOut(L"vua chay vua jump \n");
 					pullDown();
 				}
 			}

@@ -150,7 +150,7 @@
 
 // Fly
 #define MARIO_SPEED_STACK			0.05f
-#define MARIO_NORMAL_FLY_MAX		0.35f
+#define MARIO_NORMAL_FLY_MAX		0.3f
 
 #define MARIO_ANI_FLAPPING_RIGHT			97
 #define MARIO_ANI_FLAPPING_LEFT				98
@@ -161,7 +161,7 @@
 
 //JUMP
 //#define MARIO_JUMP_MAX	0.28f
-#define MARIO_JUMP_MAX	0.16f
+#define MARIO_JUMP_MAX	0.2f
 #define MARIO_SUPER_JUMP_MAX 0.30f
 
 #define	MARIO_LEVEL_SMALL	1
