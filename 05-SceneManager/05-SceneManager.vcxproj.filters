@@ -64,6 +64,9 @@
     <Filter Include="Map Objects\Others\Card">
       <UniqueIdentifier>{ebb02355-f798-428a-b549-ae75eaa1a70a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map Objects\Others\FireBullet">
+      <UniqueIdentifier>{d132257a-aa89-4c9e-8048-3070af3929ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -144,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="Card.cpp">
       <Filter>Map Objects\Others\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullet.cpp">
+      <Filter>Map Objects\Others\FireBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="Card.h">
       <Filter>Map Objects\Others\Card</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBullet.h">
+      <Filter>Map Objects\Others\FireBullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
