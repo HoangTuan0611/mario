@@ -6,13 +6,17 @@
 #define PIRANHAPLANT_BBOX_WIDTH					20
 #define PIRANHAPLANT_BBOX_HEIGHT				24
 
+#define PIRANHAPLANT_BBOX_HEIGHT_ANI			28
+
 #define PIRANHAPLANT_STATE_IDLE					0
+#define PIRANHAPLANT_ANI_IDLE					0
 
 #define PIRANHAPLANT_DARTING_SPEED				0.03f
 
-#define PIRANHAPLANT_ANI_IDLE			0
-
-#define PIRANHAPLANT_ON_BRICK	28
+#define PIRANHAPLANT_STATE_BITING				100
+#define PIRANHAPLANT_STATE_INACTIVE				300
+#define PIRANHAPLANT_BITING_TIME				1000
+#define PIRANHAPLANT_ACTIVE_RANGE				20
 
 class PiranhaPlant :
 	public CGameObject
@@ -26,6 +30,7 @@ public:
 	virtual void SetState(int state);
 
 	void StartBitting() { biting_start = GetTickCount64(); }
+	void SetLimitY(float ly) { limitY = ly - PIRANHAPLANT_BBOX_HEIGHT_ANI; DebugOut(L"LimitY::%f\n", limitY);}
 
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
