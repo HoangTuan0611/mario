@@ -22,22 +22,17 @@ protected:
 
 	int isBlocking = 1;
 
-	
-	//float z;
-
-	//float vx;
-
 	float start_x;
 	float start_y;
-
-	//int nx;	 
+	 
 	int ny;
-
-	bool isDeleted; 
 
 	LPANIMATION_SET animation_set;
 
 public: 
+
+	bool isDeleted; // delete card
+
 	float x;
 	float y;
 

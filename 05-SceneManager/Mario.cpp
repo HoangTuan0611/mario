@@ -17,6 +17,7 @@
 #include "PiranhaPlantFire.h"
 #include "Koopas.h"
 #include "Leaf.h"
+#include "Card.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -32,8 +33,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	HandleFlapping();
 	HandleTurning();
 	HandleMarioKick();
+	HandleFinishMap();
 	
-
 	// FOR HANDLE COLLISION WITH BLOCK
 	for (int i = 0; i < coObjects->size(); i++) { // va cham nao cung su dung ( update )
 		LPGAMEOBJECT obj = coObjects->at(i);
@@ -116,7 +117,19 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		//DebugOut(L"mario collision with leaf \n");
 		OnCollisionWithLeaf(e);
 	}
+	else if (dynamic_cast<CardItem*>(e->obj)) {
+		OnCollisionWithPCardItem(e);
+	}
 		
+}
+
+void CMario::OnCollisionWithPCardItem(LPCOLLISIONEVENT e) {
+	CardItem* card = dynamic_cast<CardItem*>(e->obj);
+	if (e->ny != 0 || e->nx != 0) {
+		card->SetAppear(false);
+		card->isDeleted = true;
+		isFinish = true;
+	}
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -405,6 +418,17 @@ void CMario::HandleTurning() {
 		turningStack = 0;
 	}
 
+}
+
+void CMario::HandleFinishMap() {
+	if (isFinish) {
+		ax = MARIO_ACCELERATION;
+		ay = MARIO_GRAVITY;
+		nx = 1;
+		vx = MARIO_WALKING_SPEED;
+		DebugOut(L"Mario collision with Card and go to right - end game \n");
+		SetState(MARIO_STATE_WALKING_RIGHT);
+	}
 }
 
 //
