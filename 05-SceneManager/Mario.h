@@ -305,4 +305,14 @@ public:
 		if (!isFlapping) ay = MARIO_GRAVITY; isJumping = false;
 	}
 
+	// hack
+	//travel to extra map
+	void ExtraMap() { x = 2270; y = 0; };
+	
+	// start map
+	void StartMap() { x = 80; y = 0; };
+
+	// end map
+	void EndMap() { x = 2688; y = 0; };
+
 };
