@@ -27,8 +27,8 @@
 #define MARIO_RUNNING_SPEED		0.1f
 #define MARIO_ACCEL_WALK_X	0.0005f
 #define MARIO_ACCEL_RUN_X	0.0007f
-#define MARIO_JUMP_SPEED_Y		0.5f
-#define MARIO_JUMP_RUN_SPEED_Y	0.6f
+#define MARIO_JUMP_SPEED_Y		0.35f
+#define MARIO_JUMP_RUN_SPEED_Y	0.4f
 //#define MARIO_GRAVITY			0.002f
 #define MARIO_GRAVITY			0.0005f
 
@@ -249,7 +249,7 @@ public:
 		ax = 0.0f;
 		ay = MARIO_GRAVITY; 
 
-		level = MARIO_LEVEL_TAIL;
+		level = MARIO_LEVEL_SMALL;
 		untouchable = 0;
 		untouchable_start = -1;
 		isOnPlatform = false;

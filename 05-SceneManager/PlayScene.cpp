@@ -376,6 +376,7 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 	if (cx <= 0)//Left Edge
 	{
 		cx = 0;
+		//mario->vx = 0.0f;
 		//mario->SetPosition(cx, cy);	
 	}
 		

@@ -52,6 +52,20 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		}
 	}
 
+	// FOR HANDLE COLLISION WITH QBRICK
+	//for (int i = 0; i < coObjects->size(); i++) {
+	//	LPGAMEOBJECT obj = coObjects->at(i);
+	//	if (dynamic_cast<QuestionBrick*>(obj))
+	//	{
+	//		if (obj->getY() > this->y) {
+	//			obj->SetIsBlocking(1);
+	//		}
+	//		else {
+	//			obj->SetIsBlocking(0);
+	//		}
+	//	}
+	//}
+
 	//vy += ay * dt;
 	//vx += ax * dt;
 
@@ -240,6 +254,43 @@ void CKoopas::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
 	QuestionBrick* qBrick = dynamic_cast<QuestionBrick*>(e->obj);
 	if (qBrick->state != QUESTION_BRICK_HIT && state == KOOPAS_STATE_TURNING)
 		qBrick->SetState(QUESTION_BRICK_HIT);
+	if (e->ny < 0)
+	{
+		vy = 0;
+		if (state == KOOPAS_STATE_IN_SHELL)
+			vx = 0;
+		if (tag == KOOPAS_RED && state == KOOPAS_STATE_WALKING)
+		{
+			//DebugOut(L"koopas on collision with block tag red and walking \n");
+			if (this->nx > 0 && x >= e->obj->x + KOOPAS_SPIN_DIFF)
+			{
+				//DebugOut(L"collision right \n");
+				if (KoopasCollision(e->obj))
+				{
+					//DebugOut(L"collision right \n");
+					this->nx = -1;
+					vx = this->nx * KOOPAS_WALKING_SPEED;
+				}
+			}
+			if (this->nx < 0 && x <= e->obj->x - KOOPAS_SPIN_DIFF)
+			{
+				//DebugOut(L"collision left \n");
+				if (KoopasCollision(e->obj))
+				{
+					//DebugOut(L"collision left \n");
+					this->nx = 1;
+					vx = this->nx * KOOPAS_WALKING_SPEED;
+				}
+			}
+		}
+		if (tag == KOOPAS_GREEN_PARA)
+		{
+			y = e->obj->y - KOOPAS_BBOX_HEIGHT;
+			vy = -0.35f;
+			vx = vx = this->nx * KOOPAS_WALKING_SPEED;
+			this->nx = -1;
+		}
+	}
 }
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -324,7 +375,7 @@ bool CKoopas::KoopasCollision(LPGAMEOBJECT object)
 	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
 	vector<LPGAMEOBJECT> coObjects = currentScene->GetObjects();
 	for (UINT i = 0; i < coObjects.size(); i++)
-		if (dynamic_cast<CBlock*>(coObjects[i]))
+		if (dynamic_cast<CBlock*>(coObjects[i]) || dynamic_cast<QuestionBrick*>(coObjects[i]))
 			if (abs(coObjects[i]->y == object->y))
 			{
 				if (nx > 0)

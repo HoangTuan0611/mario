@@ -31,6 +31,7 @@ protected:
 	float start_y;
 
 	//int nx;	 
+	int ny;
 
 	bool isDeleted; 
 
