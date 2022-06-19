@@ -29,7 +29,20 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	CGameObject::Update(dt);
 	y += vy * dt;
-	y = limitY;
+
+	// limit Y
+	if (y <= limitY && vy < 0)
+	{
+		y = limitY;
+		vy = 0;
+	}
+
+	// die
+	if (GetTickCount64() - dying_start >= PIRANHAPLANT_DIYING_TIME && dying_start != 0)
+		isDeleted = true;
+
+	if (state == PIRANHAPLANT_STATE_DEATH)
+		return;
 
 	//CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	//if (mario != NULL) {
@@ -57,14 +70,13 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
 			DebugOut(L"PiranhaPlantFire die by mario tail \n");
-			//SetState();
+			SetState(PIRANHAPLANT_STATE_DEATH);
 		}
 	}
 }
 
 
-void PiranhaPlantFire::GetBoundingBox(float& left, float& top,
-	float& right, float& bottom)
+void PiranhaPlantFire::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
 	top = y;
@@ -78,6 +90,10 @@ void PiranhaPlantFire::SetState(int state) {
 	{
 	case PIRANHAPLANT_STATE_DARTING:
 		vy = -PIRANHAPLANT_DARTING_SPEED;
+		break;
+	case PIRANHAPLANT_STATE_DEATH:
+		vy = 0;
+		StartDying();
 		break;
 	}
 }
