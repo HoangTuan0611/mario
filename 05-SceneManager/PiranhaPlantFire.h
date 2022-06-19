@@ -19,6 +19,7 @@
 #define PIRANHAPLANT_ANI_LEFT_DOWN			3
 
 #define PIRANHAPLANT_DIYING_TIME		300
+#define PIRANHAPLANT_DELAY_TIME			2000
 
 
 class PiranhaPlantFire :
@@ -31,6 +32,7 @@ class PiranhaPlantFire :
 	bool Right = false;
 
 	ULONGLONG dying_start = 0;
+	ULONGLONG delay_start = 0;
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
@@ -56,5 +58,6 @@ public:
 	}
 
 	void StartDying() { dying_start = GetTickCount64(); }
+	void StartDelay() { delay_start = GetTickCount64(); }
 
 };

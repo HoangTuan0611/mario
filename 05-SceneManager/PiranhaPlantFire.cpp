@@ -29,14 +29,35 @@ void PiranhaPlantFire::Render()
 void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	CGameObject::Update(dt);
-	y += vy * dt;
 
 	// limit Y
 	if (y <= limitY && vy < 0)
 	{
 		y = limitY;
 		vy = 0;
+		DebugOut(L"start delay \n");
+		StartDelay();
 	}
+	if (y >= limitY + BBHeight && vy > 0)
+	{
+		y = limitY + BBHeight + 12;
+		SetState(PIRANHAPLANT_STATE_INACTIVE);
+	}
+	if (GetTickCount64() - delay_start >= PIRANHAPLANT_DELAY_TIME && delay_start != 0)
+	{
+		if (y == limitY) {
+			DebugOut(L"start turn off \n");
+			vy = PIRANHAPLANT_DARTING_SPEED;
+		}
+		delay_start = 0;
+	}
+	if (y > limitY && vy == 0)
+	{
+		// start darting when turn off success
+		SetState(PIRANHAPLANT_STATE_DARTING);
+	}
+
+	y += vy * dt;
 
 	// die
 	if (GetTickCount64() - dying_start >= PIRANHAPLANT_DIYING_TIME && dying_start != 0)
@@ -91,6 +112,10 @@ void PiranhaPlantFire::SetState(int state) {
 	{
 	case PIRANHAPLANT_STATE_DARTING:
 		vy = -PIRANHAPLANT_DARTING_SPEED;
+		break;
+	case PIRANHAPLANT_STATE_INACTIVE:
+		vy = 0;
+		StartDelay();
 		break;
 	case PIRANHAPLANT_STATE_DEATH:
 		vy = 0;
