@@ -122,7 +122,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPCardItem(e);
 	}
 	else if (dynamic_cast<FireBullet*>(e->obj)) {
-		OnCollisionWithFireBullet(e);
+		//OnCollisionWithFireBullet(e);
 	}
 		
 }
@@ -132,7 +132,22 @@ void CMario::OnCollisionWithFireBullet(LPCOLLISIONEVENT e) {
 
 	if (e->ny != 0 || e->nx != 0) {
 		DebugOut(L"Mario collision with fire bullet \n");
-		HandleMarioDie();
+		if (level == MARIO_LEVEL_TAIL)
+		{
+			SetLevel(MARIO_LEVEL_BIG);
+			StartUntouchable();
+			DebugOut(L">>> tail to big >>>%d \n", level);
+		}
+		else if (level == MARIO_LEVEL_BIG) {
+			SetLevel(MARIO_LEVEL_SMALL);
+			StartUntouchable();
+			DebugOut(L">>> big to small >>>%d \n", level);
+		}
+		else
+		{
+			DebugOut(L">>> Mario basic die >>> \n");
+			//SetState(MARIO_STATE_DIE);
+		}
 		e->obj->Delete();
 	}
 }

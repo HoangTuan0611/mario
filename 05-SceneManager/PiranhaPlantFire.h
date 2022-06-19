@@ -73,5 +73,6 @@ public:
 	void Shoot();
 	void StartAim() { aim_start = GetTickCount64(); }
 	void StartShooting() { shooting_start = GetTickCount64(); }
+	void GetDirect();
 
 };
