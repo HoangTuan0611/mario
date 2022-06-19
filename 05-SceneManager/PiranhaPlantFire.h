@@ -1,5 +1,6 @@
 #pragma once
 #include "ParanhaPlant.h"
+#include "FireBullet.h"
 
 #define PIRANHAPLANT_BBOX_WIDTH					20
 #define PIRANHAPLANT_BOX_HEIGHT					24
@@ -19,7 +20,11 @@
 #define PIRANHAPLANT_ANI_LEFT_DOWN			3
 
 #define PIRANHAPLANT_DIYING_TIME		300
-#define PIRANHAPLANT_DELAY_TIME			2000
+#define PIRANHAPLANT_DELAY_TIME			1500
+#define PIRANHAPLANT_AIM_TIME			1000
+
+#define PIRANHAPLANT_STATE_SHOOTING		100
+#define BULLET_ANI_SET_ID				9
 
 
 class PiranhaPlantFire :
@@ -33,6 +38,10 @@ class PiranhaPlantFire :
 
 	ULONGLONG dying_start = 0;
 	ULONGLONG delay_start = 0;
+	ULONGLONG shooting_start = 0;
+	ULONGLONG aim_start = 0;
+
+	FireBullet* bullet = NULL;
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
@@ -59,5 +68,10 @@ public:
 
 	void StartDying() { dying_start = GetTickCount64(); }
 	void StartDelay() { delay_start = GetTickCount64(); }
+
+	// for fire
+	void Shoot();
+	void StartAim() { aim_start = GetTickCount64(); }
+	void StartShooting() { shooting_start = GetTickCount64(); }
 
 };
