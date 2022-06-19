@@ -18,6 +18,7 @@
 #include "Koopas.h"
 #include "Leaf.h"
 #include "Card.h"
+#include "FireBullet.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -120,7 +121,20 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<CardItem*>(e->obj)) {
 		OnCollisionWithPCardItem(e);
 	}
+	else if (dynamic_cast<FireBullet*>(e->obj)) {
+		OnCollisionWithFireBullet(e);
+	}
 		
+}
+
+void CMario::OnCollisionWithFireBullet(LPCOLLISIONEVENT e) {
+	FireBullet* firebullet = dynamic_cast<FireBullet*>(e->obj);
+
+	if (e->ny != 0 || e->nx != 0) {
+		DebugOut(L"Mario collision with fire bullet \n");
+		HandleMarioDie();
+		e->obj->Delete();
+	}
 }
 
 void CMario::OnCollisionWithPCardItem(LPCOLLISIONEVENT e) {
