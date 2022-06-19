@@ -9,6 +9,7 @@ PiranhaPlantFire::PiranhaPlantFire(int tag) {
 void PiranhaPlantFire::Render()
 {
 	int ani = PIRANHAPLANT_STATE_DARTING;
+	// update render for PiraFire
 	if (state == PIRANHAPLANT_STATE_DARTING)
 	{
 		if (Up)
