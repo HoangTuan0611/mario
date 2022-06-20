@@ -163,6 +163,7 @@
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="ParanhaPlant.cpp" />
+    <ClCompile Include="PieceBrick.cpp" />
     <ClCompile Include="PiranhaPlantFire.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Mario.h" />
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="ParanhaPlant.h" />
+    <ClInclude Include="PieceBrick.h" />
     <ClInclude Include="PiranhaPlantFire.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Portal.h" />
