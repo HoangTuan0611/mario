@@ -3,6 +3,8 @@
 void Switch::Render() {
 	if (!isAppear || isDeleted)
 		return;
+	if (state == SWITCH_STATE_PRESSED)
+		animation_set->at(SWITCH_ANI_PRESSED)->Render(x, y);
 	else
 		animation_set->at(SWITCH_ANI_IDLE)->Render(x, y);
 	RenderBoundingBox();
@@ -33,6 +35,9 @@ void Switch::SetState(int state) {
 		vy = -0.05f;
 		start_y = y;
 		break;
+	case SWITCH_STATE_PRESSED:
+		ChangeBreakBrickToCoin();
+		break;
 	}
 }
 
@@ -42,4 +47,8 @@ void Switch::GetBoundingBox(float& l, float& t, float& r, float& b)
 	t = y;
 	r = x + SWITCH_BBOX_WIDTH;
 	b = y + SWITCH_BBOX_HEIGHT;
+}
+
+void Switch::ChangeBreakBrickToCoin() {
+
 }
