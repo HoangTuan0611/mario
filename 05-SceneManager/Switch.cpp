@@ -1,4 +1,7 @@
 #include "Switch.h"
+#include "BreakBrick.h"
+#include "PlayScene.h"
+#include "Coin.h"
 
 void Switch::Render() {
 	if (!isAppear || isDeleted)
@@ -50,5 +53,22 @@ void Switch::GetBoundingBox(float& l, float& t, float& r, float& b)
 }
 
 void Switch::ChangeBreakBrickToCoin() {
-
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	vector<LPGAMEOBJECT> objects = currentScene->GetObjects();
+	//DebugOut(L"Obj: %d \n", objects.size());
+	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
+	LPANIMATION_SET ani_set = animation_sets->Get(COIN_ANI_SET_ID);
+	for (size_t i = 0; i < objects.size(); i++)
+	{
+		if (dynamic_cast<BreakableBrick*>(objects.at(i)) && !objects.at(i)->isDeleted) {
+			//DebugOut(L"BBrick not null \n");
+			BreakableBrick* bBrick = dynamic_cast<BreakableBrick*>(objects.at(i));
+			CCoin* coin = new CCoin();
+			coin->SetPosition(bBrick->x, bBrick->y);
+			coin->SetAppear(true);
+			coin->SetAnimationSet(ani_set);
+			currentScene->AddObject(coin);
+			bBrick->isDeleted = true;
+		}
+	}
 }
