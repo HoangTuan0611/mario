@@ -124,7 +124,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<FireBullet*>(e->obj)) {
 		//OnCollisionWithFireBullet(e);
 	}
-		
+
 }
 
 void CMario::OnCollisionWithFireBullet(LPCOLLISIONEVENT e) {

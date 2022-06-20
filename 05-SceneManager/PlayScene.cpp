@@ -15,6 +15,7 @@
 #include "Koopas.h"
 #include "PiranhaPlantFire.h"
 #include "Card.h"
+#include "BreakBrick.h"
 
 #include "SampleKeyEventHandler.h"
 
@@ -224,6 +225,10 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			//obj = new CBrick();
 			obj = new QuestionBrick(option_tag_1); 
 			DebugOut(L"[INFO] Question brick is not null!\n");
+			break;
+		case OBJECT_TYPE_BREAKABLEBRICK:
+			obj = new BreakableBrick(x, y, option_tag_1, option_tag_2, option_tag_3);
+			DebugOut(L"[INFO] Break brick is not null!\n");
 			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBlock(x,y);
