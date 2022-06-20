@@ -20,6 +20,9 @@
 #define ITEM_LEAF	2
 #define LEAF_ANI_SET_ID		36
 
+#define ITEM_SWITCH		6
+#define SWITCH_ANI_SET_ID 77
+
 class QuestionBrick :public CGameObject
 {
 	int tag;

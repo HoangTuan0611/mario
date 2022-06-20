@@ -67,6 +67,9 @@
     <Filter Include="Map Objects\Others\FireBullet">
       <UniqueIdentifier>{d132257a-aa89-4c9e-8048-3070af3929ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map Objects\Items\Switch">
+      <UniqueIdentifier>{f8476fad-94a6-4e69-a3bf-0ea96f2bf1c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="BreakBrick.cpp">
       <Filter>Map Objects\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Switch.cpp">
+      <Filter>Map Objects\Items\Switch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="BreakBrick.h">
       <Filter>Map Objects\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Switch.h">
+      <Filter>Map Objects\Items\Switch</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

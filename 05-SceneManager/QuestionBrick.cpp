@@ -7,7 +7,7 @@
 #include "Utils.h"
 #include "MushRoom.h"
 #include "Leaf.h"
-
+#include "Switch.h"
 
 QuestionBrick::QuestionBrick(int tag) : CGameObject() {
 	state = QUESTION_BRICK_NORMAL;
@@ -150,6 +150,13 @@ void QuestionBrick::ShowItem(int itemType) {
 		currentScene->AddObject(obj);
 		DebugOut(L"Leaf create \n");
 	}
+	if (dynamic_cast<Switch*>(this->obj)) {
+		Switch* obj = dynamic_cast<Switch*>(this->obj);
+		obj->SetAppear(true);
+		obj->SetPosition(x, y);
+		obj->SetState(SWITCH_STATE_UP);
+		currentScene->AddObject(obj);
+	}
 }
 
 CGameObject* QuestionBrick::SetUpItem(int itemType) {
@@ -179,6 +186,12 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 	if (itemType == ITEM_LEAF) {
 		obj = new CLeaf();
 		ani_set_id = LEAF_ANI_SET_ID;
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	if (itemType == ITEM_SWITCH) {
+		obj = new Switch();
+		ani_set_id = SWITCH_ANI_SET_ID;
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);
 	}
