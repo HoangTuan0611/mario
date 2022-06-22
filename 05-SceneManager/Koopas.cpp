@@ -3,6 +3,8 @@
 #include "Block.h"
 #include "QuestionBrick.h"
 #include "BreakBrick.h"
+#include "ParanhaPlant.h"
+#include "PiranhaPlantFire.h"
 
 CKoopas::CKoopas(int tag)
 {
@@ -173,7 +175,24 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e) {
 		//DebugOut(L"koopas on collision with qBrick \n");
 		OnCollisionWithBreakableBrick(e);
 	}
-		
+	if (dynamic_cast<PiranhaPlant*>(e->obj) || dynamic_cast<PiranhaPlantFire*>(e->obj)) {
+		OnCollisionWithPlan(e);
+	}	
+}
+
+void CKoopas::OnCollisionWithPlan(LPCOLLISIONEVENT e) {
+
+	PiranhaPlant* piranhaPlant = dynamic_cast<PiranhaPlant*>(e->obj);
+	PiranhaPlantFire* piranhaPlantFire = dynamic_cast<PiranhaPlantFire*>(e->obj);
+
+	if ((piranhaPlant->GetState() != PIRANHAPLANT_STATE_DEATH ||
+		piranhaPlantFire->GetState() != PIRANHAPLANT_STATE_DEATH) &&
+		this->GetState() == KOOPAS_STATE_TURNING)
+	{
+		//DebugOut(L"Plant die by koopas turning \n");
+		piranhaPlant->SetState(PIRANHAPLANT_STATE_DEATH);
+		piranhaPlantFire->SetState(PIRANHAPLANT_STATE_DEATH);
+	}
 }
 
 void CKoopas::OnCollisionWithBlock(LPCOLLISIONEVENT e) {
