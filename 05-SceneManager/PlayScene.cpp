@@ -253,7 +253,15 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_PORTAL:
 		{
-			obj = new CBrick();
+			//obj = new CBrick();
+			int scene_id = atoi(tokens[4].c_str());
+			int isToExtraScene = atoi(tokens[5].c_str());
+			float start_x = 0, start_y = 0;
+			start_x = (float)atoi(tokens[6].c_str());
+			start_y = (float)atoi(tokens[7].c_str());
+
+			obj = new CPortal(start_x, start_y, scene_id);
+			DebugOut(L"[INFO] CPortal was create \n");
 			break;
 		}
 		default:
