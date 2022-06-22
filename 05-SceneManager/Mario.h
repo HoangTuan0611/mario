@@ -184,6 +184,8 @@
 #define MARIO_BBOX_SIT_HEIGHT	18
 #define MARIO_SIT_HEIGHT_ADJUST	0.4f
 
+#define MARIO_GRAVITY_PIPE			0.00002f
+
 #endif // !MARIO_BBOX
 
 #define MARIO	0
@@ -310,6 +312,13 @@ public:
 		isPipeDown = true;
 	}
 
+	void StopPipeUp() {
+		isPipeUp = false;
+	}
+	void StopPipeDown() {
+		isPipeDown = false;
+	}
+
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 
 	//Handle mario behavior
@@ -333,6 +342,10 @@ public:
 	// hack
 	//travel to extra map
 	void ExtraMap() { x = 2270; y = 0; };
+	// start to extra map
+	void StartExtraMap() {
+		SetPosition(356, 32);
+	};
 	
 	// start map
 	void StartMap() { x = 80; y = 0; };

@@ -50,6 +50,8 @@ public:
 
 	// get all obj from scene
 	vector<LPGAMEOBJECT> GetObjects() { return this->objects; }
+
+	void SetPlayer(CMario* m) { player = m; }
 };
 
 typedef CPlayScene* LPPLAYSCENE;
