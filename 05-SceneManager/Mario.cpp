@@ -292,12 +292,12 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		//DebugOut(L"mario collision with koopas if 1");
 		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL || koopas->GetState() == KOOPAS_STATE_SHELL_UP) {
 			if (isReadyToHold) {
-				DebugOut(L"mario can hold koopas \n");
+				//DebugOut(L"mario can hold koopas \n");
 				isHolding = true;
 				koopas->SetCanBeHeld(true);
 			}
 			else {
-				DebugOut(L"mario kick koopas \n");
+				//DebugOut(L"mario kick koopas \n");
 				SetState(MARIO_STATE_KICK);
 				koopas->SetState(KOOPAS_STATE_TURNING);
 			}
@@ -334,7 +334,7 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 {
 	CLeaf* leaf = dynamic_cast<CLeaf*>(e->obj);
 	if (e->ny != 0 || e->nx != 0) {
-		DebugOut(L"Mario tranform to tail \n");
+		//DebugOut(L"Mario tranform to tail \n");
 		SetLevel(MARIO_LEVEL_TAIL);
 		leaf->SetAppear(false);
 		e->obj->Delete();
@@ -404,8 +404,8 @@ void CMario::HandleMarioDie() {
 	}
 	else
 	{
-		DebugOut(L">>> Mario basic die >>> \n");
-		//SetState(MARIO_STATE_DIE);
+		//DebugOut(L">>> Mario basic die >>> \n");
+		SetState(MARIO_STATE_DIE);
 	}
 }
 
@@ -426,7 +426,7 @@ void CMario::HandleFlying() {
 		{
 			if (vy <= -MARIO_NORMAL_FLY_MAX) {
 				normalFallDown = true;
-				DebugOut(L"Start fall down \n");
+				//DebugOut(L"Start fall down \n");
 			}
 		}
 	}
@@ -437,7 +437,7 @@ void CMario::HandleFlying() {
 	// handle fly
 	if (GetTickCount64() - fly_start > MARIO_FLYING_TIME && fly_start != 0 && isFlying)
 	{
-		DebugOut(L"Start fly \n");
+		//DebugOut(L"Start fly \n");
 		fly_start = 0;
 		isRunning = false;
 		isFlying = false;
@@ -455,7 +455,7 @@ void CMario::HandleTurning() {
 	if (GetTickCount64() - start_turning >= MARIO_TURNING_STATE_TIME && isTuring) {
 		start_turning = GetTickCount64();
 		turningStack++;
-		DebugOut(L"Handle turning:: %d \n", turningStack);
+		//DebugOut(L"Handle turning:: %d \n", turningStack);
 	}
 	if (GetTickCount64() - start_turning_state > MARIO_TURNING_TAIL_TIME && isTuring) {
 		isTuring = false;
@@ -472,7 +472,7 @@ void CMario::HandleFinishMap() {
 		ay = MARIO_GRAVITY;
 		nx = 1;
 		vx = MARIO_WALKING_SPEED;
-		DebugOut(L"Mario collision with Card and go to right - end game \n");
+		//DebugOut(L"Mario collision with Card and go to right - end game \n");
 		SetState(MARIO_STATE_WALKING_RIGHT);
 	}
 }
@@ -481,7 +481,7 @@ void CMario::HandleSwitchMap() {
 	if (isSitting && isSwitchMap && isPipeDown)
 	{
 		// mario go down
-		DebugOut(L"mario can go down \n");
+		//DebugOut(L"mario can go down \n");
 		CGame::GetInstance()->SwitchExtraScene(portal->GetSceneId(), portal->start_x, portal->start_y);
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
@@ -490,7 +490,7 @@ void CMario::HandleSwitchMap() {
 	if (isSwitchMap && isPipeUp)
 	{
 		// mario go up
-		DebugOut(L"mario can go up \n");
+		//DebugOut(L"mario can go up \n");
 		CGame::GetInstance()->SwitchExtraScene(portal->GetSceneId(), portal->start_x, portal->start_y);
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
@@ -993,12 +993,12 @@ void CMario::SetState(int state)
 		}
 		if (isRunning) {
 			if (level == MARIO_LEVEL_TAIL) {
-				DebugOut(L"mario can fly \n");
+				//DebugOut(L"mario can fly \n");
 				isFlying = true;
 				StartFlying();
 			}
 			else {
-				DebugOut(L"mario not tail \n");
+				//DebugOut(L"mario not tail \n");
 			}
 		}
 		normalFallDown = false;
@@ -1051,7 +1051,7 @@ void CMario::SetState(int state)
 		if (!isTuring) {
 			turningStack = 0;
 			StartTurning();
-			DebugOut(L"Start Attack by Tail \n");
+			//DebugOut(L"Start Attack by Tail \n");
 		}
 		break;
 	}	
