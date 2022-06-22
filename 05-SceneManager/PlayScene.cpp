@@ -49,6 +49,7 @@ void CPlayScene::_ParseSection_TILEMAP_DATA(string line)
 
 	int ID, rowMap, columnMap, columnTile, rowTile, totalTiles;
 	LPCWSTR path = ToLPCWSTR(line);
+	DebugOut(L"path: %s \n", path);
 	ifstream f;
 	f.open(path);
 	f >> ID >> rowMap >> columnMap >> rowTile >> columnTile >> totalTiles;
@@ -60,13 +61,14 @@ void CPlayScene::_ParseSection_TILEMAP_DATA(string line)
 		int j;
 		for (j = 0; j < columnMap; j++) {
 			f >> TileMapData[i][j];
-			//DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
+			DebugOut(L"[INFO] _ParseSection_TILEMAP %d \n", TileMapData[i][j]);
 		}
 	}
 	f.close();
 
 	current_map = new CMap(ID, rowMap, columnMap, rowTile, columnTile, totalTiles);
 	current_map->ExtractTileFromTileSet();
+	DebugOut(L"[INFO] New CMap done:: \n");
 	current_map->SetTileMapData(TileMapData);
 	DebugOut(L"[INFO] _ParseSection_TILEMAP_DATA done:: \n");
 
