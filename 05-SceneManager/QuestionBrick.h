@@ -23,6 +23,8 @@
 #define ITEM_SWITCH		6
 #define SWITCH_ANI_SET_ID 77
 
+#define ITEM_CUSTOM		1
+
 class QuestionBrick :public CGameObject
 {
 	int tag;
