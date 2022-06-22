@@ -36,6 +36,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	HandleTurning();
 	HandleMarioKick();
 	HandleFinishMap();
+	HandleSwitchMap();
 	
 	// FOR HANDLE COLLISION WITH BLOCK
 	for (int i = 0; i < coObjects->size(); i++) { // va cham nao cung su dung ( update )
@@ -471,6 +472,19 @@ void CMario::HandleFinishMap() {
 		vx = MARIO_WALKING_SPEED;
 		DebugOut(L"Mario collision with Card and go to right - end game \n");
 		SetState(MARIO_STATE_WALKING_RIGHT);
+	}
+}
+
+void CMario::HandleSwitchMap() {
+	if (isSitting && isSwitchMap && isPipeDown)
+	{
+		// mario go down
+		DebugOut(L"mario can go down \n");
+	}
+	if (isSwitchMap && isPipeUp)
+	{
+		// mario go up
+		DebugOut(L"mario can go up \n");
 	}
 }
 

@@ -6,6 +6,7 @@
 #include "debug.h"
 
 #include "Tail.h"
+#include "Portal.h"
 
 // basic
 #define MARIO_SPEED_MAX				0.25f
@@ -301,6 +302,14 @@ public:
 	void StartTurning() { start_turning_state = GetTickCount64(); isTuring = true; }
 	void StartFlying() { fly_start = GetTickCount64(); } // handle fly
 
+	void StartPipeUp() {
+		isPipeUp = true;
+
+	}
+	void StartPipeDown() {
+		isPipeDown = true;
+	}
+
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 
 	//Handle mario behavior
@@ -311,6 +320,7 @@ public:
 	void HandleFlying();
 	void HandleFlapping();
 	void HandleFinishMap();
+	void HandleSwitchMap();
 
 	//Stop behavior
 	void StopKick() { start_kicking = 0; isKick = false; }
