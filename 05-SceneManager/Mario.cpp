@@ -226,6 +226,7 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
+	//DebugOut(L"mario collision with portal \n");
 	portal = (CPortal*)e->obj;
 	//CGame::GetInstance()->InitiateSwitchScene(portal->GetSceneId());
 }
@@ -1016,7 +1017,8 @@ void CMario::SetState(int state)
 		{
 			state = MARIO_STATE_IDLE;
 			isSitting = true;
-			vx = 0; vy = 0.0f;
+			vx = 0; vy = 0;
+			ay = 0;
 			y +=MARIO_SIT_HEIGHT_ADJUST;
 			//DebugOut(L"sit down \n");
 		}
@@ -1028,6 +1030,7 @@ void CMario::SetState(int state)
 			isSitting = false;
 			state = MARIO_STATE_IDLE;
 			y -= MARIO_SIT_HEIGHT_ADJUST;
+			ay = MARIO_GRAVITY;
 		}
 		break;
 
