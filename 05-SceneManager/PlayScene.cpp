@@ -262,6 +262,11 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 
 			obj = new CPortal(start_x, start_y, scene_id);
 			DebugOut(L"[INFO] CPortal was create \n");
+			int pipeUp = atoi(tokens[8].c_str());
+			if (pipeUp == 1)
+				((CPortal*)obj)->pipeUp = true;
+			else
+				((CPortal*)obj)->pipeUp = false;
 			break;
 		}
 		default:

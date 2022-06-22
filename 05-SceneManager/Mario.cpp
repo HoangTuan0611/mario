@@ -224,8 +224,8 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
-	CPortal* p = (CPortal*)e->obj;
-	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
+	portal = (CPortal*)e->obj;
+	//CGame::GetInstance()->InitiateSwitchScene(portal->GetSceneId());
 }
 
 void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)

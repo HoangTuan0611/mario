@@ -249,6 +249,12 @@ public:
 	// end game
 	bool isFinish = false;
 
+	// switch map
+	CPortal* portal = NULL;
+	BOOLEAN isPipeUp = false;
+	BOOLEAN isPipeDown = false;
+	BOOLEAN isSwitchMap = false;
+
 	CMario(float x, float y) : CGameObject(x, y)
 	{
 		isSitting = false;
