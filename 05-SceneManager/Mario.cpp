@@ -480,6 +480,7 @@ void CMario::HandleSwitchMap() {
 	{
 		// mario go down
 		DebugOut(L"mario can go down \n");
+		CGame::GetInstance()->SwitchExtraScene(portal->GetSceneId(), portal->start_x, portal->start_y);
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
 		StopPipeDown();
@@ -488,6 +489,7 @@ void CMario::HandleSwitchMap() {
 	{
 		// mario go up
 		DebugOut(L"mario can go up \n");
+		CGame::GetInstance()->SwitchExtraScene(portal->GetSceneId(), portal->start_x, portal->start_y);
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
 		StopPipeUp();
