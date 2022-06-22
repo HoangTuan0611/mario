@@ -37,7 +37,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	{
 		y = limitY;
 		vy = 0;
-		DebugOut(L"start aim \n");
+		//DebugOut(L"start aim \n");
 		//StartDelay();
 		StartAim();
 	}
@@ -50,7 +50,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	if (GetTickCount64() - aim_start >= PIRANHAPLANT_AIM_TIME && aim_start != 0)
 	{
-		DebugOut(L"start shoot \n");
+		//DebugOut(L"start shoot \n");
 		aim_start = 0;
 		SetState(PIRANHAPLANT_STATE_SHOOTING);
 		StartDelay();
@@ -59,7 +59,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	if (GetTickCount64() - delay_start >= PIRANHAPLANT_DELAY_TIME && delay_start != 0)
 	{
 		if (y == limitY) {
-			DebugOut(L"start turn off \n");
+			//DebugOut(L"start turn off \n");
 			vy = PIRANHAPLANT_DARTING_SPEED;
 		}
 		delay_start = 0;
@@ -68,7 +68,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	if (y > limitY && vy == 0 && aim_start == 0 && delay_start == 0)
 	{
 		//start darting when turn off success
-		DebugOut(L"start darting again \n");
+		//DebugOut(L"start darting again \n");
 		SetState(PIRANHAPLANT_STATE_DARTING);
 	}
 

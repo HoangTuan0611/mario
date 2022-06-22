@@ -75,7 +75,7 @@ void PiranhaPlant::SetState(int _state)
 	switch (_state)
 	{
 	case PIRANHAPLANT_STATE_IDLE:
-		DebugOut(L"pira state \n");
+		//DebugOut(L"pira state \n");
 		vy = -PIRANHAPLANT_DARTING_SPEED;
 		break;
 	case PIRANHAPLANT_STATE_BITING:

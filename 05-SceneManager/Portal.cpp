@@ -63,11 +63,13 @@ void CPortal::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			mario->isSwitchMap = true;
 			if (scene_id == 1) {
 				// mario start up
+				DebugOut(L"start go to up new scene \n");
 				mario->StartPipeUp();
 			}
 			if (scene_id == 2 && mario->isSitting)
 			{
 				// mario start down
+				DebugOut(L"start go to down new scene \n");
 				mario->StartPipeDown();
 			}
 			return;

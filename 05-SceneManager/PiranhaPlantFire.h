@@ -63,7 +63,7 @@ public:
 		}
 		else { BBHeight = PIRANHAPLANT_RED_BBOX_HEIGHT; }
 		limitY = ly - BBHeight;
-		DebugOut(L"Limit Y for PiFire: %f \n", limitY);
+		//DebugOut(L"Limit Y for PiFire: %f \n", limitY);
 	}
 
 	void StartDying() { dying_start = GetTickCount64(); }

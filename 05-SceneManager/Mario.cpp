@@ -83,10 +83,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		vy = 0;
 		if (e->ny < 0) isOnPlatform = true;
 	}
-	else 
-	if (e->nx != 0 && e->obj->IsBlocking())
-	{
-		vx = 0;
+	else {
+		if (e->nx != 0 && e->obj->IsBlocking())
+		{
+			vx = 0;
+		}
 	}
 
 	if (dynamic_cast<CGoomba*>(e->obj))
@@ -347,7 +348,7 @@ void CMario::HandleMarioJump() {
 		if (vx == 0)
 		{
 			if (vy < -MARIO_JUMP_MAX) {
-				DebugOut(L"dung yen jump \n");
+				//DebugOut(L"dung yen jump \n");
 				pullDown();
 			}
 		}
@@ -357,14 +358,14 @@ void CMario::HandleMarioJump() {
 			if (vx >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
-					DebugOut(L"super jump \n");
+					//DebugOut(L"super jump \n");
 					//vy = -MARIO_JUMP_MAX;
 					pullDown();
 				}
 			}
 			else if (vx < MARIO_SPEED_MAX && vx > 0) {
 				if (vy < -MARIO_JUMP_MAX) {
-					DebugOut(L"vua chay vua jump \n");
+					//DebugOut(L"vua chay vua jump \n");
 					//vy = -MARIO_JUMP_MAX;
 					pullDown();
 				}
@@ -376,13 +377,13 @@ void CMario::HandleMarioJump() {
 			if (abs(vx) >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
-					DebugOut(L"super jump \n");
+				//	DebugOut(L"super jump \n");
 					pullDown();
 				}
 			}
 			else if (abs(vx) < MARIO_SPEED_MAX && vx < 0) {
 				if (vy < -MARIO_JUMP_MAX) {
-					DebugOut(L"vua chay vua jump \n");
+					//DebugOut(L"vua chay vua jump \n");
 					pullDown();
 				}
 			}
@@ -981,9 +982,9 @@ void CMario::SetState(int state)
 			//else
 			//	vy = -MARIO_JUMP_SPEED_Y;
 			if (vy > -MARIO_JUMP_SPEED_MIN) {
-				DebugOut(L" vy: %f \n", vy);
+				//DebugOut(L" vy: %f \n", vy);
 				vy = -MARIO_JUMP_SPEED_MIN;
-				DebugOut(L" vy: %f \n", vy);
+				//DebugOut(L" vy: %f \n", vy);
 			}
 			ay = -MARIO_ACCELERATION_JUMP;
 			//DebugOut(L" ay: %d \n", ay);
@@ -1017,6 +1018,7 @@ void CMario::SetState(int state)
 			isSitting = true;
 			vx = 0; vy = 0.0f;
 			y +=MARIO_SIT_HEIGHT_ADJUST;
+			//DebugOut(L"sit down \n");
 		}
 		break;
 
