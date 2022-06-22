@@ -189,7 +189,7 @@
 
 class CMario : public CGameObject
 {
-	BOOLEAN isSitting;
+	
 	float maxVx;
 
 	// handle mario fly
@@ -254,6 +254,7 @@ public:
 	BOOLEAN isPipeUp = false;
 	BOOLEAN isPipeDown = false;
 	BOOLEAN isSwitchMap = false;
+	BOOLEAN isSitting;
 
 	CMario(float x, float y) : CGameObject(x, y)
 	{
