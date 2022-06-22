@@ -190,6 +190,12 @@ CGameObject* QuestionBrick::SetUpItem(int itemType) {
 			LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 			obj->SetAnimationSet(ani_set);
 		}
+		if (mario->GetLevel() == MARIO_LEVEL_TAIL) {
+			obj = new CMushRoom(ITEM_MUSHROOM_GREEN);
+			ani_set_id = MUSHROOM_ANI_GREEN_ID;
+			LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+			obj->SetAnimationSet(ani_set);
+		}
 	}
 	if (itemType == ITEM_SWITCH) {
 		obj = new Switch();

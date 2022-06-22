@@ -11,6 +11,8 @@
 #define MUSHROOM_GRAVITY 0.2f
 #define MUSHROOM_SPEED 0.07f
 
+#define MUSHROOM_GREEN	4
+
 class CMushRoom :public CGameObject
 {
 	bool isAppear;
@@ -38,6 +40,8 @@ public:
 
 	virtual void OnNoCollision(DWORD dt);
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+
+	int GetTypeMushRoom() { return typeMushRoom; }
 
 	CMushRoom(int type = 0);
 	~CMushRoom();

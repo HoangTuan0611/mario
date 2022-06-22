@@ -25,6 +25,9 @@
 
 #define ITEM_CUSTOM		1
 
+#define ITEM_MUSHROOM_GREEN 4
+#define MUSHROOM_ANI_GREEN_ID	37
+
 class QuestionBrick :public CGameObject
 {
 	int tag;

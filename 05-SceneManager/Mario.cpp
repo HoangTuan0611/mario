@@ -245,9 +245,12 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 {
+	CMushRoom* mushRoom = dynamic_cast<CMushRoom*>(e->obj);
 	e->obj->Delete();
-	DebugOut(L"mario collision with mushroom");
-	SetLevel(MARIO_LEVEL_BIG);
+	//DebugOut(L"mario collision with mushroom \n");
+	if (mushRoom->GetTypeMushRoom() != MUSHROOM_GREEN) {
+		SetLevel(MARIO_LEVEL_BIG);
+	}
 }
 
 void CMario::OnCollisionWithPiranhaPlant()
