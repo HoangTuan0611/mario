@@ -372,8 +372,9 @@ void CPlayScene::Update(DWORD dt)
 
 void CPlayScene::Render()
 {
-	player->Render();
 	current_map->DrawMap();
+
+	player->Render();
 
 	// sort object to render by Z
 	sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
