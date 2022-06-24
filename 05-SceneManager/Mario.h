@@ -19,7 +19,7 @@
 #define MARIO_SLOW_FALLING_SPEED	0.05f
 #define MARIO_JUMP_DEFLECT_SPEED	0.3f
 #define MARIO_JUMP_DEFLECT_SPEED_GB	0.1f
-#define MARIO_UNTOUCHABLE_TIME		1000
+#define MARIO_UNTOUCHABLE_TIME		2500
 #define MARIO_TURNING_TAIL_TIME		350
 #define MARIO_TURNING_STATE_TIME	70
 #define MARIO_KICKING_TIME			200	
@@ -29,10 +29,11 @@
 #define MARIO_RUNNING_SPEED		0.1f
 #define MARIO_ACCEL_WALK_X	0.0005f
 #define MARIO_ACCEL_RUN_X	0.0007f
-#define MARIO_JUMP_SPEED_Y		0.35f
-#define MARIO_JUMP_RUN_SPEED_Y	0.4f
+#define MARIO_JUMP_SPEED_Y		0.5f
+#define MARIO_JUMP_RUN_SPEED_Y	0.6f
 #define MARIO_GRAVITY_FAST		0.002f
 #define MARIO_GRAVITY			0.0005f
+//#define MARIO_GRAVITY			0.002f
 #define MARIO_GRAVITY_PIPE		0.00002f
 
 //state
@@ -261,6 +262,9 @@ public:
 	CMario(float x, float y) : CGameObject(x, y)
 	{
 		isSitting = false;
+		isJumping = false;
+		isRunning = false;
+		isKick = false;
 		maxVx = 0.0f;
 		ax = 0.0f;
 		ay = MARIO_GRAVITY;
@@ -337,7 +341,11 @@ public:
 
 	// Not jumping
 	void pullDown() {
-		if (!isFlapping) ay = MARIO_GRAVITY; isJumping = false;
+		if (!isFlapping) {
+			ay = MARIO_GRAVITY; 
+			//DebugOut(L"ay true \n");
+		} 
+		isJumping = false;
 	}
 
 	// hack

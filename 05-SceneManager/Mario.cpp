@@ -25,9 +25,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
-	//if (vy > -0.18f) {
-	//	vy = 0.18f;
-	//}
+	if (vy < -0.26f && level != MARIO_LEVEL_TAIL) {
+		DebugOut(L"update vy");
+		vy = -0.26f;
+		pullDown();
+	}
 
 	if (!isFlying)
 		HandleMarioJump();
@@ -356,11 +358,15 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 
 void CMario::HandleMarioJump() {
 	if (isJumping) {
+		//DebugOut(L"ax::%f\n", ax);
+		//DebugOut(L"vx::%f\n", vx);
+		//DebugOut(L"ay::%f\n", ay);
+		//DebugOut(L"vy::%f\n", vy);
 		// Dung yen nhay
 		if (vx == 0)
 		{
 			if (vy < -MARIO_JUMP_MAX) {
-				DebugOut(L"dung yen jump \n");
+				//DebugOut(L"dung yen jump %f \n", vy);
 				pullDown();
 			}
 		}
@@ -985,14 +991,20 @@ void CMario::SetState(int state)
 		isRunning = false;
 		break;
 	case MARIO_STATE_JUMP:
+		// thay`
+		//if (isSitting) break;
+		//if (isOnPlatform)
+		//{
+		//	if (abs(this->vx) == MARIO_RUNNING_SPEED)
+		//		vy = -MARIO_JUMP_RUN_SPEED_Y;
+		//	else
+		//		vy = -MARIO_JUMP_SPEED_Y;
+		//}
+		// new
 		isJumping = true;
 		if (isSitting) break;
 		if (isOnPlatform)
 		{
-			//if (abs(this->vx) == MARIO_RUNNING_SPEED)
-			//	vy = -MARIO_JUMP_RUN_SPEED_Y;
-			//else
-			//	vy = -MARIO_JUMP_SPEED_Y;
 			if (vy > -MARIO_JUMP_SPEED_MIN) {
 				//DebugOut(L" vy: %f \n", vy);
 				vy = -MARIO_JUMP_SPEED_MIN;
@@ -1017,11 +1029,13 @@ void CMario::SetState(int state)
 		break;
 
 	case MARIO_STATE_RELEASE_JUMP:
-		pullDown();
+		// thay
+		//if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
+
+		// new
 		isJumping = false;
-		/*isJumping = false;
-		if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
-		ny = -1;*/
+		pullDown();
+		
 		break;
 
 	case MARIO_STATE_SIT:
