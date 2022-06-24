@@ -3,6 +3,8 @@
 #define BULLET_BBOX_WIDTH	9
 #define BULLET_BBOX_HEIGHT	9
 
+#define BULLET_EXTRA_RANGE  5
+
 #define BULLET_SPEED_X	0.05f
 #define BULLET_SPEED_Y	0.05f
 

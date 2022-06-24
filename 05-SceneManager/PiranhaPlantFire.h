@@ -35,6 +35,7 @@ class PiranhaPlantFire :
 
 	bool Up = false;
 	bool Right = false;
+	bool idle = false;
 
 	ULONGLONG dying_start = 0;
 	ULONGLONG delay_start = 0;

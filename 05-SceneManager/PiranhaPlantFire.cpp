@@ -64,8 +64,19 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		}
 		delay_start = 0;
 	}
+	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	if (mario != NULL) {
+		if (floor(mario->x) <= x - 30 || floor(mario->x) > x + 30) {
+			idle = true;
+			//DebugOut(L"range active\n");
+		}
+		else {
+			idle = false;
+			//DebugOut(L"range idle\n");
+		}
+	}
 
-	if (y > limitY && vy == 0 && aim_start == 0 && delay_start == 0)
+	if (y > limitY && vy == 0 && aim_start == 0 && delay_start == 0 && idle)
 	{
 		//start darting when turn off success
 		//DebugOut(L"start darting again \n");
@@ -101,7 +112,6 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	//	}
 	//}
 	float mLeft, mTop, mRight, mBottom;
-	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	if (mario->GetLevel() == MARIO_LEVEL_TAIL) {
 		mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
 

@@ -408,11 +408,11 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 	//Update CamY when Flying
 	if (mario->isFlying && mario->GetY() < 300) {
 		isTurnOnCamY = true;
-		DebugOut(L"GetY: %d", mario->GetY());
+		//DebugOut(L"GetY: %d", mario->GetY());
 	}
 	else if (mario->GetLevel() == MARIO_LEVEL_TAIL && mario->isOnPlatform && mario->GetY() < 300) {
 		isTurnOnCamY = true;
-		DebugOut(L"GetY: %d", mario->GetY());
+		//DebugOut(L"GetY: %d", mario->GetY());
 	}
 	else if(mario->isOnPlatform) {
 		isTurnOnCamY = false;

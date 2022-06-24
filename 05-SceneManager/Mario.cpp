@@ -249,7 +249,7 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 {
 	CMushRoom* mushRoom = dynamic_cast<CMushRoom*>(e->obj);
 	e->obj->Delete();
-	//DebugOut(L"mario collision with mushroom \n");
+	DebugOut(L"mario collision with mushroom \n");
 	if (mushRoom->GetTypeMushRoom() != MUSHROOM_GREEN) {
 		SetLevel(MARIO_LEVEL_BIG);
 	}
@@ -297,7 +297,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		//DebugOut(L"mario collision with koopas if 1");
 		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL || koopas->GetState() == KOOPAS_STATE_SHELL_UP) {
 			if (isReadyToHold) {
-				//DebugOut(L"mario can hold koopas \n");
+				DebugOut(L"mario can hold koopas \n");
 				isHolding = true;
 				koopas->SetCanBeHeld(true);
 			}
@@ -360,7 +360,7 @@ void CMario::HandleMarioJump() {
 		if (vx == 0)
 		{
 			if (vy < -MARIO_JUMP_MAX) {
-				//DebugOut(L"dung yen jump \n");
+				DebugOut(L"dung yen jump \n");
 				pullDown();
 			}
 		}
@@ -370,14 +370,14 @@ void CMario::HandleMarioJump() {
 			if (vx >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
-					//DebugOut(L"super jump \n");
+					DebugOut(L"super jump \n");
 					//vy = -MARIO_JUMP_MAX;
 					pullDown();
 				}
 			}
 			else if (vx < MARIO_SPEED_MAX && vx > 0) {
 				if (vy < -MARIO_JUMP_MAX) {
-					//DebugOut(L"vua chay vua jump \n");
+					DebugOut(L"vua chay vua jump \n");
 					//vy = -MARIO_JUMP_MAX;
 					pullDown();
 				}
@@ -389,13 +389,13 @@ void CMario::HandleMarioJump() {
 			if (abs(vx) >= MARIO_SPEED_MAX) {
 				// super jump
 				if (vy < -MARIO_SUPER_JUMP_MAX) {
-				//	DebugOut(L"super jump \n");
+					DebugOut(L"super jump \n");
 					pullDown();
 				}
 			}
 			else if (abs(vx) < MARIO_SPEED_MAX && vx < 0) {
 				if (vy < -MARIO_JUMP_MAX) {
-					//DebugOut(L"vua chay vua jump \n");
+					DebugOut(L"vua chay vua jump \n");
 					pullDown();
 				}
 			}
