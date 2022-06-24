@@ -186,10 +186,12 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 	{
 		if (goomba->GetState() != GOOMBA_STATE_DIE)
 		{
-			if (goomba->tag == GOOMBA_RED)
+			if (goomba->tag == GOOMBA_RED) {
 				goomba->SetTag(GOOMBA_RED_NORMAL);
-			else
+			}	
+			else {
 				goomba->SetState(GOOMBA_STATE_DIE);
+			}
 			vy = -MARIO_JUMP_DEFLECT_SPEED_GB; // mario jump a little bit when collision with goomba red
 		}
 	}
@@ -317,6 +319,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		}
 	}
 	else if (e->ny != 0) {
+		vy = -MARIO_JUMP_DEFLECT_SPEED_GB;
 		//DebugOut(L"mario collision with koopas if 2");
 		if (koopas->GetState() == KOOPAS_STATE_WALKING) {
 			if (koopas->tag == KOOPAS_GREEN_PARA) {
