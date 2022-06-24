@@ -263,7 +263,9 @@ public:
 		isSitting = false;
 		maxVx = 0.0f;
 		ax = 0.0f;
-		ay = MARIO_GRAVITY; 
+		ay = MARIO_GRAVITY;
+		vy = 0;
+		vx = 0;
 
 		level = MARIO_LEVEL_SMALL;
 		untouchable = 0;

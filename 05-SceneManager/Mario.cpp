@@ -1018,6 +1018,7 @@ void CMario::SetState(int state)
 
 	case MARIO_STATE_RELEASE_JUMP:
 		pullDown();
+		isJumping = false;
 		/*isJumping = false;
 		if (vy < 0) vy += MARIO_JUMP_SPEED_Y / 2;
 		ny = -1;*/
@@ -1048,6 +1049,8 @@ void CMario::SetState(int state)
 	case MARIO_STATE_IDLE:
 		ax = 0.0f;
 		vx = 0.0f;
+		ay = MARIO_GRAVITY;
+		isJumping = false;
 		break;
 
 	case MARIO_STATE_DIE:
