@@ -318,7 +318,12 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 			HandleMarioDie();
 		}
 	}
-	else if (e->ny != 0) {
+	if (e->ny > 0) {
+		if (koopas->GetState() == KOOPAS_STATE_IN_SHELL || koopas->GetState() == KOOPAS_STATE_SHELL_UP) {
+			koopas->SetState(KOOPAS_STATE_TURNING);
+		}
+	}
+	else {
 		vy = -MARIO_JUMP_DEFLECT_SPEED_GB;
 		//DebugOut(L"mario collision with koopas if 2");
 		if (koopas->GetState() == KOOPAS_STATE_WALKING) {

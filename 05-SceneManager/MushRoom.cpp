@@ -1,6 +1,7 @@
 #include "MushRoom.h"
 #include "debug.h"
 #include "PlayScene.h"
+#include "Block.h"
 
 CMushRoom::CMushRoom(int type) {
 	SetAppear(false);
@@ -30,6 +31,20 @@ void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			vy = 0;
 			y = start_y - MUSHROOM_BBOX_HEIGHT - 0.1f;
 			SetState(MUSHROOM_STATE_RIGHT);
+		}
+	}
+
+	// for handle mushroom with block
+	for (int i = 0; i < coObjects->size(); i++) {
+		LPGAMEOBJECT obj = coObjects->at(i);
+		if (dynamic_cast<CBlock*>(obj))
+		{
+			if (obj->getY() > this->y) {
+				obj->SetIsBlocking(1);
+			}
+			else {
+				obj->SetIsBlocking(0);
+			}
 		}
 	}
 
