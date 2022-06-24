@@ -1051,10 +1051,12 @@ void CMario::SetState(int state)
 		StartKicking();
 		break;
 	case MARIO_STATE_TAIL_ATTACK:
-		if (!isTuring) {
-			turningStack = 0;
-			StartTurning();
-			//DebugOut(L"Start Attack by Tail \n");
+		if (level == MARIO_LEVEL_TAIL) {
+			if (!isTuring) {
+				turningStack = 0;
+				StartTurning();
+				//DebugOut(L"Start Attack by Tail \n");
+			}
 		}
 		break;
 	}	
