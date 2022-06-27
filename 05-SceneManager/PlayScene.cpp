@@ -18,12 +18,14 @@
 #include "BreakBrick.h"
 
 #include "SampleKeyEventHandler.h"
+#include "Hud.h"
 
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 	CScene(id, filePath)
 {
+	hud = NULL;
 	player = NULL;
 	key_handler = new CSampleKeyHandler(this);
 }
@@ -338,6 +340,8 @@ void CPlayScene::Load()
 
 	f.close();
 
+	hud = new HUD(); // new hud
+
 	DebugOut(L"[INFO] Done loading scene  %s\n", sceneFilePath);
 }
 
@@ -367,6 +371,7 @@ void CPlayScene::Update(DWORD dt)
 	float cx, cy;
 	player->GetPosition(cx, cy);
 	SetCam(cx, cy, dt);
+	hud->Update(dt, &coObjects); // update for hud
 	PurgeDeletedObjects();
 }
 
@@ -381,8 +386,10 @@ void CPlayScene::Render()
 		return lObj->z < rObj->z;
 	});
 
-	for (int i = 0; i < objects.size(); i++)
+	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->Render();
+	}
+	hud->Render();	
 }
 
 void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
@@ -437,6 +444,7 @@ void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
 
 	game->SetCamPos(ceil(cx), ceil(cy));
 	current_map->SetCamPos(cx, cy);
+	hud->SetPosition(ceil(cx + 130), ceil(cy + sh + 20));
 }
 
 /*
