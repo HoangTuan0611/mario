@@ -25,9 +25,15 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
-	if (vy < -0.26f && level != MARIO_LEVEL_TAIL) {
+	if (vy < -MARIO_JUMP_UPDATE && level != MARIO_LEVEL_TAIL) {
 		DebugOut(L"update vy \n");
-		vy = -0.26f;
+		vy = -MARIO_JUMP_UPDATE;
+		pullDown();
+	}
+
+	if (vy <= -MARIO_JUMP_UPDATE && level == MARIO_LEVEL_TAIL && !isFlying) {
+		DebugOut(L"update vy for tail\n");
+		vy = -MARIO_JUMP_UPDATE;
 		pullDown();
 	}
 
@@ -442,14 +448,14 @@ void CMario::HandleFlying() {
 		if (isFlying)
 		{
 			if (vy <= -MARIO_NORMAL_FLY_MAX) {
-				ay = 0.00025f;
+				//ay = 0.00025f;
 				normalFallDown = true;
 				//DebugOut(L"Start fall down \n");
 			}
 		}
 	}
 	if (normalFallDown && isFlying) {
-		ay = 0.0005f;
+		ay = 0.00025f;
 	}
 
 	// handle fly
@@ -518,7 +524,7 @@ void CMario::HandleSwitchMap() {
 }
 
 void CMario::HandleSpeedStack() {
-	if (GetTickCount64() - start_running > MARIO_RUNNING_STACK_TIME && isRunning && vx != 0 && isReadyToRun) {
+	if (GetTickCount64() - start_running > MARIO_RUNNING_STACK_TIME && vx != 0 && isRunning && isReadyToRun) {
 		start_running = GetTickCount64();
 		speedStack++;
 		DebugOut(L"SpeedStack:: %d \n", speedStack);
@@ -1074,7 +1080,7 @@ void CMario::SetState(int state)
 			//DebugOut(L" ay: %d \n", ay);
 			//DebugOut(L"Jumping \n");
 		}
-		if (isRunning) {
+		if (isRunning && speedStack > 5) {
 			if (level == MARIO_LEVEL_TAIL) {
 				//DebugOut(L"mario can fly \n");
 				isFlying = true;
@@ -1124,8 +1130,8 @@ void CMario::SetState(int state)
 	case MARIO_STATE_IDLE:
 		ax = 0.0f;
 		vx = 0.0f;
-		//ay = MARIO_GRAVITY;
 		isJumping = false;
+		isRunning = false;
 		//speedStack = 0;
 		break;
 

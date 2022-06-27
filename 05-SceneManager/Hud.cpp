@@ -104,14 +104,24 @@ void HUD::Render() {
 			powerMelterSprite[i - 1]->Draw(x + FONT_BBOX_WIDTH * (i - 1) - HUD_DIFF_METTER + HUD_DIFF_MELTER, y - 4);
 		}
 	}
+	for (unsigned int i = 0; i < moneySprites.size(); i++) {
+		moneySprites[i]->Draw(x + FONT_BBOX_WIDTH * i + HUD_DIFF_MONEY + HUD_DIFF_MELTER - 1, y - HUD_DIFF_ROW);
+	}
 }
 
 void HUD::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	AddSpeedStack();
+	AddCoin();
+	moneySprites = StringToSprite(to_string(money));
 }
 
 void HUD::AddSpeedStack() {
 	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
 	mario = currentScene->GetPlayer();
 	this->speedStack = mario->speedStack;
+}
+
+void HUD::AddCoin() {
+	if (mario != NULL)
+		this->money = mario->coin;
 }

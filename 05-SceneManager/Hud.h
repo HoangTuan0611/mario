@@ -64,9 +64,11 @@ class HUD :public CGameObject {
 	LPSPRITE playerSprite = NULL;
 	LPANIMATION PAni = NULL;
 	vector<LPSPRITE> powerMelterSprite;
+	vector<LPSPRITE> moneySprites;
 
 	//
 	int speedStack = 0;
+	int money = 0;
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	HUD(int type_hud = 0);
@@ -80,5 +82,6 @@ public:
 
 	// 
 	void AddSpeedStack();
+	void AddCoin();
 	
 };
