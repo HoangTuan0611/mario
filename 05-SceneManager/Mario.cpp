@@ -31,6 +31,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		pullDown();
 	}
 
+	//DebugOut(L"mario ay:: %f \n", ay);
+
 	//DebugOut(L"ay: %f \n", ay);
 
 	if (!isFlying)
@@ -440,6 +442,7 @@ void CMario::HandleFlying() {
 		if (isFlying)
 		{
 			if (vy <= -MARIO_NORMAL_FLY_MAX) {
+				ay = 0.00025f;
 				normalFallDown = true;
 				//DebugOut(L"Start fall down \n");
 			}
@@ -454,6 +457,7 @@ void CMario::HandleFlying() {
 	{
 		//DebugOut(L"Start fly \n");
 		fly_start = 0;
+		speedStack = 0;
 		isRunning = false;
 		isFlying = false;
 	}
@@ -742,11 +746,11 @@ int CMario::GetAniIdBig()
 			{
 				if (ax < 0)
 					aniId = MARIO_ANI_BIG_BRAKING_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 3) {
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 2) {
 					DebugOut(L"pre big running right \n");
 					aniId = MARIO_ANI_BIG_WALKING_RIGHT;	
 				}
-				else if (ax == MARIO_ACCEL_RUN_X &&  speedStack> 3)
+				else if (ax == MARIO_ACCEL_RUN_X &&  speedStack > 2)
 				{
 					aniId = MARIO_ANI_BIG_RUNNING_RIGHT;
 					DebugOut(L"big running right \n");
@@ -778,11 +782,11 @@ int CMario::GetAniIdBig()
 			{
 				if (ax > 0)
 					aniId = MARIO_ANI_BIG_BRAKING_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 3) {
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 2) {
 					DebugOut(L"pre big running left \n");
 					aniId = MARIO_ANI_BIG_WALKING_LEFT;	
 				}
-				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 3) {
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 2) {
 					DebugOut(L"big running left \n");
 					aniId = MARIO_ANI_BIG_RUNNING_LEFT;	
 					if (isHolding) {
@@ -1006,6 +1010,7 @@ void CMario::SetState(int state)
 		nx = 1;
 		// handle fly
 		isReadyToRun = true;
+		DebugOut(L"vx:: %f \n", vx);
 		if (vx >= MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
 			//DebugOut(L"isRunning true \n");
@@ -1121,6 +1126,7 @@ void CMario::SetState(int state)
 		vx = 0.0f;
 		//ay = MARIO_GRAVITY;
 		isJumping = false;
+		speedStack = 0;
 		break;
 
 	case MARIO_STATE_DIE:
