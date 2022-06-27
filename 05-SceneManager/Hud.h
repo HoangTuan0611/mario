@@ -62,6 +62,8 @@ class HUD :public CGameObject {
 
 	//
 	LPSPRITE playerSprite = NULL;
+	LPANIMATION PAni = NULL;
+	vector<LPSPRITE> powerMelterSprite;
 
 	//
 	int speedStack = 0;

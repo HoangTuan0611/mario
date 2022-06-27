@@ -1126,7 +1126,7 @@ void CMario::SetState(int state)
 		vx = 0.0f;
 		//ay = MARIO_GRAVITY;
 		isJumping = false;
-		speedStack = 0;
+		//speedStack = 0;
 		break;
 
 	case MARIO_STATE_DIE:
