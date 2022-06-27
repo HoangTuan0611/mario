@@ -19,7 +19,8 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_S:
 		if (mario->isFlying) {
 			// set vy,ay for mario fly and fall
-			mario->vy = -0.055f;
+			//mario->vy = -0.055f;
+			mario->vy = -0.035f;
 			mario->ay = -0.005f;
 			mario->isFlappingFlying = true;
 		}

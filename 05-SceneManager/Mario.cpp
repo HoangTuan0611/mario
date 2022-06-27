@@ -38,8 +38,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	}
 
 	//DebugOut(L"mario ay:: %f \n", ay);
-
-	//DebugOut(L"ay: %f \n", ay);
+	//DebugOut(L"mario vy:: %f \n", vy);
+	//DebugOut(L"mario ax:: %f \n", ax);
+	//DebugOut(L"mario vx:: %f \n", vx);
 
 	if (!isFlying)
 		HandleMarioJump();
@@ -364,10 +365,10 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 
 void CMario::HandleMarioJump() {
 	if (isJumping) {
-		//DebugOut(L"ax::%f\n", ax);
-		//DebugOut(L"vx::%f\n", vx);
-		//DebugOut(L"ay::%f\n", ay);
-		//DebugOut(L"vy::%f\n", vy);
+		DebugOut(L"ax::%f\n", ax);
+		DebugOut(L"vx::%f\n", vx);
+		DebugOut(L"ay::%f\n", ay);
+		DebugOut(L"vy::%f\n", vy);
 		// Dung yen nhay
 		if (vx == 0)
 		{
@@ -448,7 +449,6 @@ void CMario::HandleFlying() {
 		if (isFlying)
 		{
 			if (vy <= -MARIO_NORMAL_FLY_MAX) {
-				//ay = 0.00025f;
 				normalFallDown = true;
 				//DebugOut(L"Start fall down \n");
 			}
@@ -511,6 +511,7 @@ void CMario::HandleSwitchMap() {
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
 		StopPipeDown();
+		isSW = true;
 	}
 	if (isSwitchMap && isPipeUp)
 	{
@@ -520,6 +521,7 @@ void CMario::HandleSwitchMap() {
 		vx = vy = 0;
 		ay = MARIO_GRAVITY_PIPE;
 		StopPipeUp();
+		isSW = false;
 	}
 }
 
@@ -1016,10 +1018,10 @@ void CMario::SetState(int state)
 		nx = 1;
 		// handle fly
 		isReadyToRun = true;
-		DebugOut(L"vx:: %f \n", vx);
+		//DebugOut(L"vx:: %f \n", vx);
 		if (vx >= MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
-			//DebugOut(L"isRunning true \n");
+			DebugOut(L"isRunning true \n");
 		}
 		else {
 			isRunning = false;

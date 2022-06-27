@@ -26,7 +26,7 @@
 //#define MARIO_FLYING_TIME			1750
 #define MARIO_FLYING_TIME			1550
 #define MARIO_WALKING_SPEED		0.05f
-#define MARIO_RUNNING_SPEED		0.1f
+#define MARIO_RUNNING_SPEED		0.075f
 #define MARIO_ACCEL_WALK_X	0.0005f
 #define MARIO_ACCEL_RUN_X	0.0007f
 #define MARIO_JUMP_SPEED_Y		0.5f
@@ -159,7 +159,7 @@
 
 // Fly
 //#define MARIO_SPEED_STACK			0.05f // chi can chay rat ngan la fly duoc
-#define MARIO_SPEED_STACK			0.1f
+#define MARIO_SPEED_STACK			0.075f
 #define MARIO_NORMAL_FLY_MAX		0.3f
 
 #define MARIO_ANI_FLAPPING_RIGHT			97
@@ -270,6 +270,7 @@ public:
 	BOOLEAN isPipeUp = false;
 	BOOLEAN isPipeDown = false;
 	BOOLEAN isSwitchMap = false;
+	BOOLEAN isSW = false;
 	BOOLEAN isSitting;
 
 	// hud

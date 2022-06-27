@@ -19,6 +19,7 @@
 
 #include "SampleKeyEventHandler.h"
 #include "Hud.h"
+#include "Mario.h"
 
 using namespace std;
 
@@ -358,8 +359,14 @@ void CPlayScene::Update(DWORD dt)
 	{
 		coObjects.push_back(objects[i]);
 	}
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
-	player->Update(dt, &coObjects);
+	if (mario->isSW) {
+		player->Update(dt * multiScene, &coObjects);
+	}
+	else {
+		player->Update(dt, &coObjects);
+	}
 
 	for (size_t i = 0; i < objects.size(); i++)
 	{
