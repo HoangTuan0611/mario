@@ -35,6 +35,8 @@
 #define MARIO_GRAVITY			0.0005f
 //#define MARIO_GRAVITY			0.002f
 #define MARIO_GRAVITY_PIPE		0.00002f
+#define MARIO_RUNNING_STACK_TIME	200
+#define MARIO_SPEED_STACK_LOST_TIME	200
 
 //state
 #define MARIO_STATE_DIE				-10
@@ -68,6 +70,7 @@
 #define MARIO_ANI_BIG_WALKING_FAST_RIGHT	16
 #define MARIO_ANI_BIG_RUNNING_RIGHT			17
 #define MARIO_ANI_BIG_JUMPINGUP_RIGHT		18
+#define MARIO_ANI_BIG_JUMPINGDOWN_RIGHT		19
 #define MARIO_ANI_BIG_BRAKING_RIGHT			20
 #define MARIO_ANI_BIG_SITTING_RIGHT			21
 #define MARIO_ANI_BIG_IDLE_LEFT				22
@@ -161,6 +164,10 @@
 
 #define MARIO_ANI_FLAPPING_RIGHT			97
 #define MARIO_ANI_FLAPPING_LEFT				98
+#define MARIO_ANI_SMALL_FLY_RIGHT				103
+#define MARIO_ANI_SMALL_FLY_LEFT				104
+#define MARIO_ANI_BIG_FLY_RIGHT					105
+#define MARIO_ANI_BIG_FLY_LEFT					106
 #define MARIO_ANI_FLY_UP_RIGHT				107
 #define MARIO_ANI_FLY_FLAPPING_RIGHT		109
 #define MARIO_ANI_FLY_UP_LEFT				110
@@ -209,6 +216,8 @@ class CMario : public CGameObject
 	ULONGLONG start_kicking = 0;
 	ULONGLONG start_turning_state = 0;
 	ULONGLONG start_turning = 0;
+	ULONGLONG start_running = 0;
+	ULONGLONG running_stop = 0;
 	BOOLEAN isJumping = false;
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
@@ -303,6 +312,7 @@ public:
 	int GetY() {
 		return this->y;
 	}
+	boolean getIsOnPlatForm() { return isOnPlatform; }
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
@@ -340,6 +350,7 @@ public:
 	void HandleFlapping();
 	void HandleFinishMap();
 	void HandleSwitchMap();
+	void HandleSpeedStack();
 
 	//Stop behavior
 	void StopKick() { start_kicking = 0; isKick = false; }

@@ -60,8 +60,11 @@ class HUD :public CGameObject {
 	CMario* mario;
 	std::map<char, LPSPRITE> fonts;
 
+	//
 	LPSPRITE playerSprite = NULL;
-	
+
+	//
+	int speedStack = 0;
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	HUD(int type_hud = 0);
@@ -72,5 +75,8 @@ public:
 	void initFonts();
 	LPSPRITE mappingFont(char c);
 	vector<LPSPRITE> StringToSprite(string str);
+
+	// 
+	void AddSpeedStack();
 	
 };

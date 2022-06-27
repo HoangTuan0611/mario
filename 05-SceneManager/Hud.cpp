@@ -94,3 +94,9 @@ void HUD::Render() {
 void HUD::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 }
+
+void HUD::AddSpeedStack() {
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	mario = currentScene->GetPlayer();
+	this->speedStack = mario->speedStack;
+}
