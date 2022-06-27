@@ -65,10 +65,13 @@ class HUD :public CGameObject {
 	LPANIMATION PAni = NULL;
 	vector<LPSPRITE> powerMelterSprite;
 	vector<LPSPRITE> moneySprites;
+	vector<LPSPRITE> remainTimeSprites;
 
 	//
 	int speedStack = 0;
 	int money = 0;
+	int time = 0;
+	int remainTime = DEFAULT_TIME;
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	HUD(int type_hud = 0);
