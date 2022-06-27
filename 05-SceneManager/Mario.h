@@ -171,6 +171,9 @@
 //#define MARIO_JUMP_MAX	0.28f
 #define MARIO_SUPER_JUMP_MAX 0.30f
 
+// HUD
+#define MARIO_RUNNING_STACKS		7
+
 #define	MARIO_LEVEL_SMALL	1
 #define	MARIO_LEVEL_BIG		2
 #define	MARIO_LEVEL_TAIL	3
@@ -207,8 +210,6 @@ class CMario : public CGameObject
 	ULONGLONG start_turning_state = 0;
 	ULONGLONG start_turning = 0;
 	BOOLEAN isJumping = false;
-
-	int coin; 
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
@@ -258,6 +259,10 @@ public:
 	BOOLEAN isPipeDown = false;
 	BOOLEAN isSwitchMap = false;
 	BOOLEAN isSitting;
+
+	// hud
+	int coin;
+	int speedStack = 0;
 
 	CMario(float x, float y) : CGameObject(x, y)
 	{

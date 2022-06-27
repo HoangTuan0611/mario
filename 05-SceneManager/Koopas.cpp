@@ -447,12 +447,16 @@ bool CKoopas::KoopasCollision(LPGAMEOBJECT object)
 					if (coObjects[i]->x > object->x && coObjects[i]->x - 16 < object->x + 16)
 					{
 						//DebugOut(L"next is block, right \n");
+						//DebugOut(L"coObjects[i]->x - 16: %f \n", coObjects[i]->x - 16);
+						//DebugOut(L"object->x + 16: %f \n", object->x + 16);
 						return false;
 					}
 				if (nx < 0) 
 					if (coObjects[i]->x + 16 > object->x - 16 && coObjects[i]->x < object->x)
 					{
 						//DebugOut(L"next is block, left \n");
+						//DebugOut(L"coObjects[i]->x + 16: %f \n", coObjects[i]->x + 16);
+						//DebugOut(L"object->x - 16: %f \n", object->x - 16);
 						return false;
 					}	
 			}
