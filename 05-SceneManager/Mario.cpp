@@ -41,6 +41,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	//DebugOut(L"mario vy:: %f \n", vy);
 	//DebugOut(L"mario ax:: %f \n", ax);
 	//DebugOut(L"mario vx:: %f \n", vx);
+	//DebugOut(L"mario top: %f \n", y);
 
 	if (!isFlying)
 		HandleMarioJump();
@@ -236,8 +237,10 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
-	e->obj->Delete();
-	coin++;
+	if (ny != 0 || nx != 0) {
+		e->obj->Delete();
+		coin++;
+	}
 }
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
@@ -626,12 +629,15 @@ int CMario::GetAniIdSmall()
 			{
 				if (ax < 0)
 					aniId = MARIO_ANI_SMALL_BRAKING_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 3) {
+					aniId = MARIO_ANI_SMALL_WALKING_RIGHT;
+				}
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack > 3) {
 					aniId = MARIO_ANI_SMALL_RUNNING_RIGHT;
+				}
 				else if (ax == MARIO_ACCEL_WALK_X) {
 					aniId = MARIO_ANI_SMALL_WALKING_RIGHT;
 				}
-
 				if (!isOnPlatform) {
 					aniId = MARIO_ANI_SMALL_JUMPINGUP_RIGHT;
 					if (isFlying) {
@@ -647,7 +653,9 @@ int CMario::GetAniIdSmall()
 			{
 				if (ax > 0)
 					aniId = MARIO_ANI_SMALL_BRAKING_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 3)
+					aniId = MARIO_ANI_SMALL_WALKING_LEFT;
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 3)
 					aniId = MARIO_ANI_SMALL_RUNNING_LEFT;
 				else if (ax == -MARIO_ACCEL_WALK_X)
 					aniId = MARIO_ANI_SMALL_WALKING_LEFT;
@@ -754,11 +762,11 @@ int CMario::GetAniIdBig()
 			{
 				if (ax < 0)
 					aniId = MARIO_ANI_BIG_BRAKING_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 2) {
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 3) {
 					DebugOut(L"pre big running right \n");
-					aniId = MARIO_ANI_BIG_WALKING_RIGHT;	
+					aniId = MARIO_ANI_BIG_WALKING_FAST_RIGHT;
 				}
-				else if (ax == MARIO_ACCEL_RUN_X &&  speedStack > 2)
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack > 3)
 				{
 					aniId = MARIO_ANI_BIG_RUNNING_RIGHT;
 					DebugOut(L"big running right \n");
@@ -790,11 +798,11 @@ int CMario::GetAniIdBig()
 			{
 				if (ax > 0)
 					aniId = MARIO_ANI_BIG_BRAKING_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 2) {
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 3) {
 					DebugOut(L"pre big running left \n");
-					aniId = MARIO_ANI_BIG_WALKING_LEFT;	
+					aniId = MARIO_ANI_BIG_WALKING_FAST_LEFT;
 				}
-				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 2) {
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 3) {
 					DebugOut(L"big running left \n");
 					aniId = MARIO_ANI_BIG_RUNNING_LEFT;	
 					if (isHolding) {
@@ -907,7 +915,11 @@ int CMario::GetAniIdTail() {
 			{
 				if (ax < 0)
 					aniId = MARIO_ANI_TAIL_BRAKING_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack <= 3)
+				{
+					aniId = MARIO_ANI_TAIL_WALKING_FAST_RIGHT;
+				}
+				else if (ax == MARIO_ACCEL_RUN_X && speedStack > 3)
 				{
 					aniId = MARIO_ANI_TAIL_RUNNING_RIGHT;
 				}
@@ -930,7 +942,9 @@ int CMario::GetAniIdTail() {
 			{
 				if (ax > 0)
 					aniId = MARIO_ANI_TAIL_BRAKING_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack <= 3)
+					aniId = MARIO_ANI_TAIL_WALKING_FAST_LEFT;
+				else if (ax == -MARIO_ACCEL_RUN_X && speedStack > 3)
 					aniId = MARIO_ANI_TAIL_RUNNING_LEFT;
 				else if (ax == -MARIO_ACCEL_WALK_X)
 					aniId = MARIO_ANI_TAIL_WALKING_LEFT;
@@ -1018,7 +1032,7 @@ void CMario::SetState(int state)
 		nx = 1;
 		// handle fly
 		isReadyToRun = true;
-		//DebugOut(L"vx:: %f \n", vx);
+		DebugOut(L"vx:: %f \n", vx);
 		if (vx >= MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
 			DebugOut(L"isRunning true \n");
@@ -1034,6 +1048,7 @@ void CMario::SetState(int state)
 		nx = -1;
 		// handle fly
 		isReadyToRun = true;
+		DebugOut(L"vx:: %f \n", vx);
 		if (vx < MARIO_SPEED_STACK && isReadyToRun) {
 			isRunning = true;
 			//DebugOut(L"isRunning true \n");
@@ -1162,6 +1177,9 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 {
 	left = x;
 	top = y;
+	if (isExtraTop) {
+		top = y - MARIO_TOP_EXTRA;
+	}
 	if (level != MARIO_LEVEL_SMALL)
 	{
 

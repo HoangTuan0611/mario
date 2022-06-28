@@ -26,7 +26,7 @@
 //#define MARIO_FLYING_TIME			1750
 #define MARIO_FLYING_TIME			1550
 #define MARIO_WALKING_SPEED		0.05f
-#define MARIO_RUNNING_SPEED		0.075f
+#define MARIO_RUNNING_SPEED		0.1f
 #define MARIO_ACCEL_WALK_X	0.0005f
 #define MARIO_ACCEL_RUN_X	0.0007f
 #define MARIO_JUMP_SPEED_Y		0.5f
@@ -180,6 +180,7 @@
 
 //
 #define MARIO_JUMP_UPDATE	0.27f
+#define MARIO_TOP_EXTRA		3.5
 
 // HUD
 #define MARIO_RUNNING_STACKS		7
@@ -277,6 +278,9 @@ public:
 	int coin;
 	int speedStack = 0;
 
+	//
+	BOOLEAN isExtraTop = false;
+
 	CMario(float x, float y) : CGameObject(x, y)
 	{
 		isSitting = false;
@@ -316,6 +320,7 @@ public:
 	int GetY() {
 		return this->y;
 	}
+
 	boolean getIsOnPlatForm() { return isOnPlatform; }
 
 	void OnNoCollision(DWORD dt);

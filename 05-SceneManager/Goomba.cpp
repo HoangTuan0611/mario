@@ -28,6 +28,7 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 		right = left + GOOMBA_BBOX_WIDTH;
 		bottom = top + GOOMBA_BBOX_HEIGHT;
 	}
+	
 }
 
 void CGoomba::OnNoCollision(DWORD dt)
@@ -122,32 +123,31 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	float mLeft, mTop, mRight, mBottom;
 	float oLeft, oTop, oRight, oBottom;
 	if (mario != NULL && state != GOOMBA_STATE_DIE) {
-		if (tag == GOOMBA_RED && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL) {
+		if (mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL) {
 			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
 			GetBoundingBox(oLeft, oTop, oRight, oBottom);
 			if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom))
 			{
 				nx = mario->nx;
 				DebugOut(L"goomba red turn level by mario tail \n");
-				SetState(GOOMBA_STATE_DIE_BY_MARIO);
-				SetTag(GOOMBA_RED_NORMAL);
-				return;
-			}
-		}
-		else if ((tag != GOOMBA_RED || tag == GOOMBA_RED_NORMAL) && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
-		{
-			mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
-			GetBoundingBox(oLeft, oTop, oRight, oBottom);
-			if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom))
-			{
-				nx = mario->nx;
-				DebugOut(L"goomba die by mario tail \n");
 				SetState(GOOMBA_STATE_DIE);
+				//SetTag(GOOMBA_RED_NORMAL);
 				return;
 			}
 		}
+		//else if ((tag != GOOMBA_RED || tag == GOOMBA_RED_NORMAL) && mario->isTuring && mario->GetLevel() == MARIO_LEVEL_TAIL && state != GOOMBA_STATE_DIE && state != GOOMBA_STATE_DIE_BY_MARIO)
+		//{
+		//	mario->tail->GetBoundingBox(mLeft, mTop, mRight, mBottom);
+		//	GetBoundingBox(oLeft, oTop, oRight, oBottom);
+		//	if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom))
+		//	{
+		//		nx = mario->nx;
+		//		DebugOut(L"goomba die by mario tail \n");
+		//		SetState(GOOMBA_STATE_DIE);
+		//		return;
+		//	}
+		//}
 	}
-
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
