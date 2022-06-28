@@ -461,6 +461,7 @@ void CGame::_ParseSection_SCENES(string line)
 	// for scene render
 	if (id == 1)
 	{
+		DebugOut(L"go to scene 1 \n");
 		LPSCENE playscene = new CPlayScene(id, path);
 		scenes[id] = playscene;
 	}
@@ -541,6 +542,8 @@ void CGame::SwitchScene(int scene_id)
 void CGame::InitiateSwitchScene(int scene_id)
 {
 	next_scene = scene_id;
+	DebugOut(L"[INFO] Switching to scene %d\n", next_scene);
+	SwitchScene(next_scene);
 }
 
 void CGame::SwitchExtraScene(int scene_id, float start_x, float start_y)
