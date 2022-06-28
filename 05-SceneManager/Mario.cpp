@@ -189,6 +189,8 @@ void CMario::OnCollisionWithPCardItem(LPCOLLISIONEVENT e) {
 		card->SetAppear(false);
 		card->isDeleted = true;
 		isFinish = true;
+		cardItemSc = card->getState();
+		DebugOut(L"get state card:: %d \n", card->getState());
 	}
 }
 

@@ -280,6 +280,7 @@ public:
 
 	//
 	BOOLEAN isExtraTop = false;
+	int cardItemSc;
 
 	CMario(float x, float y) : CGameObject(x, y)
 	{

@@ -22,6 +22,7 @@ private:
 	DWORD start = 0;
 	bool isAppear = true;
 public:
+	int state = 0;
 	CardItem();
 	~CardItem();
 	virtual void Render();
@@ -31,5 +32,7 @@ public:
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
 	void SetAppear(bool ap) { this->isAppear = ap; }
-
+	int getState() {
+		return this->state;
+	}	
 };
