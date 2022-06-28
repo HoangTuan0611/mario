@@ -16,7 +16,7 @@
 #define MARIO_ACCELERATION_JUMP		0.005f
 #define MARIO_JUMP_SPEED_MAX		0.43f
 #define MARIO_JUMP_SPEED_MIN		0.18f
-#define MARIO_SLOW_FALLING_SPEED	0.03f
+#define MARIO_SLOW_FALLING_SPEED	0.02f
 #define MARIO_JUMP_DEFLECT_SPEED	0.3f
 #define MARIO_JUMP_DEFLECT_SPEED_GB	0.1f
 #define MARIO_UNTOUCHABLE_TIME		2500
@@ -379,7 +379,7 @@ public:
 	void ExtraMap() { x = 2270; y = 0; };
 	// start to extra map
 	void StartExtraMap() {
-		SetPosition(180, 1080066048);
+		SetPosition(1500, 0);
 	};
 	
 	// start map

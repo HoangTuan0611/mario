@@ -460,13 +460,13 @@ void CMario::HandleFlying() {
 		}
 	}
 	if (normalFallDown && isFlying) {
-		ay = 0.00025f;
+		ay = 0.0005f;
 	}
 
 	// handle fly
 	if (GetTickCount64() - fly_start > MARIO_FLYING_TIME && fly_start != 0 && isFlying)
 	{
-		//DebugOut(L"Start fly \n");
+		//DebugOut(L"Start fly %f \n", ay);
 		fly_start = 0;
 		speedStack = 0;
 		isRunning = false;
