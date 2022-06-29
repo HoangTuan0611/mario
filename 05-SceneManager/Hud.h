@@ -66,7 +66,6 @@ class HUD :public CGameObject {
 	vector<LPSPRITE> powerMelterSprite;
 	vector<LPSPRITE> moneySprites;
 	vector<LPSPRITE> remainTimeSprites;
-
 	//
 	int speedStack = 0;
 	int money = 0;
@@ -74,10 +73,13 @@ class HUD :public CGameObject {
 	int remainTime = DEFAULT_TIME;
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
-	HUD(int type_hud = 0);
+	HUD(int typeHud);
 	virtual void Render();
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) {};
-
+	int GetTypeHub() {
+		DebugOut(L"type hud:: %d \n", this->typeHud);
+		return this->typeHud;
+	}
 	//
 	void initFonts();
 	LPSPRITE mappingFont(char c);

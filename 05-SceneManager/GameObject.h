@@ -44,6 +44,8 @@ public:
 
 	int tag = 0; // define for goomba tag
 
+	int typeHud; // define for hud tag
+
 	// set up for question brick animation - push and fall
 	bool isBeingPushedUp = false;
 	bool isFallingDown = false;
