@@ -17,6 +17,7 @@ CWorldScene::CWorldScene(int id, LPCWSTR filePath) :
 	CScene(id, filePath)
 {
 	key_handler = new CWorldSceneKeyHandler(this);
+	hud = NULL;
 }
 
 /*
