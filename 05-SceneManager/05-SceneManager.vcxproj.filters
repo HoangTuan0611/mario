@@ -169,6 +169,15 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="WorldScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="WMObject.cpp">
+      <Filter>Map Objects\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="WMPlayer.cpp">
+      <Filter>Map Objects\WorldMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h">
@@ -272,6 +281,15 @@
     </ClInclude>
     <ClInclude Include="IntroScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WMObject.h">
+      <Filter>Map Objects\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="WMPlayer.h">
+      <Filter>Map Objects\WorldMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

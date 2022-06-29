@@ -150,7 +150,8 @@ void CIntroScene::Update(DWORD dt) {
 	if (switchTimer >= SWITCH_TIME && isSwitch) {
 		//DebugOut(L"ready to switch scene: %d \n", PLAY_SCENE_ID);
 		CGame* game = CGame::GetInstance();
-		game->InitiateSwitchScene(PLAY_SCENE_ID);
+		game->InitiateSwitchScene(WORLD_SCENE_ID);
+		//game->InitiateSwitchScene(PLAY_SCENE_ID);
 	}
 }
 
