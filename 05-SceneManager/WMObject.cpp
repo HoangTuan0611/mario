@@ -3,11 +3,15 @@
 CWorldMapObject::CWorldMapObject(int sceneId)
 {
 	vx = vy = 0;
+	SetMove(false, false, false, false);
 	this->sceneId = sceneId;
 }
 void CWorldMapObject::Render()
 {
-	animation_set->at(0)->Render(x, y);
+	if (tag == OBJECT_TYPE_HAMMER && vx < 0)
+		animation_set->at(1)->Render(x, y);
+	else
+		animation_set->at(0)->Render(x, y);
 	RenderBoundingBox();
 }
 void CWorldMapObject::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)

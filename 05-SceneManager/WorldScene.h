@@ -5,6 +5,13 @@
 #include "GameObject.h"
 #include "Map.h"
 #include "HUD.h"
+#include "WMPlayer.h"
+
+#define OBJECT_TYPE_PLAYER 0
+#define OBJECT_TYPE_STOP 2
+#define OBJECT_TYPE_PORTAL 3
+
+#define MARIO_WALKING_SPEED_MIN		0.05f
 
 class CWorldScene : public CScene
 {
@@ -12,6 +19,7 @@ protected:
 	CMap* current_map = NULL;
 	HUD* hud = NULL;
 	vector<LPGAMEOBJECT> objects;
+	CWorldPlayer* player = NULL;					// A play scene has to have player, right? 
 
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);
@@ -28,6 +36,9 @@ public:
 	virtual void Render();
 	virtual void Unload();
 
+	CWorldPlayer* GetPlayer() { return player; }
+	CMap* GetMap() { return current_map; }
+	HUD* GetHUD() { return hud; }
 };
 
 class CWorldSceneKeyHandler : public CSceneKeyHandler
