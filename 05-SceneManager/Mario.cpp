@@ -20,6 +20,8 @@
 #include "Card.h"
 #include "FireBullet.h"
 #include "Switch.h"
+#include "Point.h"
+#include "PlayScene.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -242,6 +244,7 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 	if (ny != 0 || nx != 0) {
 		e->obj->Delete();
 		coin++;
+		InitScore(this->x, this->y, 100, false);
 	}
 }
 
@@ -550,6 +553,21 @@ void CMario::HandleSpeedStack() {
 			isFlying = false;
 		}
 	}
+}
+
+void CMario::InitScore(float x, float y, int score, bool isStack) {
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+
+	start_time_score = GetTickCount64();
+
+	Point* point = new Point(score);
+	int previousScore = score;
+
+	point->SetPosition(x, y);
+	currentScene->AddObject(point);
+
+	this->marioScore += score;
+
 }
 
 //

@@ -178,6 +178,9 @@
     <ClCompile Include="WMPlayer.cpp">
       <Filter>Map Objects\WorldMap</Filter>
     </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h">
@@ -290,6 +293,9 @@
     </ClInclude>
     <ClInclude Include="WMPlayer.h">
       <Filter>Map Objects\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
