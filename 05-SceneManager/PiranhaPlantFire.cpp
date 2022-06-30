@@ -3,7 +3,7 @@
 
 PiranhaPlantFire::PiranhaPlantFire(int tag) {
 	this->tag = tag;
-	SetState(PIRANHAPLANT_STATE_DARTING);
+	SetState(PIRANHAPLANT_STATE_INACTIVE);
 }
 
 void PiranhaPlantFire::Render()
@@ -66,14 +66,21 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	}
 	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	if (mario != NULL) {
-		if (floor(mario->x) <= x - 30 || floor(mario->x) > x + 30) {
-			idle = true;
-			//DebugOut(L"range active\n");
-		}
-		else {
+		if (floor(mario->x) <= x - 130 || floor(mario->x) > x + 130) {
 			idle = false;
 			//DebugOut(L"range idle\n");
 		}
+		else if (floor(mario->x) <= x - 30 || floor(mario->x) > x + 30) {
+			idle = true;
+			//DebugOut(L"range active\n");
+			//DebugOut(L"x for piranha:: %f \n", this->x);
+			//DebugOut(L"x for mario:: %f \n", mario->x);
+		}
+		else if(floor(mario->x) > x - 30 || floor(mario->x) < x + 30) {
+			idle = false;
+			//DebugOut(L"range idle\n");
+		}
+
 	}
 
 	if (y > limitY && vy == 0 && aim_start == 0 && delay_start == 0 && idle)
@@ -118,6 +125,7 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
 			DebugOut(L"PiranhaPlantFire die by mario tail \n");
 			SetState(PIRANHAPLANT_STATE_DEATH);
+			mario->InitScore(this->x, this->y, 100);
 		}
 	}
 }

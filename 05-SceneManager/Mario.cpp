@@ -209,6 +209,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 				goomba->SetTag(GOOMBA_RED_NORMAL);
 			}	
 			else {
+				InitScore(this->x, this->y, 100);
 				goomba->SetState(GOOMBA_STATE_DIE);
 			}
 			vy = -MARIO_JUMP_DEFLECT_SPEED_GB; // mario jump a little bit when collision with goomba red
@@ -264,6 +265,7 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 		//DebugOut(L"setState for question brick!\n");
 		vy = 0;
 		qBrick->SetState(QUESTION_BRICK_HIT);
+		//InitScore(this->x, this->y, 100);
 	}
 }
 
@@ -271,6 +273,7 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 {
 	CMushRoom* mushRoom = dynamic_cast<CMushRoom*>(e->obj);
 	e->obj->Delete();
+	InitScore(this->x, this->y, 100);
 	DebugOut(L"mario collision with mushroom \n");
 	if (mushRoom->GetTypeMushRoom() != MUSHROOM_GREEN) {
 		SetLevel(MARIO_LEVEL_BIG);
@@ -355,6 +358,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e) {
 		else if (koopas->GetState() == KOOPAS_STATE_TURNING) {
 			koopas->SetState(KOOPAS_STATE_IN_SHELL);
 		}
+		InitScore(this->x, this->y, 100);
 	}
 }
 
@@ -366,6 +370,7 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 		SetLevel(MARIO_LEVEL_TAIL);
 		leaf->SetAppear(false);
 		e->obj->Delete();
+		InitScore(this->x, this->y, 1000);
 	}
 }
 

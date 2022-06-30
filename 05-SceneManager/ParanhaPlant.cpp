@@ -55,6 +55,7 @@ void PiranhaPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		if (isColliding(floor(mLeft), mTop, ceil(mRight), mBottom) && mario->isTuring) {
 			DebugOut(L"PiranhaPlant die by mario tail \n");
 			SetState(PIRANHAPLANT_STATE_DEATH);
+			mario->InitScore(this->x, this->y, 100);
 		}
 	}
 
