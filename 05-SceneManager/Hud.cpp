@@ -136,12 +136,17 @@ void HUD::Render() {
 	// for mario sprite
 	playerSprite->Draw(x - HUD_DIFF_PLAYER + HUD_DIFF_MELTER - 3, y + 4 - 7);
 
+	// for score
+	for (unsigned int i = 0; i < scoreSprites.size(); i++) {
+		scoreSprites[i]->Draw(x + FONT_BBOX_WIDTH * i - HUD_DIFF_SCORE - 7 + HUD_DIFF_MELTER - 1, y + HUD_DIFF_ROW - 7);
+	}
 }
 
 void HUD::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	AddSpeedStack();
 	AddCoin();
 	AddLife();
+	GetScore();
 
 	// for mario life
 	mariolifeSprites = StringToSprite(to_string(marioLife));
@@ -157,6 +162,11 @@ void HUD::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	remainTimeSprites = StringToSprite(time_str);
 
 	//GetTypeHub();
+
+	// for score
+	string score_str = to_string(score);
+	while (score_str.length() < HUD_SCORE_MAX) score_str = "0" + score_str;
+	scoreSprites = StringToSprite(score_str);
 }
 
 void HUD::AddSpeedStack() {
@@ -173,4 +183,9 @@ void HUD::AddCoin() {
 void HUD::AddLife() {
 	if (mario != NULL)
 		this->marioLife = mario->marioLife;
+}
+
+void HUD::GetScore() {
+	if (mario != NULL)
+		this->score = mario->marioScore;
 }

@@ -67,12 +67,15 @@ class HUD :public CGameObject {
 	vector<LPSPRITE> moneySprites;
 	vector<LPSPRITE> remainTimeSprites;
 	vector<LPSPRITE> mariolifeSprites;
+	vector<LPSPRITE> scoreSprites;
 	//
 	int speedStack = 0;
 	int money = 0;
 	int time = 0;
 	int remainTime = DEFAULT_TIME;
 	int marioLife = 4;
+	int score = 0;
+
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	HUD(int typeHud);
@@ -94,5 +97,6 @@ public:
 
 	// get
 	int GetLife() { return marioLife; }
+	void GetScore();
 	
 };
