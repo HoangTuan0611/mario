@@ -11,7 +11,7 @@ Resources\Tilemap\world1-1.txt
 # ====	HUD ====
 99999	17	2	168	31	60
 # ---- icon MARIO ---- 
-50003	15	160	33	169	80
+50003	16	161	31	167	80
  ---- icon Lugi ---- 
 50004	15	170	33	179	80
  ---- PowerMelter filled arrow ---- 

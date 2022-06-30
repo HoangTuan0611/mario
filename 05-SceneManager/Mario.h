@@ -277,6 +277,7 @@ public:
 	// hud
 	int coin;
 	int speedStack = 0;
+	int marioLife = 4;
 
 	//
 	BOOLEAN isExtraTop = false;

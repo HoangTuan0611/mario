@@ -66,11 +66,13 @@ class HUD :public CGameObject {
 	vector<LPSPRITE> powerMelterSprite;
 	vector<LPSPRITE> moneySprites;
 	vector<LPSPRITE> remainTimeSprites;
+	vector<LPSPRITE> mariolifeSprites;
 	//
 	int speedStack = 0;
 	int money = 0;
 	int time = 0;
 	int remainTime = DEFAULT_TIME;
+	int marioLife = 4;
 public:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL);
 	HUD(int typeHud);
@@ -85,8 +87,12 @@ public:
 	LPSPRITE mappingFont(char c);
 	vector<LPSPRITE> StringToSprite(string str);
 
-	// 
+	// add
 	void AddSpeedStack();
 	void AddCoin();
+	void AddLife();
+
+	// get
+	int GetLife() { return marioLife; }
 	
 };
