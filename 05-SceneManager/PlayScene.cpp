@@ -421,7 +421,7 @@ void CPlayScene::Render()
 }
 
 void CPlayScene::SetCam(float cx, float cy, DWORD dt) {
-	float sw, sh, mw, mh, mx, my;
+	float sw, sh, mw, mh;
 	CGame* game = CGame::GetInstance();
 	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	sw = game->GetBackBufferWidth();

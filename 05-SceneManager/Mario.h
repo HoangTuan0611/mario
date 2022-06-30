@@ -318,7 +318,7 @@ public:
 	}
 
 	// get level mario
-	int GetY() {
+	float GetY() {
 		return this->y;
 	}
 

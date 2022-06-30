@@ -23,7 +23,7 @@
 class CCoin : public CGameObject {
 	bool isAppear;
 
-	DWORD timing_start = 0;
+	ULONGLONG timing_start = 0;
 
 public:
 	CCoin(float x, float y) : CGameObject(x, y) {}
