@@ -10,10 +10,17 @@
 
 #define HAMMER_LIMIT_X		176
 #define OBJECT_BBOX_WIDTH	4
+
+#define START_WALK_LIMIT	10000
+
 class CWorldMapObject :
 	public CGameObject
 {
 	int sceneId;
+	ULONGLONG start_walk;
+
+	float ax;
+	float ay;
 public:
 	virtual void Render();
 	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);
@@ -39,6 +46,7 @@ public:
 		cUp = cgUp;
 		cDown = cgDown;
 	};
+	void StartWalk() { start_walk = GetTickCount64();}
 
 };
 

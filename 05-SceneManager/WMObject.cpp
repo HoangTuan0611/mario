@@ -1,8 +1,9 @@
 #include "WMObject.h"
+#include "debug.h"
 
 CWorldMapObject::CWorldMapObject(int sceneId)
 {
-	vx = vy = 0;
+	vy, vx = 0;
 	SetMove(false, false, false, false);
 	this->sceneId = sceneId;
 }
@@ -16,6 +17,19 @@ void CWorldMapObject::Render()
 }
 void CWorldMapObject::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+	x += vx * dt;
+	//y += vy * dt;
+	if (tag == OBJECT_TYPE_HAMMER && x >= HAMMER_LIMIT_X) {
+		StartWalk();
+		vx = -vx;
+		DebugOut(L"vx:: %f \n", vx);
+	}
+	if (tag == OBJECT_TYPE_HAMMER && x <= HAMMER_LIMIT_X - OBJECT_BBOX_WIDTH * 4) {
+		vx = -vx;
+		//start_walk = 0;
+		DebugOut(L"vx:: %f \n", vx);
+	}
+
 	CGameObject::Update(dt);
 }
 void CWorldMapObject::GetBoundingBox(float& left, float& top, float& right, float& bottom)
