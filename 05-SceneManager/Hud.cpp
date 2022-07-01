@@ -103,10 +103,10 @@ void HUD::Render() {
 	//remainTimeSprites.resize(10);
 	CSprites::GetInstance()->Get(SPRITE_HUD_ID)->Draw(x, y - 7);
 	if (typeHud == WORLDSCENE_HUD) {
-		DebugOut(L"Type Hud for world scene:: %d \n", GetTypeHub());
+		//DebugOut(L"Type Hud for world scene:: %d \n", GetTypeHub());
 	}
 	else if (typeHud == PLAYSCENE_HUD) {
-		DebugOut(L"Type Hud for play scene :: %d \n", GetTypeHub());
+		//DebugOut(L"Type Hud for play scene :: %d \n", GetTypeHub());
 	}
 	// for running stack
 	for (int i = 1; i <= speedStack; i++) {

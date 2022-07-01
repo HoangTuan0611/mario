@@ -39,6 +39,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		pullDown();
 	}
 
+	//if (vy <= -MARIO_JUMP_UPDATE && level == MARIO_LEVEL_TAIL && !isFlying && !isJumping) {
+	//	DebugOut(L"update ay for tail falling \n");
+	//	ay = 0.00025f;
+	//	vy = MARIO_SLOW_FALLING_SPEED;
+	//}
+
 	//DebugOut(L"mario ay:: %f \n", ay);
 	//DebugOut(L"mario vy:: %f \n", vy);
 	//DebugOut(L"mario ax:: %f \n", ax);
@@ -463,11 +469,12 @@ void CMario::HandleFlying() {
 		{
 			if (vy <= -MARIO_NORMAL_FLY_MAX) {
 				normalFallDown = true;
-				//DebugOut(L"Start fall down \n");
+				DebugOut(L"Start fall down \n");
 			}
 		}
 	}
 	if (normalFallDown && isFlying) {
+		DebugOut(L"set ay again \n");
 		ay = 0.0005f;
 	}
 

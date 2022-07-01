@@ -227,7 +227,7 @@ void IntroSceneKeyHandler::OnKeyDown(int KeyCode)
 	DebugOut(L"intro:: %d \n", intro);
 	switch (KeyCode)
 	{
-	case DIK_A:
+	case DIK_S:
 		intro->switchTimer = GetTickCount64();
 		intro->isSwitch = true;
 		DebugOut(L"Enter to switch scene \n");
